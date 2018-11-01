@@ -1,37 +1,103 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'sheerun/vim-polyglot'
-Plug 'mbbill/undotree'
+"____Systax checking____""
 Plug 'w0rp/ale'
+"__________________________________________________________________________________"
+
+
+"_____Language Support Package____"
+Plug 'sheerun/vim-polyglot'
+"__________________________________________________________________________________"
+
+
+"____Moving around the text____"
 Plug 'easymotion/vim-easymotion'
+"__________________________________________________________________________________"
+
+
+"____Undotree____"
+Plug 'mbbill/undotree'
+"__________________________________________________________________________________"
+
+
+"____Pairing____"
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+"__________________________________________________________________________________"
+
+
+"____Comment____"
 Plug 'tpope/vim-commentary'
+"__________________________________________________________________________________"
+
+
+"____Tag_____"
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
+"__________________________________________________________________________________"
+
+
+"____Tmux____"
 Plug 'christoomey/vim-tmux-navigator'
+"__________________________________________________________________________________"
+
+
+"____File tree____"
+"
 Plug 'scrooloose/nerdtree'
+"Icons for filetype of NerdTree
+Plug 'ryanoasis/vim-devicons' 
+"Highlighting filetype in NerdTree
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
+"__________________________________________________________________________________"
+
+
+
+"____Syntax Highlighting and Theme, Indent..., anything makes VIM looking better____"
+
+" Theme 
 Plug 'srcery-colors/srcery-vim'
+Plug 'fugalh/desert.vim'
+
+" Status Line
+Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim' "For Tmux
+
+" Semantic Highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "For python
+Plug 'octol/vim-cpp-enhanced-highlight' "For CPP
+
+" Indentation
+Plug 'yggdroot/indentline'
+"__________________________________________________________________________________"
+
+"____Searching____"
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-Plug 'fugalh/desert.vim'
-Plug 'itchyny/lightline.vim'
+"__________________________________________________________________________________"
+
+"_____Copy and Paste_____"
 Plug 'junegunn/vim-peekaboo'
+"__________________________________________________________________________________"
+
+
+"_____Auto Completion_____"
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
-Plug 'edkolev/tmuxline.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 if has('nvim')
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 else
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+"__________________________________________________________________________________"
+
 
 call plug#end()
 
@@ -54,8 +120,8 @@ call plug#end()
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
+
 "UI config
-    " set t_Co=256 "Use 256 Color
     set autoread "automatically load buffer
     set noshowmode
 	filetype indent on
@@ -64,7 +130,7 @@ call plug#end()
 	filetype plugin indent on
 	syntax enable
 	set termguicolors     " enable true colors support
-	colorscheme srcery 
+    colorscheme srcery 
 
     " disable Background Color Erase (BCE) so that color schemes
     " render properly when inside 256-color tmux and GNU screen.
@@ -82,8 +148,7 @@ call plug#end()
     set nohlsearch
     set mousehide
     set lazyredraw "Fixlag while scolling
-
-    let g:deoplete#enable_at_startup = 1
+    set noswapfile
 
 "searching config
 	set ignorecase
@@ -102,6 +167,12 @@ call plug#end()
 	nnoremap ; :
 	inoremap jk <esc>
 	inoremap kj <esc>
+    "Copy content of the whole file
+    nnoremap <leader>ya gg"+yG
+
+" Path config, reducting startup time
+    let g:python_host_prog="/usr/bin/python2"
+    let g:python3_host_prog = '/usr/bin/python3'
 
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
@@ -114,6 +185,9 @@ call plug#end()
 	let NERDTreeShowHidden=1 "not show dot files
 	"close nerdtree when closing vim
 	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    let g:NERDTreeFileExtensionHighlightFullName = 1
+    let g:NERDTreeExactMatchHighlightFullName = 1
+    let g:NERDTreePatternMatchHighlightFullName = 1
 
 "Undo Tree
     nnoremap <F5> :UndotreeToggle<cr>
@@ -142,10 +216,11 @@ call plug#end()
                 \}
     let g:ale_python_pylint_executable = '/usr/bin/pylint'
     let g:ale_python_pylint_use_globale = 1
-    let g:ale_python_pylint_options = '--generated-members=cv2.\* '
     let g:ale_sign_error = '✘'
     let g:ale_sign_warning = '-'
-
+    let g:ale_completion_enabled=1
+    nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+    nmap <silent> <leader>j <Plug>(ale_next_wrap)
 " snippet config 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -198,20 +273,29 @@ call plug#end()
 	endfunction
 "}}}
 
-" Pymode settings
-     let g:pymode = 1
-     let g:pymode_trim_whitespaces = 1
-     let g:pymode_python = 'python3'
-     let g:pymode_run = 1
-     let g:pymode_run_bind = '<leader>r'
-     let g:pymode_lint = 0
-     let g:pymode_doc = 0
-     let g:pymode_breakpoint = 0
-     let g:pymode_indent = 1
-     let g:python_host_prog="/usr/bin/python2"
-     let g:python3_host_prog = '/usr/bin/python3'
-     let g:pymode_rope_goto_definition_bind = 'gd'
-     let g:pymode_rope_completion = 0
-     let g:pymode_rope_complete_on_dot = 0
-     let g:pymode_syntax=1
-     let g:pymode_syntax_all=1
+
+" cpp-enhanced-highlight settings
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_member_variable_highlight = 1
+    let g:cpp_experimental_template_highlight = 1
+    let g:cpp_concepts_highlight = 1
+
+" Deoplete 
+    let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#option('sources', {
+                \ '_': ['buffer', 'neosnippet'],
+                \ 'python': ['file','jedi','buffer', 'tag', 'neosnippet'],
+                \})
+    call deoplete#custom#option({
+                \ 'auto_complete_delay': 10,
+                \ 'auto_refresh_delay' : 10,
+                \})
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Jedi-vim
+    let g:jedi#completions_enabled = 0  " Disable autocompletion (using deoplete instead)
+    let g:jedi#documentation_command = "K"
+    let g:jedi#rename_command = "<leader>r"
+    let g:jedi#goto_command = "gd"
+    let g:jedi#use_splits_not_buffers = "top"
+    let g:jedi#popup_on_dot = 0
