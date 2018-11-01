@@ -1,50 +1,50 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-"____Systax checking____""
+"_____Systax checking_____"
 Plug 'w0rp/ale'
 "__________________________________________________________________________________"
 
 
-"_____Language Support Package____"
+"_____Language Support Package_____"
 Plug 'sheerun/vim-polyglot'
 "__________________________________________________________________________________"
 
 
-"____Moving around the text____"
+"_____Moving around the text_____"
 Plug 'easymotion/vim-easymotion'
 "__________________________________________________________________________________"
 
 
-"____Undotree____"
+"_____Undotree_____"
 Plug 'mbbill/undotree'
 "__________________________________________________________________________________"
 
 
-"____Pairing____"
+"_____Pairing_____"
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 "__________________________________________________________________________________"
 
 
-"____Comment____"
+"_____Comment_____"
 Plug 'tpope/vim-commentary'
 "__________________________________________________________________________________"
 
 
-"____Tag_____"
+"_____Tag______"
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 "__________________________________________________________________________________"
 
 
-"____Tmux____"
+"_____Tmux_____"
 Plug 'christoomey/vim-tmux-navigator'
 "__________________________________________________________________________________"
 
 
-"____File tree____"
-"
+"_____File tree_____"
+
 Plug 'scrooloose/nerdtree'
 "Icons for filetype of NerdTree
 Plug 'ryanoasis/vim-devicons' 
@@ -54,7 +54,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 
 
-"____Syntax Highlighting and Theme, Indent..., anything makes VIM looking better____"
+"_____Syntax Highlighting and Theme, Indent..., anything makes VIM looking better_____"
 
 " Theme 
 Plug 'srcery-colors/srcery-vim'
@@ -72,7 +72,7 @@ Plug 'octol/vim-cpp-enhanced-highlight' "For CPP
 Plug 'yggdroot/indentline'
 "__________________________________________________________________________________"
 
-"____Searching____"
+"_____Searching_____"
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 "__________________________________________________________________________________"
@@ -92,10 +92,19 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
+
+
+"Snippet
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+
+"Include File
+Plug 'Shougo/neoinclude.vim'
+
 "__________________________________________________________________________________"
 
 
@@ -173,6 +182,7 @@ call plug#end()
 " Path config, reducting startup time
     let g:python_host_prog="/usr/bin/python2"
     let g:python3_host_prog = '/usr/bin/python3'
+    " let g:clang_library_path='/usr/lib/llvm-6.0/lib/lib-clang.so'
 
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
@@ -217,7 +227,7 @@ call plug#end()
     let g:ale_python_pylint_executable = '/usr/bin/pylint'
     let g:ale_python_pylint_use_globale = 1
     let g:ale_sign_error = '✘'
-    let g:ale_sign_warning = '-'
+    let g:ale_sign_warning = '⚠'
     let g:ale_completion_enabled=1
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
@@ -284,12 +294,14 @@ call plug#end()
     let g:deoplete#enable_at_startup = 1
     call deoplete#custom#option('sources', {
                 \ '_': ['buffer', 'neosnippet'],
-                \ 'python': ['file','jedi','buffer', 'tag', 'neosnippet'],
+                \ 'cpp' : ['file', 'buffer', 'tag', 'neosnippet','include', 'file/include'],
+                \ 'python': ['file', 'jedi','buffer', 'tag', 'neosnippet'],
                 \})
     call deoplete#custom#option({
-                \ 'auto_complete_delay': 10,
+                \ 'auto_complete_delay': 20,
                 \ 'auto_refresh_delay' : 10,
                 \})
+
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Jedi-vim
