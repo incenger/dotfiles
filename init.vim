@@ -1,4 +1,3 @@
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 "_____Systax checking_____"
@@ -83,7 +82,6 @@ Plug 'junegunn/vim-peekaboo'
 
 
 "_____Auto Completion_____"
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
@@ -104,6 +102,10 @@ Plug 'Shougo/neosnippet-snippets'
 
 "Include File
 Plug 'Shougo/neoinclude.vim'
+
+" SuperTab
+Plug 'ervandew/supertab'
+
 
 "__________________________________________________________________________________"
 
@@ -141,14 +143,6 @@ call plug#end()
 	set termguicolors     " enable true colors support
     colorscheme srcery 
 
-    " disable Background Color Erase (BCE) so that color schemes
-    " render properly when inside 256-color tmux and GNU screen.
-    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-    if &term =~ '256color'
-        set t_ut=
-    endif
-
-
 "general config
 	set mouse=
 	set history=1000
@@ -182,7 +176,6 @@ call plug#end()
 " Path config, reducting startup time
     let g:python_host_prog="/usr/bin/python2"
     let g:python3_host_prog = '/usr/bin/python3'
-    " let g:clang_library_path='/usr/lib/llvm-6.0/lib/lib-clang.so'
 
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
@@ -228,9 +221,9 @@ call plug#end()
     let g:ale_python_pylint_use_globale = 1
     let g:ale_sign_error = '✘'
     let g:ale_sign_warning = '⚠'
-    let g:ale_completion_enabled=1
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
+
 " snippet config 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -255,8 +248,7 @@ call plug#end()
     nnoremap <silent> <C-p>      :GFiles<CR>
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
-	nnoremap <silent> <leader>l  :BLines<CR>
-	nnoremap <silent> <leader>ll :Lines<CR>
+	nnoremap <silent> <leader>l  :Lines<CR>
 	nnoremap <silent> <leader>o  :BTags<CR>
 	nnoremap <silent> <leader>oo :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
@@ -266,6 +258,20 @@ call plug#end()
 	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
 	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 	imap <C-x><C-l> <plug>(fzf-complete-line)
+    let g:fzf_colors =
+                \ { 'fg':      ['fg', 'Normal'],
+                \ 'bg':      ['bg', 'Normal'],
+                \ 'hl':      ['fg', 'Comment'],
+                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \ 'hl+':     ['fg', 'Statement'],
+                \ 'info':    ['fg', 'PreProc'],
+                \ 'border':  ['fg', 'Ignore'],
+                \ 'prompt':  ['fg', 'Conditional'],
+                \ 'pointer': ['fg', 'Exception'],
+                \ 'marker':  ['fg', 'Keyword'],
+                \ 'spinner': ['fg', 'Label'],
+                \ 'header':  ['fg', 'Comment'] }
 	function! SearchWordWithAg()
 		execute 'Ag' expand('<cword>')
 	endfunction
@@ -289,19 +295,17 @@ call plug#end()
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
+    let g:cpp_class_decl_highlight = 1
 
 " Deoplete 
     let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#option('auto_complete_delay', 50)
+    call deoplete#custom#option('min_length_pattern', 4)
     call deoplete#custom#option('sources', {
-                \ '_': ['buffer', 'neosnippet'],
-                \ 'cpp' : ['file', 'buffer', 'tag', 'neosnippet','include', 'file/include'],
-                \ 'python': ['file', 'jedi','buffer', 'tag', 'neosnippet'],
+                \ '[]': ['around', 'file','buffer', 'neosnippet'],
+                \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
+                \ 'python': ['around','jedi',  'file', 'buffer', 'tag', 'neosnippet'],
                 \})
-    call deoplete#custom#option({
-                \ 'auto_complete_delay': 20,
-                \ 'auto_refresh_delay' : 10,
-                \})
-
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Jedi-vim
@@ -311,3 +315,9 @@ call plug#end()
     let g:jedi#goto_command = "gd"
     let g:jedi#use_splits_not_buffers = "top"
     let g:jedi#popup_on_dot = 0
+    let g:jedi#show_call_signatures = 1
+    let g:deoplete#sources#jedi#show_docstring = 1
+
+" Super Tab
+    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
