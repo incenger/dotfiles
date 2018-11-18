@@ -217,8 +217,11 @@ call plug#end()
                 \ 'cpp' : ['g++'],
                 \ 'python' : ['pylint'],
                 \}
-    let g:ale_python_pylint_executable = '/usr/bin/pylint'
-    let g:ale_python_pylint_use_globale = 1
+    "Using pylint3 to improve the performance of pylint
+    "while waiting for the next release of pylint to fix the bug
+    "with pandas
+    let g:ale_python_pylint_executable = '/usr/bin/pylint3'
+    let g:ale_python_pylint_use_global = 1
     let g:ale_sign_error = '✘'
     let g:ale_sign_warning = '⚠'
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
