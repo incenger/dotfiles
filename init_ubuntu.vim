@@ -222,6 +222,7 @@ call plug#end()
     "with pandas
     let g:ale_python_pylint_executable = '/usr/bin/pylint3'
     let g:ale_python_pylint_use_global = 1
+    let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
     let g:ale_sign_error = '✘'
     let g:ale_sign_warning = '⚠'
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
@@ -292,6 +293,8 @@ call plug#end()
 	endfunction
 "}}}
 
+" NerdTree Syntax Highlighting
+    let g:NERDTreeHighlightFolders = 1
 
 " cpp-enhanced-highlight settings
     let g:cpp_class_scope_highlight = 1
