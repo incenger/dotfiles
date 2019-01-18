@@ -103,8 +103,6 @@ Plug 'Shougo/neosnippet-snippets'
 "Include File
 Plug 'Shougo/neoinclude.vim'
 
-" SuperTab
-Plug 'ervandew/supertab'
 
 
 "__________________________________________________________________________________"
@@ -172,27 +170,30 @@ call plug#end()
 	inoremap kj <esc>
     "Copy content of the whole file
     nnoremap <leader>ya gg"+yG
-
-" Path config, reducting startup time
+    " use tab to forward cycle
+    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " use tab to backward cycle
+    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    " Path config, reducting startup time
     let g:python_host_prog="/usr/bin/python2"
     let g:python3_host_prog = '/usr/bin/python3'
 
-"-------------------------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------------------------
+    "-------------------------------------------------------------------------------------------------
+    "-------------------------------------------------------------------------------------------------
 
-"TagBar config
-	nnoremap <F7> :TagbarToggle<CR>
+    "TagBar config
+    nnoremap <F7> :TagbarToggle<CR>
 
-"NerdTree config
-	nnoremap <F6> :NERDTreeToggle<CR>
-	let NERDTreeShowHidden=1 "not show dot files
-	"close nerdtree when closing vim
-	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "NerdTree config
+    nnoremap <F6> :NERDTreeToggle<CR>
+    let NERDTreeShowHidden=1 "not show dot files
+    "close nerdtree when closing vim
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
 
-"Undo Tree
+    "Undo Tree
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
     if has("persistent_undo")
@@ -206,11 +207,11 @@ call plug#end()
     if !exists('g:undotree_SetFocusWhenToggle')
         let g:undotree_SetFocusWhenToggle = 1
     endif
-    
-"EasyMotion Config
-	nmap <leader>s <Plug>(easymotion-prefix)s
 
-"Ale Config
+    "EasyMotion Config
+    nmap <leader>s <Plug>(easymotion-prefix)s
+
+    "Ale Config
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
     let g:ale_linters = {
@@ -228,17 +229,17 @@ call plug#end()
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
-" snippet config 
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    " snippet config 
+    " Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
     imap <C-k>     <Plug>(neosnippet_expand_or_jump)
     smap <C-k>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" change comment style
-     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+    " change comment style
+    autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 
-" Fzf {{{
+    " Fzf {{{
     " Fzf settings
     function! s:fzf_statusline()
         " Override statusline as you like
@@ -248,20 +249,20 @@ call plug#end()
         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
     endfunction
 
-	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
     nnoremap <silent> <C-p>      :GFiles<CR>
-	nnoremap <silent> <leader>b  :Buffers<CR>
-	nnoremap <silent> <leader>;  :History: <CR>
-	nnoremap <silent> <leader>l  :Lines<CR>
-	nnoremap <silent> <leader>o  :BTags<CR>
-	nnoremap <silent> <leader>oo :Tags<CR>
-	nnoremap <silent> <leader>?  :History/<CR>
-	nnoremap <silent> <leader>m  :Marks<CR>
-	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
-	nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
-	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
-	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-	imap <C-x><C-l> <plug>(fzf-complete-line)
+    nnoremap <silent> <leader>b  :Buffers<CR>
+    nnoremap <silent> <leader>;  :History: <CR>
+    nnoremap <silent> <leader>l  :Lines<CR>
+    nnoremap <silent> <leader>o  :BTags<CR>
+    nnoremap <silent> <leader>oo :Tags<CR>
+    nnoremap <silent> <leader>?  :History/<CR>
+    nnoremap <silent> <leader>m  :Marks<CR>
+    nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
+    nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
+    vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
+    imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+    imap <C-x><C-l> <plug>(fzf-complete-line)
     let g:fzf_colors =
                 \ { 'fg':      ['fg', 'Normal'],
                 \ 'bg':      ['bg', 'Normal'],
@@ -276,34 +277,34 @@ call plug#end()
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-	function! SearchWordWithAg()
-		execute 'Ag' expand('<cword>')
-	endfunction
+    function! SearchWordWithAg()
+        execute 'Ag' expand('<cword>')
+    endfunction
 
-	function! SearchVisualSelectionWithAg() range
-		let old_reg = getreg('"')
-		let old_regtype = getregtype('"')
-		let old_clipboard = &clipboard
-		set clipboard&
-		normal! ""gvy
-		let selection = getreg('"')
-		call setreg('"', old_reg, old_regtype)
-		let &clipboard = old_clipboard
-		execute 'Ag' selection
-	endfunction
-"}}}
+    function! SearchVisualSelectionWithAg() range
+        let old_reg = getreg('"')
+        let old_regtype = getregtype('"')
+        let old_clipboard = &clipboard
+        set clipboard&
+        normal! ""gvy
+        let selection = getreg('"')
+        call setreg('"', old_reg, old_regtype)
+        let &clipboard = old_clipboard
+        execute 'Ag' selection
+    endfunction
+    "}}}
 
-" NerdTree Syntax Highlighting
+    " NerdTree Syntax Highlighting
     let g:NERDTreeHighlightFolders = 1
 
-" cpp-enhanced-highlight settings
+    " cpp-enhanced-highlight settings
     let g:cpp_class_scope_highlight = 1
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
 
-" Deoplete 
+    " Deoplete 
     let g:deoplete#enable_at_startup = 1
     call deoplete#custom#option('auto_complete_delay', 0)
     call deoplete#custom#option('min_length_pattern', 2)
@@ -314,7 +315,7 @@ call plug#end()
                 \})
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" Jedi-vim
+    " Jedi-vim
     let g:jedi#completions_enabled = 0  " Disable autocompletion (using deoplete instead)
     let g:jedi#documentation_command = "K"
     let g:jedi#rename_command = "<leader>r"
@@ -324,6 +325,6 @@ call plug#end()
     let g:jedi#show_call_signatures = 1
     let g:deoplete#sources#jedi#show_docstring = 1
 
-" Super Tab
-    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+    " " Super Tab
+    "     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
