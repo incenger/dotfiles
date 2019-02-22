@@ -80,6 +80,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 "__________________________________________________________________________________"
 
+"_____Unix Command______"
+Plug 'tpope/vim-eunuch'
+
+"__________________________________________________________________________________"
 
 "_____Auto Completion_____"
 
@@ -103,8 +107,8 @@ Plug 'Shougo/neosnippet-snippets'
 "Include File
 Plug 'Shougo/neoinclude.vim'
 
-
-
+" Show function signature
+Plug 'Shougo/echodoc.vim'
 "__________________________________________________________________________________"
 
 
@@ -320,3 +324,5 @@ call plug#end()
     let g:jedi#show_call_signatures = 1
     let g:deoplete#sources#jedi#show_docstring = 1
 
+" EchoDoc
+	let g:echodoc_enable_at_startup = 1
