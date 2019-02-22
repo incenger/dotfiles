@@ -103,8 +103,6 @@ Plug 'Shougo/neosnippet-snippets'
 "Include File
 Plug 'Shougo/neoinclude.vim'
 
-" SuperTab
-Plug 'ervandew/supertab'
 
 
 "__________________________________________________________________________________"
@@ -172,6 +170,10 @@ call plug#end()
 	inoremap kj <esc>
     "Copy content of the whole file
     nnoremap <leader>ya gg"+yG
+    " use tab to forward cycle
+    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " use s-tab to backward cycle
+    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " Path config, reducting startup time
     let g:python_host_prog="/usr/bin/python2"
@@ -317,7 +319,4 @@ call plug#end()
     let g:jedi#popup_on_dot = 0
     let g:jedi#show_call_signatures = 1
     let g:deoplete#sources#jedi#show_docstring = 1
-
-" Super Tab
-    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
