@@ -43,7 +43,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 
 "_____File tree_____"
-
 Plug 'scrooloose/nerdtree'
 "Icons for filetype of NerdTree
 Plug 'ryanoasis/vim-devicons' 
@@ -146,7 +145,7 @@ call plug#end()
     colorscheme srcery 
 
 "general config
-	set mouse=
+	set mouse=a
 	set history=1000
 	set number
 	set relativenumber
@@ -259,6 +258,7 @@ call plug#end()
 	nnoremap <silent> <leader>oo :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
+	nnoremap <silent> <leader>c  :Commands<CR>
 	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
 	nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
 	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
