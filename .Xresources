@@ -8,17 +8,18 @@ Xft.lcdfilter: lcddefault
 
 
 URxvt.depth:                      32
-URxvt.background:                 #222831
+URxvt.background:                 #121219
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 URxvt*letterSpace:                1 
+URxvt*internalBorder:             16
+URxvt*externalBorder:             0
 
 
-URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=12, \
-                xft:DejaVu Sans Mono
+URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=15
 
 ! main colors {{{
 ! black

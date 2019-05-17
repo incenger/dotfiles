@@ -62,9 +62,9 @@ bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Print --release exec flameshot gui
+bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
+# bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 focus_follows_mouse no
@@ -266,7 +266,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+Ctrl+l exec --no-startup-id blurlock
+bindsym $mod+Ctrl+l exec --no-startup-id i3lock-fancy --font "Ringbearer-Medium" --text "YOU SHALL NOT PASS"
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -280,7 +280,9 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10  -locker i3lock-fancy --font "Ringbearer-Medium" --text "YOU SHALL NOT PASS"
+
+
 # exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
