@@ -61,7 +61,7 @@ bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+# bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
 bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
@@ -350,7 +350,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #}
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

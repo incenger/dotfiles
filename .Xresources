@@ -1,4 +1,4 @@
-Xft.dpi:       96
+Xft.dpi:       116
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
@@ -15,11 +15,11 @@ URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 URxvt*letterSpace:                1 
-URxvt*internalBorder:             16
+URxvt*internalBorder:             8
 URxvt*externalBorder:             0
 
 
-URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=15
+URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=14
 
 ! main colors {{{
 ! black
