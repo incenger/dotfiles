@@ -56,15 +56,14 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Theme 
 Plug 'srcery-colors/srcery-vim'
-Plug 'fugalh/desert.vim'
 
 " Status Line
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " Semantic Highlighting
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "For python
-Plug 'octol/vim-cpp-enhanced-highlight' "For CPP
+Plug 'numirias/semshi', {'for' : 'python', 'do': ':UpdateRemotePlugins'} "For python
+Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " Indentation
 Plug 'yggdroot/indentline'
@@ -95,8 +94,8 @@ else
 endif
 
 " Python
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim', {'for' : 'python'}
+Plug 'zchee/deoplete-jedi', {'for' : 'python'}
 
 
 "Snippet
@@ -113,8 +112,6 @@ Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 
-" Force to vim to use newer regex version, fixing lag when using vim
-    set re=1
     set noequalalways
 
 
@@ -306,7 +303,7 @@ call plug#end()
 " Deoplete 
     let g:deoplete#enable_at_startup = 1
     call deoplete#custom#option('auto_complete_delay', 50)
-    call deoplete#custom#option('min_length_pattern', 4)
+    call deoplete#custom#option('min_pattern_length', 3)
     call deoplete#custom#option('sources', {
                 \ '[]': ['around', 'file','buffer', 'neosnippet'],
                 \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
