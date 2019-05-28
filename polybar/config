@@ -11,8 +11,6 @@ offset-x = 0
 
 border-top-size = 5
 border-bottom-size = 5
-border-right-size = 10
-border-left-size = 10
 
 ;----------;
 ; LOCATION ;
@@ -27,16 +25,16 @@ override-redirect = false
 ; FONTS ;
 ;-------;
 
-font-0 = "DejaVu Sans Mono:style=Bold:pixelsize=11;3"
-font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=12;3"
-font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
+font-0 = "xos4 Terminus:style=Bold:pixelsize=18;4"
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=13;2"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;2"
+font-3 = "Font Awesome 5 Brands:pixelsize=13;2"
 
 ;--------;
 ; COLORS ;
 ;--------;
 
-background = 0
+background = 0 
 foreground = #c5a9f9
 border-color = 0
 
@@ -49,10 +47,9 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = pulseaudio battery-combined-udev memory cpu temperature 
+modules-left = battery-combined-udev pulseaudio memory cpu 
 modules-center = i3
-modules-right = spotify wlan date time
-
+modules-right = spotify wlan date time 
 
 ;---------;
 ; MODULES ;
@@ -60,18 +57,19 @@ modules-right = spotify wlan date time
 
 [module/i3]
 type = internal/i3
-
 pin-workspaces = true
 strip-wsnumbers = true
 enable-scroll = false
 
+
 label-focused-foreground = #8E47FF
 label-focused-underline = #fba922
-
 label-unfocused-foreground = #afafaf
-
 label-urgent-foreground = #ff0000
 
+
+label-focused-padding = 1
+label-unfocused-padding = 1
 
 [module/time]
 type = internal/date
@@ -82,7 +80,7 @@ date =  %H:%M
 
 [module/date]
 type = internal/date
-date =  %e %B - %A
+date =  %A, %e %B
 label = %date%
 
 [module/pulseaudio]
@@ -124,7 +122,7 @@ label-disconnected =  Not Connected
 
 [module/cpu]
 type = internal/cpu
-label =  %percentage%%
+label =  %percentage%%
 
 
 [module/memory]
@@ -181,7 +179,7 @@ format = <label>
 ;   %temperature% (deprecated)
 ;   %temperature-c%   (default, temperature in °C)
 ;   %temperature-f%   (temperature in °F)
-label =  %temperature-c%
+label =  %temperature-c%°C
 
 
 [module/battery-combined-udev]

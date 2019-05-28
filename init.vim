@@ -63,7 +63,7 @@ Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " Semantic Highlighting
 Plug 'numirias/semshi', {'for' : 'python', 'do': ':UpdateRemotePlugins'} "For python
-Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+" Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " Indentation
 Plug 'yggdroot/indentline'
@@ -221,8 +221,8 @@ call plug#end()
                 \}
     let g:ale_python_pylint_executable = '/usr/bin/pylint'
     let g:ale_python_pylint_use_globale = 1
-    let g:ale_sign_error = '✘'
-    let g:ale_sign_warning = '⚠'
+    let g:ale_sign_error = ''
+    let g:ale_sign_warning = ''
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
 

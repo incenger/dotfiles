@@ -277,6 +277,7 @@ exec --no-startup-id nm-applet
 # exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id dropbox
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
@@ -355,7 +356,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #691D7C #556064 #80FFF9 #FDF6E3  #BC49E2
+  client.focused          #691D7C #556064 #80FFF9 #FDF6E3  #FFFFFF
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
@@ -364,7 +365,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
   client.background       #2B2C2B
 
 
-default_border pixel 2 
+default_border pixel 1 
 #############################
 ### settings for i3-gaps: ###
 #############################

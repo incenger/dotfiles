@@ -31,15 +31,15 @@ URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=14
 *.color9:       #f75341
 
 ! green
-*.color2:       #519f50
+*.color2:       #03E900
 *.color10:      #98bc37
 
 ! yellow
-*.color3:       #fbb829
+*.color3:       #D5AB00
 *.color11:      #fed06e
 
 ! blue
-*.color4:       #2c78bf
+*.color4:       #0300A1
 *.color12:      #68A8E4
 
 ! magenta
