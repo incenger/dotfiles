@@ -63,7 +63,7 @@ Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " Semantic Highlighting
 Plug 'numirias/semshi', {'for' : 'python', 'do': ':UpdateRemotePlugins'} "For python
-" Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " Indentation
 Plug 'yggdroot/indentline'

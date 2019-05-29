@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
+workspace_layout tabbed 
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 1
@@ -35,7 +35,7 @@ bindsym $mod+Shift+q kill
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+d exec rofi -show run 
-bindsym $mod+Tab exec rofi -show window 
+bindsym Mod1+Tab exec rofi -show window 
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
@@ -356,7 +356,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #691D7C #556064 #80FFF9 #FDF6E3  #FFFFFF
+  client.focused          #691D7C #556064 #80FFF9 #FDF6E3  #9600E9
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
