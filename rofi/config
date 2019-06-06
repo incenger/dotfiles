@@ -1,0 +1,23 @@
+rofi.width:                          40
+rofi.lines:                          8
+rofi.columns:                        1
+rofi.font:                           source code pro 14
+rofi.color-normal:                   argb:ff09152D, #ffffe9, #09152D, #592862, #ffffe9
+rofi.color-urgent:                   argb:ff09152D, #d6b48d, #22231D, #d6b48d, #ffffe9
+rofi.color-active:                   argb:ff09152D, #3b7ef8, #09152D, #3b7ef8, #09152D
+rofi.color-window:                   argb:cc09152D, argb:cccbcb5f, argb:cc8c8c41
+rofi.bw:                             0
+rofi.location:                       0
+rofi.padding:                        150
+rofi.line-padding:                   10
+rofi.fixed-num-lines:                true
+rofi.parse-hosts:                    true
+rofi.matching:                       normal
+rofi.separator-style:                dash
+rofi.hide-scrollbar:                 true
+rofi.scrollbar-width:                0
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Alt+l
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Alt+h
+rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
+rofi.kb-row-down:                    Down,Control+n,Alt+j
+rofi.fullscreen:                     true
