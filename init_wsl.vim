@@ -56,15 +56,14 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Theme 
 Plug 'srcery-colors/srcery-vim'
-Plug 'fugalh/desert.vim'
 
 " Status Line
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " Semantic Highlighting
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "For python
-Plug 'octol/vim-cpp-enhanced-highlight' "For CPP
+Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For python
+Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " Indentation
 Plug 'yggdroot/indentline'
@@ -95,8 +94,8 @@ else
 endif
 
 " Python
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
+" Plug 'davidhalter/jedi-vim', {'for' : 'python'}
+Plug 'zchee/deoplete-jedi', {'for' : 'python'}
 
 
 "Snippet
@@ -110,6 +109,10 @@ Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/echodoc.vim'
 "__________________________________________________________________________________"
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 call plug#end()
 
@@ -178,9 +181,6 @@ call plug#end()
     " use s-tab to backward cycle
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-" Path config, reducting startup time
-    let g:python_host_prog="/usr/bin/python2"
-    let g:python3_host_prog = '/usr/bin/python3'
 
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
@@ -254,8 +254,7 @@ call plug#end()
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
 	nnoremap <silent> <leader>l  :Lines<CR>
-	nnoremap <silent> <leader>o  :BTags<CR>
-	nnoremap <silent> <leader>oo :Tags<CR>
+	nnoremap <silent> <leader>o  :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
 	nnoremap <silent> <leader>c  :Commands<CR>
@@ -305,24 +304,49 @@ call plug#end()
 
 " Deoplete 
     let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#option('auto_complete_delay', 50)
-    call deoplete#custom#option('min_length_pattern', 4)
+    call deoplete#custom#option('auto_complete_delay', 0)
+    call deoplete#custom#option('min_pattern_length', 2)
     call deoplete#custom#option('sources', {
-                \ '[]': ['around', 'file','buffer', 'neosnippet'],
-                \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
-                \ 'python': ['around','jedi',  'file', 'buffer', 'tag', 'neosnippet'],
+                \ '[]': ['buffer', 'neosnippet'],
+                \ 'cpp' : ['buffer', 'tag', 'neosnippet'],
+                \ 'python': ['LanguageClient','tag', 'neosnippet'],
                 \})
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" Jedi-vim
-    let g:jedi#completions_enabled = 0  " Disable autocompletion (using deoplete instead)
-    let g:jedi#documentation_command = "K"
-    let g:jedi#rename_command = "<leader>r"
-    let g:jedi#goto_command = "gd"
-    let g:jedi#use_splits_not_buffers = "top"
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#show_call_signatures = 1
-    let g:deoplete#sources#jedi#show_docstring = 1
-
 " EchoDoc
 	let g:echodoc_enable_at_startup = 1
+
+" LanguageClient
+    " Required for operations modifying multiple buffers like rename.
+    set hidden
+
+    let g:LanguageClient_serverCommands = {
+        \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
+        \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
+        \ }
+    nnoremap <F10> :call LanguageClient_contextMenu()<CR>
+    autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" lightline {{{
+  let g:lightline = {
+    \ 'component_function': {
+    \     'filetype':   'CustomLightlineFiletype',
+    \     'fileformat': 'CustomLightlineFileformat',
+    \   }
+    \ }
+
+  function! CustomLightlineFiletype()
+    return winwidth(0) > 70 ?
+                \ (strlen(&filetype) ?
+                    \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+                    \ : 'no ft')
+                \ : ''
+  endfunction
+
+  function! CustomLightlineFileformat()
+    return winwidth(0) > 70 ?
+                \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  endfunction
+
