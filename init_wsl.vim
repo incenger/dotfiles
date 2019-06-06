@@ -94,8 +94,8 @@ else
 endif
 
 " Python
-" Plug 'davidhalter/jedi-vim', {'for' : 'python'}
 Plug 'zchee/deoplete-jedi', {'for' : 'python'}
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 
 "Snippet
@@ -116,8 +116,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 call plug#end()
 
-" Force to vim to use newer regex version, fixing lag when using vim
-    set re=1
     set noequalalways
 
 
@@ -181,7 +179,6 @@ call plug#end()
     " use s-tab to backward cycle
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
 
@@ -223,7 +220,7 @@ call plug#end()
                 \ 'python' : ['pylint'],
                 \}
     let g:ale_python_pylint_executable = '/usr/bin/pylint'
-    let g:ale_python_pylint_use_globale = 1
+    let g:ale_python_pylint_use_global = 1
     let g:ale_sign_error = '✘'
     let g:ale_sign_warning = '⚠'
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
@@ -329,24 +326,40 @@ call plug#end()
     autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-" lightline {{{
-  let g:lightline = {
-    \ 'component_function': {
-    \     'filetype':   'CustomLightlineFiletype',
-    \     'fileformat': 'CustomLightlineFileformat',
-    \   }
-    \ }
+" Pymode 
+    let g:pymode = 1
+    let g:pymode_python = 'python3'
+    let g:pymode_syntax_all = 1
+    let g:pymode_run = 1
+    let g:pymode_breakpoint = 0
+    let g:pymode_rope = 0
+    let g:pymode_lint = 0
+    let g:pymode_doc = 0
+    let g:pymode_virtualenv = 0
+    let g:pymode_run_bind = '<F11>'
+    let g:python_host_prog='/usr/bin/python'
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:pymode_rope_completion = 0
+    let g:pymode_rope_complete_on_dot = 0
 
-  function! CustomLightlineFiletype()
-    return winwidth(0) > 70 ?
-                \ (strlen(&filetype) ?
+" lightline {{{
+    let g:lightline = {
+                \ 'component_function': {
+                \     'filetype':   'CustomLightlineFiletype',
+                \     'fileformat': 'CustomLightlineFileformat',
+                \   }
+                \ }
+
+    function! CustomLightlineFiletype()
+        return winwidth(0) > 70 ?
+                    \ (strlen(&filetype) ?
                     \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
                     \ : 'no ft')
-                \ : ''
-  endfunction
+                    \ : ''
+    endfunction
 
-  function! CustomLightlineFileformat()
-    return winwidth(0) > 70 ?
-                \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-  endfunction
+    function! CustomLightlineFileformat()
+        return winwidth(0) > 70 ?
+                    \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    endfunction
 
