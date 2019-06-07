@@ -94,7 +94,7 @@ else
 endif
 
 " Python
-Plug 'zchee/deoplete-jedi', {'for' : 'python'}
+" Plug 'zchee/deoplete-jedi', {'for' : 'python'}
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 
@@ -124,7 +124,6 @@ call plug#end()
     set shiftwidth=4
     set softtabstop=4
     set expandtab
-    set smarttab
 
 "movement config
     nnoremap j gj
@@ -144,6 +143,7 @@ call plug#end()
 	syntax enable
 	set termguicolors     " enable true colors support
     colorscheme srcery 
+    set background=dark
 
 "general config
 	set mouse=a
@@ -154,6 +154,7 @@ call plug#end()
     set mousehide
     set lazyredraw "Fixlag while scolling
     set noswapfile
+    set cursorline " Highlight current line
 
 "searching config
 	set ignorecase
@@ -215,14 +216,41 @@ call plug#end()
 "Ale Config
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
+    let g:ale_linters_explicit = 1
     let g:ale_linters = {
                 \ 'cpp' : ['g++'],
-                \ 'python' : ['pylint'],
+                \ 'python' : ['pyls'],
                 \}
-    let g:ale_python_pylint_executable = '/usr/bin/pylint'
-    let g:ale_python_pylint_use_global = 1
-    let g:ale_sign_error = '✘'
-    let g:ale_sign_warning = '⚠'
+    let g:ale_python_pyls_config = {
+        \ "pyls": {
+            \ "plugins": {
+            \    "pyflakes": {
+            \       "enabled": v:true
+            \   },
+            \   "pydocstyle": {
+            \       "enabled": v:false
+            \   },
+            \   "pycodestyle": {
+            \       "enabled": v:true
+            \   },
+            \   "mccabe": {
+            \       "enabled": v:false
+            \   },
+            \   "autopep8": {
+            \       "enabled": v:false
+            \   },
+            \   "papf": {
+            \       "enabled": v:false
+            \   },
+            \   "pylint": {
+            \       "enabled": v:false
+            \   }
+            \}
+        \}
+    \}
+    let g:ale_sign_error = ''
+    let g:ale_sign_warning = ''
+
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
@@ -301,12 +329,15 @@ call plug#end()
 
 " Deoplete 
     let g:deoplete#enable_at_startup = 1
+    if !exists('g:deoplete#omni#input_patterns')
+      let g:deoplete#omni#input_patterns = {}
+    endif
     call deoplete#custom#option('auto_complete_delay', 0)
     call deoplete#custom#option('min_pattern_length', 2)
     call deoplete#custom#option('sources', {
-                \ '[]': ['buffer', 'neosnippet'],
-                \ 'cpp' : ['buffer', 'tag', 'neosnippet'],
-                \ 'python': ['LanguageClient','tag', 'neosnippet'],
+                \ '[]': ['around', 'buffer', 'neosnippet'],
+                \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
+                \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
                 \})
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -316,7 +347,9 @@ call plug#end()
 " LanguageClient
     " Required for operations modifying multiple buffers like rename.
     set hidden
-
+    let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
+    let g:LanguageClient_diagnosticsEnable=0
+    let g:LanguageClient_loadSettings = 1
     let g:LanguageClient_serverCommands = {
         \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
         \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
@@ -336,11 +369,20 @@ call plug#end()
     let g:pymode_lint = 0
     let g:pymode_doc = 0
     let g:pymode_virtualenv = 0
-    let g:pymode_run_bind = '<F11>'
+    let g:pymode_run_bind = '<F12>'
     let g:python_host_prog='/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
     let g:pymode_rope_completion = 0
     let g:pymode_rope_complete_on_dot = 0
+    au BufNewFile,BufRead *.py set filetype=python
+    autocmd BufNewFile,BufRead *.py
+                \ set tabstop=4 |
+                \ set softtabstop=4 |
+                \ set shiftwidth=4 |
+                \ set textwidth=79 |
+                \ set expandtab |
+                \ set autoindent |
+                \ set fileformat=unix
 
 " lightline {{{
     let g:lightline = {
@@ -363,3 +405,6 @@ call plug#end()
                     \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
 
+"Semshi
+    let g:semshi#error_sign=v:false
+    " let g:semshi#active=v:false
