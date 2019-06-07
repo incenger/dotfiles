@@ -179,6 +179,17 @@ call plug#end()
     inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
     " use s-tab to backward cycle
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    au BufNewFile,BufRead *.py set filetype=python
+    autocmd BufNewFile,BufRead *.py
+                \ set tabstop=4 |
+                \ set softtabstop=4 |
+                \ set shiftwidth=4 |
+                \ set textwidth=79 |
+                \ set expandtab |
+                \ set autoindent |
+                \ set fileformat=unix
+
+
 
 "-------------------------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------------------------
@@ -215,6 +226,7 @@ call plug#end()
 
 "Ale Config
     let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 0
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
     let g:ale_linters_explicit = 1
     let g:ale_linters = {
@@ -250,6 +262,8 @@ call plug#end()
     \}
     let g:ale_sign_error = ''
     let g:ale_sign_warning = ''
+    highlight clear ALEErrorSign
+    highlight clear ALEWarningSign
 
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
@@ -374,17 +388,8 @@ call plug#end()
     let g:python3_host_prog = '/usr/bin/python3'
     let g:pymode_rope_completion = 0
     let g:pymode_rope_complete_on_dot = 0
-    au BufNewFile,BufRead *.py set filetype=python
-    autocmd BufNewFile,BufRead *.py
-                \ set tabstop=4 |
-                \ set softtabstop=4 |
-                \ set shiftwidth=4 |
-                \ set textwidth=79 |
-                \ set expandtab |
-                \ set autoindent |
-                \ set fileformat=unix
 
-" lightline {{{
+    " lightline {{{
     let g:lightline = {
                 \ 'component_function': {
                 \     'filetype':   'CustomLightlineFiletype',
@@ -407,4 +412,3 @@ call plug#end()
 
 "Semshi
     let g:semshi#error_sign=v:false
-    " let g:semshi#active=v:false
