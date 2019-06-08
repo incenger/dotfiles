@@ -25,7 +25,7 @@ override-redirect = false
 ; FONTS ;
 ;-------;
 
-font-0 = "xos4 Terminus:style=Bold:pixelsize=18;4"
+font-0 = "xos4 Terminus:style=Bold:pixelsize=18;2"
 font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=13;2"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;2"
 font-3 = "Font Awesome 5 Brands:pixelsize=13;2"
@@ -89,7 +89,7 @@ type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
 format-volume = <ramp-volume> <label-volume>
-format-muted =  0%
+format-muted = 
 
 ramp-volume-0 = 
 ramp-volume-1 = 

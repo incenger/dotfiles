@@ -1,90 +1,48 @@
+
+
+"________________________________________________________________________________________________________________"
+"
+"         .----------------.  .----------------.  .----------------.  .----------------.  .----------------.
+"        | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+"        | | ____   ____  | || |     _____    | || | ____    ____ | || |  _______     | || |     ______   | |
+"        | ||_  _| |_  _| | || |    |_   _|   | || ||_   \  /   _|| || | |_   __ \    | || |   .' ___  |  | |
+"        | |  \ \   / /   | || |      | |     | || |  |   \/   |  | || |   | |__) |   | || |  / .'   \_|  | |
+"        | |   \ \ / /    | || |      | |     | || |  | |\  /| |  | || |   |  __ /    | || |  | |         | |
+"        | |    \ ' /     | || |     _| |_    | || | _| |_\/_| |_ | || |  _| |  \ \_  | || |  \ `.___.'\  | |
+"        | |     \_/      | || |    |_____|   | || ||_____||_____|| || | |____| |___| | || |   `._____.'  | |
+"        | |              | || |              | || |              | || |              | || |              | |
+"        | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+"         '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
+"
+"
+"
+"
+"         |  _ \            |_   _|          / ____|
+"         | |_) |  _   _      | |    _ __   | |        ___   _ __     __ _    ___   _ __
+"         |  _ <  | | | |     | |   | '_ \  | |       / _ \ | '_ \   / _` |  / _ \ | '__|
+"         | |_) | | |_| |    _| |_  | | | | | |____  |  __/ | | | | | (_| | |  __/ | |
+"         |____/   \__, |   |_____| |_| |_|  \_____|  \___| |_| |_|  \__, |  \___| |_|
+"                   __/ |                                             __/ |
+"                  |___/                                             |___/
+"
+"
+"                                   AND OTHER'S DOTFILES
+"
+"
+"________________________________________________________________________________________________________________"
+
+
 call plug#begin('~/.local/share/nvim/plugged')
 
-"_____Systax checking_____"
+"______________________________LANGUAGE PACKAGES___________________________________"
+
+""" Linters
 Plug 'w0rp/ale'
-"__________________________________________________________________________________"
 
-
-"_____Language Support Package_____"
+""" Language Support
 Plug 'sheerun/vim-polyglot'
-"__________________________________________________________________________________"
 
-
-"_____Moving around the text_____"
-Plug 'easymotion/vim-easymotion'
-"__________________________________________________________________________________"
-
-
-"_____Undotree_____"
-Plug 'mbbill/undotree'
-"__________________________________________________________________________________"
-
-
-"_____Pairing_____"
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-"__________________________________________________________________________________"
-
-
-"_____Comment_____"
-Plug 'tpope/vim-commentary'
-"__________________________________________________________________________________"
-
-
-"_____Tag______"
-Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
-"__________________________________________________________________________________"
-
-
-"_____Tmux_____"
-Plug 'christoomey/vim-tmux-navigator'
-"__________________________________________________________________________________"
-
-
-"_____File tree_____"
-Plug 'scrooloose/nerdtree'
-"Icons for filetype of NerdTree
-Plug 'ryanoasis/vim-devicons' 
-"Highlighting filetype in NerdTree
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
-"__________________________________________________________________________________"
-
-
-
-"_____Syntax Highlighting and Theme, Indent..., anything makes VIM looking better_____"
-
-" Theme 
-Plug 'srcery-colors/srcery-vim'
-
-" Status Line
-Plug 'itchyny/lightline.vim'
-Plug 'edkolev/tmuxline.vim' "For Tmux
-
-" Semantic Highlighting
-Plug 'numirias/semshi', {'for' : 'python', 'do': ':UpdateRemotePlugins'} "For python
-Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
-
-" Indentation
-Plug 'yggdroot/indentline'
-"__________________________________________________________________________________"
-
-"_____Searching_____"
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug 'junegunn/fzf.vim'
-"__________________________________________________________________________________"
-
-"_____Copy and Paste_____"
-Plug 'junegunn/vim-peekaboo'
-"__________________________________________________________________________________"
-
-"_____Unix Command______"
-Plug 'tpope/vim-eunuch'
-
-"__________________________________________________________________________________"
-
-"_____Auto Completion_____"
-
+""" Auto Completetion
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 else
@@ -93,36 +51,162 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-" Python
-Plug 'davidhalter/jedi-vim', {'for' : 'python'}
-Plug 'zchee/deoplete-jedi', {'for' : 'python'}
+""" Auto Completion Sources
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
-
-"Snippet
+""" Snippet
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
-"Include File
+""" Inclue Path
 Plug 'Shougo/neoinclude.vim'
 
-" Show function signature
+""" Python
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+""" Function Signature in StatusLine
 Plug 'Shougo/echodoc.vim'
+
+""" Semantic Highlighting
+Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
+Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+
+
 "__________________________________________________________________________________"
 
 
+
+
+"_________________________________GENERAL__________________________________________"
+
+""" Quickly Moving Around Text
+Plug 'easymotion/vim-easymotion'
+
+""" History Tree of File
+Plug 'mbbill/undotree'
+
+""" Pairing
+Plug 'jiangmiao/auto-pairs'
+
+""" Bracket surrounding text
+Plug 'tpope/vim-surround'
+
+""" Commenting
+Plug 'tpope/vim-commentary'
+
+""" Generate and Manage Tags
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+
+""" Tmux Navigator
+Plug 'christoomey/vim-tmux-navigator'
+
+""" Folder Tree
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+""" Indentation
+Plug 'yggdroot/indentline'
+
+""" Searching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
+
+""" Register Manager
+Plug 'junegunn/vim-peekaboo'
+
+""" Executing Unix Command
+Plug 'tpope/vim-eunuch'
+
+""" Delete Trailing Whitespace
+Plug 'ntpeters/vim-better-whitespace'
+
+"__________________________________________________________________________________"
+
+
+
+
+"____________________________________UI____________________________________________"
+""" Theme
+Plug 'srcery-colors/srcery-vim'
+
+""" Status Line
+Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim' "For Tmux
+"__________________________________________________________________________________"
 call plug#end()
 
-    set noequalalways
 
+"____________________________________GENERAL CONFIG________________________________"
 
-" indent config 
+""" Indentation
     set tabstop=4
     set shiftwidth=4
     set softtabstop=4
     set expandtab
     set smarttab
 
-"movement config
+""" UI
+    colorscheme srcery
+	set mouse=a
+	set number
+	set relativenumber
+    set mousehide
+    set lazyredraw "Fixlag while scolling
+    set cursorline " Highlight current line
+
+""" Content
+	set history=1000
+    set noswapfile
+    set autoread "automatically load buffer
+    set noshowmode
+
+""" Filetype
+	filetype indent on
+	filetype on
+	filetype plugin indent on
+	syntax enable
+
+    """ Python
+    autocmd BufNewFile,BufRead *.py set filetype=python
+    autocmd BufNewFile,BufRead *.py
+                \ set tabstop=4 |
+                \ set softtabstop=4 |
+                \ set shiftwidth=4 |
+                \ set textwidth=79 |
+                \ set expandtab |
+                \ set autoindent |
+                \ set fileformat=unix
+
+""" Searching
+    set incsearch
+    set nohlsearch
+	set ignorecase
+	set smartcase
+    set inccommand=split
+
+""" Folding
+	set foldenable
+	set foldmethod=indent
+	set foldlevelstart=3
+	set foldnestmax=10
+
+
+""" Windows
+    set noequalalways
+    set hidden
+
+"-------------------------------------------------------------------------------------------------"
+
+
+
+"---------------------------------------MAPPING---------------------------------------------------"
+
+""" Movement
     nnoremap j gj
     nnoremap k gk
     nnoremap <C-J> <C-W><C-J>
@@ -130,41 +214,11 @@ call plug#end()
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
-"UI config
-    set autoread "automatically load buffer
-    set noshowmode
-	filetype indent on
-	filetype on
-	filetype plugin on
-	filetype plugin indent on
-	syntax enable
-	" set termguicolors     " enable true colors support
-    colorscheme srcery 
 
-"general config
-	set mouse=a
-	set history=1000
-	set number
-	set relativenumber
-    set nohlsearch
-    set mousehide
-    set lazyredraw "Fixlag while scolling
-    set noswapfile
-
-"searching config
-	set ignorecase
-	set smartcase
-
-"folding config
-	set foldenable
-	set foldmethod=indent
-	set foldlevelstart=4
-	set foldnestmax=10
-
-"general mapping
-	nnoremap <space> <nop> 
-	let mapleader = "\<space>" 
-	let maplocalleader = "\\" 
+""" General
+	nnoremap <space> <nop>
+	let mapleader = "\<space>"
+	let maplocalleader = "\\"
 	nnoremap ; :
 	inoremap jk <esc>
 	inoremap kj <esc>
@@ -175,17 +229,17 @@ call plug#end()
     " use s-tab to backward cycle
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-" Path config, reducting startup time
-    let g:python_host_prog="/usr/bin/python2"
-    let g:python3_host_prog = '/usr/bin/python3'
+"-------------------------------------------------------------------------------------------------"
 
-"-------------------------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------------------------
 
-"TagBar config
+
+
+
+"--------------------------------------PLUGIN CONFIG----------------------------------------------"
+""" TagBar
 	nnoremap <F7> :TagbarToggle<CR>
 
-"NerdTree config
+""" NerdTree config
 	nnoremap <F6> :NERDTreeToggle<CR>
 	let NERDTreeShowHidden=1 "not show dot files
 	"close nerdtree when closing vim
@@ -194,7 +248,7 @@ call plug#end()
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
 
-"Undo Tree
+""" Undo Tree
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
     if has("persistent_undo")
@@ -208,36 +262,66 @@ call plug#end()
     if !exists('g:undotree_SetFocusWhenToggle')
         let g:undotree_SetFocusWhenToggle = 1
     endif
-    
-"EasyMotion Config
+
+""" EasyMotion
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
-"Ale Config
+""" ALE
     let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 0
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
+    let g:ale_linters_explicit = 1
     let g:ale_linters = {
                 \ 'cpp' : ['g++'],
-                \ 'python' : ['pylint'],
+                \ 'python' : ['pyls'],
                 \}
-    let g:ale_python_pylint_executable = '/usr/bin/pylint'
-    let g:ale_python_pylint_use_globale = 1
+    let g:ale_python_pyls_config = {
+        \ "pyls": {
+            \ "plugins": {
+            \    "pyflakes": {
+            \       "enabled": v:true
+            \   },
+            \   "pydocstyle": {
+            \       "enabled": v:false
+            \   },
+            \   "pycodestyle": {
+            \       "enabled": v:true
+            \   },
+            \   "mccabe": {
+            \       "enabled": v:false
+            \   },
+            \   "autopep8": {
+            \       "enabled": v:false
+            \   },
+            \   "papf": {
+            \       "enabled": v:false
+            \   },
+            \   "pylint": {
+            \       "enabled": v:false
+            \   }
+            \}
+        \}
+    \}
     let g:ale_sign_error = ''
-    let g:ale_sign_warning = ''
+    let g:ale_sign_warning = ''
+    highlight clear ALEErrorSign
+    highlight clear ALEWarningSign
+
     nmap <silent> <leader>k <Plug>(ale_previous_wrap)
     nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
-" snippet config 
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+
+""" Snippet
+    " Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
     imap <C-k>     <Plug>(neosnippet_expand_or_jump)
     smap <C-k>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" change comment style
-     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+""" Comment
+    autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 
-" Fzf {{{
-    " Fzf settings
+""" Fzf
     function! s:fzf_statusline()
         " Override statusline as you like
         " highlight fzf1 ctermfg=161 ctermbg=251
@@ -251,8 +335,7 @@ call plug#end()
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
 	nnoremap <silent> <leader>l  :Lines<CR>
-	nnoremap <silent> <leader>o  :BTags<CR>
-	nnoremap <silent> <leader>oo :Tags<CR>
+	nnoremap <silent> <leader>o  :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
 	nnoremap <silent> <leader>c  :Commands<CR>
@@ -261,6 +344,8 @@ call plug#end()
 	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
 	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 	imap <C-x><C-l> <plug>(fzf-complete-line)
+
+
     let g:fzf_colors =
                 \ { 'fg':      ['fg', 'Normal'],
                 \ 'bg':      ['bg', 'Normal'],
@@ -290,36 +375,87 @@ call plug#end()
 		let &clipboard = old_clipboard
 		execute 'Ag' selection
 	endfunction
-"}}}
 
 
-" cpp-enhanced-highlight settings
+""" Cpp-enhanced-highlight
     let g:cpp_class_scope_highlight = 1
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
 
-" Deoplete 
+""" Deoplete
+    if !exists('g:deoplete#omni#input_patterns')
+      let g:deoplete#omni#input_patterns = {}
+    endif
+
     let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#option('auto_complete_delay', 50)
-    call deoplete#custom#option('min_pattern_length', 3)
+    call deoplete#custom#option('auto_complete_delay', 0)
+    call deoplete#custom#option('min_pattern_length', 4)
     call deoplete#custom#option('sources', {
-                \ '[]': ['around', 'file','buffer', 'neosnippet'],
+                \ '[]': ['around', 'buffer', 'neosnippet'],
                 \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
-                \ 'python': ['around','jedi',  'file', 'buffer', 'tag', 'neosnippet'],
+                \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
                 \})
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" Jedi-vim
-    let g:jedi#completions_enabled = 0  " Disable autocompletion (using deoplete instead)
-    let g:jedi#documentation_command = "K"
-    let g:jedi#rename_command = "<leader>r"
-    let g:jedi#goto_command = "gd"
-    let g:jedi#use_splits_not_buffers = "top"
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#show_call_signatures = 1
-    let g:deoplete#sources#jedi#show_docstring = 1
-
 " EchoDoc
 	let g:echodoc_enable_at_startup = 1
+
+" LanguageClient
+    " Required for operations modifying multiple buffers like rename.
+    let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
+    let g:LanguageClient_diagnosticsEnable=0
+    let g:LanguageClient_loadSettings = 1
+    let g:LanguageClient_serverCommands = {
+        \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
+        \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
+        \ }
+    nnoremap <F10> :call LanguageClient_contextMenu()<CR>
+    autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" Pymode
+    let g:pymode = 1
+    let g:pymode_python = 'python3'
+    let g:pymode_syntax_all = 1
+    let g:pymode_run = 1
+    let g:pymode_breakpoint = 0
+    let g:pymode_rope = 0
+    let g:pymode_lint = 0
+    let g:pymode_doc = 0
+    let g:pymode_virtualenv = 0
+    let g:pymode_run_bind = '<F12>'
+    let g:python_host_prog='/usr/bin/python'
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:pymode_rope_completion = 0
+    let g:pymode_rope_complete_on_dot = 0
+
+""" Lightline
+    let g:lightline = {
+                \ 'component_function': {
+                \     'filetype':   'CustomLightlineFiletype',
+                \     'fileformat': 'CustomLightlineFileformat',
+                \   }
+                \ }
+
+    function! CustomLightlineFiletype()
+        return winwidth(0) > 70 ?
+                    \ (strlen(&filetype) ?
+                    \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+                    \ : 'no ft')
+                    \ : ''
+    endfunction
+
+    function! CustomLightlineFileformat()
+        return winwidth(0) > 70 ?
+                    \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    endfunction
+
+""" Semshi
+    let g:semshi#error_sign=v:false
+
+""" Better-whitespace
+    let g:strip_whitespace_on_save=1
+    let g:strip_whitespace_confirm=0
