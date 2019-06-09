@@ -14,12 +14,12 @@ URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
-URxvt*letterSpace:                1 
+URxvt*letterSpace:                1
 URxvt*internalBorder:             8
 URxvt*externalBorder:             0
 
 
-URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=14
+URxvt.font:     xft:SauceCodePro Nerd Font Mono:style=Medium:pixelsize=18
 
 ! main colors {{{
 ! black
