@@ -122,7 +122,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-eunuch'
 
 """ Delete Trailing Whitespace
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 
 "__________________________________________________________________________________"
 
@@ -164,6 +164,7 @@ call plug#end()
     set noswapfile
     set autoread "automatically load buffer
     set noshowmode
+    set clipboard=unnamed "yank into clipboard
 
 """ Filetype
 	filetype indent on
@@ -269,6 +270,7 @@ call plug#end()
 """ ALE
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_lint_on_enter = 0
+    let g:ale_lint_on_insert_leave = 0
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
     let g:ale_linters_explicit = 1
     let g:ale_linters = {
@@ -393,7 +395,7 @@ call plug#end()
     call deoplete#custom#option('auto_complete_delay', 0)
     call deoplete#custom#option('min_pattern_length', 4)
     call deoplete#custom#option('sources', {
-                \ '[]': ['around', 'buffer', 'neosnippet'],
+                \ '[]': ['around', 'buffer'],
                 \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
                 \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
                 \})
@@ -457,5 +459,6 @@ call plug#end()
     let g:semshi#error_sign=v:false
 
 """ Better-whitespace
-    let g:strip_whitespace_on_save=1
-    let g:strip_whitespace_confirm=0
+    " let g:better_whitespace_enabled=0
+    " let g:strip_whitespace_on_save=0
+    " let g:strip_whitespace_confirm=0
