@@ -158,6 +158,7 @@ call plug#end()
     set mousehide
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
+    set guicursor=
 
 """ Content
 	set history=1000
