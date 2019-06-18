@@ -8,7 +8,7 @@ rofi.color-active:                   argb:ff09152D, #3b7ef8, #09152D, #3b7ef8, #
 rofi.color-window:                   argb:cc09152D, argb:cccbcb5f, argb:cc8c8c41
 rofi.bw:                             0
 rofi.location:                       0
-rofi.padding:                        150
+rofi.padding:                        50
 rofi.line-padding:                   10
 rofi.fixed-num-lines:                true
 rofi.parse-hosts:                    true
@@ -20,4 +20,4 @@ rofi.kb-mode-next:                   Shift+Right,Control+Tab,Alt+l
 rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Alt+h
 rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
 rofi.kb-row-down:                    Down,Control+n,Alt+j
-rofi.fullscreen:                     true
+rofi.fullscreen:                     false

@@ -37,7 +37,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 "______________________________LANGUAGE PACKAGES___________________________________"
 
 """ Linters
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -410,7 +410,7 @@ call plug#end()
     " autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Pymode
-    let g:pymode = 0
+    let g:pymode = 1
     let g:pymode_python = 'python3'
     let g:pymode_syntax_all = 1
     let g:pymode_run = 1
@@ -449,7 +449,7 @@ call plug#end()
 
     """ Semshi
     let g:semshi#error_sign=v:false
-    let g:semshi#mark_selected_nodes=0
+    let g:semshi#mark_selected_nodes=1
     """ Better-whitespace
     let g:strip_whitespace_on_save=1
     let g:strip_whitespace_confirm=0
@@ -492,7 +492,7 @@ call plug#end()
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
     " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+    " autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Remap for rename current word
     nmap <leader>rn <Plug>(coc-rename)
@@ -508,6 +508,7 @@ call plug#end()
     "     " Update signature help on jump placeholder
     " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     " augroup end
+
     " Using CocList
     " Show all diagnostics
     nnoremap <silent> <space>cd  :<C-u>CocList diagnostics<cr>
@@ -527,5 +528,4 @@ call plug#end()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
-
 
