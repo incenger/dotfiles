@@ -19,7 +19,10 @@ URxvt*internalBorder:             8
 URxvt*externalBorder:             0
 
 
-URxvt.font:     xft:SauceCodePro Nerd Font Mono:style=Regular:pixelsize=16
+URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=15, \
+                xft:DejaVu Sans Mono:pixelsize:18,\
+                xft:Unifont:pixelsize:16,\
+                -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 
 ! main colors {{{
 ! black
