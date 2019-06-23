@@ -78,7 +78,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mbbill/undotree'
 
 """ Pairing
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 """ Bracket surrounding text
 Plug 'tpope/vim-surround'
@@ -113,7 +113,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-eunuch'
 
 """ Delete Trailing Whitespace
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 
 "__________________________________________________________________________________"
 
@@ -220,6 +220,8 @@ call plug#end()
     inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
     " use s-tab to backward cycle
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    " Delete trailing whitespace
+    nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 "-------------------------------------------------------------------------------------------------"
 
@@ -447,14 +449,11 @@ call plug#end()
                     \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
 
-    """ Semshi
+""" Semshi
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
-    """ Better-whitespace
-    let g:strip_whitespace_on_save=1
-    let g:strip_whitespace_confirm=0
 
-    """ Coc-nvim
+""" Coc-nvim
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
@@ -465,6 +464,7 @@ call plug#end()
                 \'coc-neosnippet',
                 \'coc-snippets',
                 \'coc-json',
+                \'coc-pairs',
                 \'coc-python',
                 \'coc-highlight',
                 \'coc-emoji']
@@ -491,8 +491,8 @@ call plug#end()
     " Use <CR> tor confirm completion
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-    " Highlight symbol under cursor on CursorHold
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
+    " Ctrl Space to trigger completion
+    inoremap <silent><expr> <c-space> coc#refresh()
 
     " Remap for rename current word
     nmap <leader>rn <Plug>(coc-rename)

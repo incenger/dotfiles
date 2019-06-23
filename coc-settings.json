@@ -47,6 +47,21 @@
     "diagnostic.refreshAfterSave": true,
 
     //Highlight
-    "coc.preferences.colorSupport": false
+    "coc.preferences.colorSupport": false,
+
+    //LSP
+    "languageserver": {
+        //C/C++
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    }
 
 }
