@@ -1,4 +1,5 @@
 
+
 "________________________________________________________________________________________________________________"
 "
 "         .----------------.  .----------------.  .----------------.  .----------------.  .----------------.
@@ -36,29 +37,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 "______________________________LANGUAGE PACKAGES___________________________________"
 
 """ Linters
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
 
-""" Auto Completetion
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-""" Auto Completion Sources
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+""" Coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jsfaint/coc-neoinclude'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 """ Snippet
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'https://github.com/honza/vim-snippets'
 
 """ Inclue Path
 Plug 'Shougo/neoinclude.vim'
@@ -97,8 +87,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 
 """ Generate and Manage Tags
-Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
+" Plug 'majutsushi/tagbar'
+" Plug 'ludovicchabant/vim-gutentags'
 
 """ Tmux Navigator
 Plug 'christoomey/vim-tmux-navigator'
@@ -120,9 +111,6 @@ Plug 'junegunn/vim-peekaboo'
 
 """ Executing Unix Command
 Plug 'tpope/vim-eunuch'
-
-""" Delete Trailing Whitespace
-" Plug 'ntpeters/vim-better-whitespace'
 
 "__________________________________________________________________________________"
 
@@ -158,13 +146,14 @@ call plug#end()
     set mousehide
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
+    set guicursor=
 
 """ Content
 	set history=1000
     set noswapfile
     set autoread "automatically load buffer
     set noshowmode
-    set clipboard=unnamed "yank into clipboard
+    set encoding=utf-8
 
 """ Filetype
 	filetype indent on
@@ -226,9 +215,11 @@ call plug#end()
     "Copy content of the whole file
     nnoremap <leader>ya gg"+yG
     " use tab to forward cycle
-    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     " use s-tab to backward cycle
-    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " Remove whitespace
+    nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 "-------------------------------------------------------------------------------------------------"
 
@@ -237,8 +228,9 @@ call plug#end()
 
 
 "--------------------------------------PLUGIN CONFIG----------------------------------------------"
-""" TagBar
-	nnoremap <F7> :TagbarToggle<CR>
+""" Vista
+	nnoremap <F7> :Vista!!<CR>
+    let g:vista#renderer#enable_icon = 1
 
 """ NerdTree config
 	nnoremap <F6> :NERDTreeToggle<CR>
@@ -270,7 +262,6 @@ call plug#end()
 """ ALE
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_lint_on_enter = 0
-    let g:ale_lint_on_insert_leave = 0
     let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
     let g:ale_linters_explicit = 1
     let g:ale_linters = {
@@ -309,16 +300,16 @@ call plug#end()
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
 
-    nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-    nmap <silent> <leader>j <Plug>(ale_next_wrap)
+    " nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+    " nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 
 """ Snippet
     " Plugin key-mappings.
     " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k>     <Plug>(neosnippet_expand_target)
+    " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 """ Comment
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
@@ -326,9 +317,9 @@ call plug#end()
 """ Fzf
     function! s:fzf_statusline()
         " Override statusline as you like
-        highlight fzf1 ctermfg=161 ctermbg=251
-        highlight fzf2 ctermfg=23 ctermbg=251
-        highlight fzf3 ctermfg=237 ctermbg=251
+        " highlight fzf1 ctermfg=161 ctermbg=251
+        " highlight fzf2 ctermfg=23 ctermbg=251
+        " highlight fzf3 ctermfg=237 ctermbg=251
         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
     endfunction
 
@@ -340,7 +331,7 @@ call plug#end()
 	nnoremap <silent> <leader>o  :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
-	nnoremap <silent> <leader>c  :Commands<CR>
+	nnoremap <silent> <leader>p  :Commands<CR>
 	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
 	nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
 	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
@@ -387,36 +378,36 @@ call plug#end()
     let g:cpp_class_decl_highlight = 1
 
 """ Deoplete
-    if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
-    endif
+    " if !exists('g:deoplete#omni#input_patterns')
+    "   let g:deoplete#omni#input_patterns = {}
+    " endif
 
-    let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#option('auto_complete_delay', 0)
-    call deoplete#custom#option('min_pattern_length', 4)
-    call deoplete#custom#option('sources', {
-                \ '[]': ['around', 'buffer'],
-                \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
-                \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
-                \})
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    " let g:deoplete#enable_at_startup = 1
+    " call deoplete#custom#option('auto_complete_delay', 0)
+    " call deoplete#custom#option('min_pattern_length', 4)
+    " call deoplete#custom#option('sources', {
+    "             \ '[]': ['around', 'buffer', 'neosnippet'],
+    "             \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
+    "             \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
+    "             \})
+    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " EchoDoc
 	let g:echodoc_enable_at_startup = 1
 
 " LanguageClient
     " Required for operations modifying multiple buffers like rename.
-    let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
-    let g:LanguageClient_diagnosticsEnable=0
-    let g:LanguageClient_loadSettings = 1
-    let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
-        \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
-        \ }
-    nnoremap <F10> :call LanguageClient_contextMenu()<CR>
-    autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    " let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
+    " let g:LanguageClient_diagnosticsEnable=0
+    " let g:LanguageClient_loadSettings = 1
+    " let g:LanguageClient_serverCommands = {
+    "     \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
+    "     \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
+    "     \ }
+    " nnoremap <F10> :call LanguageClient_contextMenu()<CR>
+    " autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    " autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    " autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Pymode
     let g:pymode = 1
@@ -435,7 +426,8 @@ call plug#end()
     let g:pymode_rope_complete_on_dot = 0
 
 """ Lightline
-    let g:lightline = {
+       let g:lightline = {
+                \'colorscheme': 'wombat',
                 \ 'component_function': {
                 \     'filetype':   'CustomLightlineFiletype',
                 \     'fileformat': 'CustomLightlineFileformat',
@@ -455,10 +447,85 @@ call plug#end()
                     \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
 
-""" Semshi
+    """ Semshi
     let g:semshi#error_sign=v:false
+    let g:semshi#mark_selected_nodes=1
+    """ Better-whitespace
+    let g:strip_whitespace_on_save=1
+    let g:strip_whitespace_confirm=0
 
-""" Better-whitespace
-    " let g:better_whitespace_enabled=0
-    " let g:strip_whitespace_on_save=0
-    " let g:strip_whitespace_confirm=0
+    """ Coc-nvim
+    let g:coc_snippet_next = '<TAB>'
+    let g:coc_snippet_prev = '<S-TAB>'
+    let g:coc_status_error_sign = '•'
+    let g:coc_status_warning_sign = '•'
+    set updatetime=200
+
+    let g:coc_global_extensions =[
+                \'coc-snippets',
+                \'coc-json',
+                \'coc-python',
+                \'coc-highlight',
+                \'coc-emoji']
+    " Use `[c` and `]c` to navigate diagnostics
+    nmap <silent> [c <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+    " Remap keys for gotos
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    " Use K to show documentation in preview window
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+
+    " Use <CR> tor confirm completion
+    " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    " Highlight symbol under cursor on CursorHold
+    " autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    " Remap for rename current word
+    nmap <leader>rn <Plug>(coc-rename)
+
+
+    " Close the preview window when completion is done
+    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+    " augroup MyAutoCmd
+    "     autocmd!
+    "     " Setup formatexpr specified filetype(s).
+    "     " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    "     " Update signature help on jump placeholder
+    " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    " augroup end
+
+    " Using CocList
+    " Show all diagnostics
+    nnoremap <silent> <space>cd  :<C-u>CocList diagnostics<cr>
+    " Manage extensions
+    nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
+    " Show commands
+    nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
+
+    " Highlight symbol under cursor on CursorHold
+    " use <tab> for trigger completion and navigate to the next complete item
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+    inoremap <silent><expr> <Tab>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<Tab>" :
+                \ coc#refresh()
+
