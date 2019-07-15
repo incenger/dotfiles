@@ -60,7 +60,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
+bindsym $mod+F4 exec terminal -e  ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
@@ -371,8 +371,8 @@ default_border pixel 4
 #############################
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer -2
+gaps inner 2
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -446,3 +446,4 @@ bindsym XF86AudioPrev exec playerctl previous
 exec_always --no-startup-id feh ~/Pictures/never_forget.jpg --bg-scale
 exec --no-startup-id ibus-daemon
 exec --no-startup-id terminal -e 'xset -b'
+exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.4

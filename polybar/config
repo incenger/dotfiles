@@ -149,7 +149,7 @@ label-background = ${color.shade1}
 
 [module/date]
 type = internal/date
-date =  %A, %e %B
+date =  %A,%e %B
 label = %date%
 label-padding = 1
 label-background = ${color.shade1}
@@ -169,6 +169,8 @@ ramp-volume-2 = 
 format-volume-padding = 1
 format-volume-background= ${color.shade1}
 
+format-muted-padding = 1
+format-muted-background= ${color.shade1}
 [module/backlight]
 type = internal/xbacklight
 

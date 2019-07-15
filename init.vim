@@ -36,8 +36,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 "______________________________LANGUAGE PACKAGES___________________________________"
 
-""" Linters
-" Plug 'w0rp/ale'
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -45,7 +43,6 @@ Plug 'sheerun/vim-polyglot'
 """ Coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 """ Snippet
 Plug 'https://github.com/honza/vim-snippets'
@@ -77,9 +74,6 @@ Plug 'easymotion/vim-easymotion'
 """ History Tree of File
 Plug 'mbbill/undotree'
 
-""" Pairing
-" Plug 'jiangmiao/auto-pairs'
-
 """ Bracket surrounding text
 Plug 'tpope/vim-surround'
 
@@ -88,8 +82,6 @@ Plug 'tpope/vim-commentary'
 
 """ Generate and Manage Tags
 Plug 'liuchengxu/vista.vim'
-" Plug 'majutsushi/tagbar'
-" Plug 'ludovicchabant/vim-gutentags'
 
 """ Tmux Navigator
 Plug 'christoomey/vim-tmux-navigator'
@@ -112,8 +104,10 @@ Plug 'junegunn/vim-peekaboo'
 """ Executing Unix Command
 Plug 'tpope/vim-eunuch'
 
-""" Delete Trailing Whitespace
-" Plug 'ntpeters/vim-better-whitespace'
+""" Git
+Plug 'tpope/vim-fugitive'  "Git Wrapper
+Plug 'junegunn/gv.vim'     "Git Commit Browser
+
 
 "__________________________________________________________________________________"
 
@@ -461,7 +455,6 @@ call plug#end()
     set updatetime=300
 
     let g:coc_global_extensions =[
-                \'coc-neosnippet',
                 \'coc-snippets',
                 \'coc-json',
                 \'coc-pairs',
