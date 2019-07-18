@@ -14,12 +14,14 @@ URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
-URxvt*letterSpace:                1
+URxvt*letterSpace:                0
 URxvt*internalBorder:             8
 URxvt*externalBorder:             0
 
+URxvt*perl-ext-common: fullscreen, clipboard
+URxvt*keysym.F11:   perl:fullscreen:switch
 
-URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=14, \
+URxvt.font:     xft:Inconsolata Nerd Font Mono:style=Medium:size=12, \
                 xft:DejaVu Sans Mono:pixelsize:18,\
                 xft:Unifont:pixelsize:16,\
                 -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
@@ -76,10 +78,6 @@ URxvt.font:     xft:Hack Nerd Font Mono:style=Regular:pixelsize=14, \
 /* URxvt.keysym.Shift-Control-Up:    \033[1;6A */
 /* URxvt.keysym.Control-Down:        \033[1;5B */
 /* URxvt.keysym.Shift-Control-Down:  \033[1;6B */
-/* ! Rxvt.perl-ext-common:             ...,clipboard */
-/* ! URxvt.keysym.M-C-c:               perl:clipboard:copy */
-/* ! URxvt.keysym.M-v:                 perl:clipboard:paste */
-/* ! URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped */
 !! URxvt*termName:                   string */
 !! URxvt*geometry:                   geometry */
 !! URxvt*chdir:                      string */

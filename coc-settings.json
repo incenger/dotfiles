@@ -3,7 +3,7 @@
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 1000,
     "suggest.minTriggerInputLength": 2,
-    "suggest.triggerCompletionWait": 300,
+    "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
     "suggest.noselect": false,
     "suggest.detailField":"abbr",
@@ -36,7 +36,22 @@
         "typeParameter": "\uf728",
         "default": "\uf29c"
     },
-    //Snippet
+    //Git
+    "git.enableGutters": true,
+    "git.branchCharacter":"\uf408",
+    "git.addGlameToBufferVar": false,
+    "git.addGlameToVirtualText": false,
+    "git.virtualTextPrefix": " ❯❯❯ ",
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "git.addedSign.text":"▎",
+    "git.changedSign.text":"▎",
+    "git.removedSign.text":"▏",
+    "git.topRemovedSign.text": "▔",
+    "git.changeRemovedSign.text": "▋",
     //Python
     "python.jediEnabled": false,
     //Diagnostic

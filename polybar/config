@@ -5,15 +5,15 @@ trans = #00000000
 white = #FFFFFF
 black = #000000
 
-bg = #1F1F1F
-fg = #FFFFFF
+bg = #262626
+fg = #A69585
 fg-alt = #A9ABB0
 
 acolor = #FFFFFF
 curgent = #EF5350
 coccupied = #42A5F5
 
-shade1 = #484F59
+shade1 = #262626
 shade2 = #37474F
 shade3 = #455A64
 shade4 = #546E7A
@@ -74,9 +74,9 @@ override-redirect = false
 ;-------;
 
 font-0 = "xos4 Terminus:style=Bold:pixelsize=18;2"
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=13;2"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;2"
-font-3 = "Font Awesome 5 Brands:pixelsize=13;2"
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
+font-3 = "Font Awesome 5 Brands:pixelsize=12;1"
 font-4 = "Inconsolata Nerd Font:style=Medium:pixelsize=12"
 
 ;--------;
@@ -97,7 +97,7 @@ module-margin = 0
 
 modules-left = i3 spotify
 modules-center = date time
-modules-right =   memory cpu wlan pulseaudio battery-combined-udev
+modules-right =   memory cpu wlan pulseaudio battery-combined-udev bluetooth powermenu
 
 ;---------;
 ; MODULES ;
@@ -113,7 +113,7 @@ format-padding = 1
 
 format = <label-state>
 
-format-background = ${color.shade1}
+format-background = ${color.bg}
 
 label-focused-font = 3
 label-visible-font = 3
@@ -145,14 +145,15 @@ type = internal/date
 interval = 1.0
 date =  %H:%M
 label-padding = 1
-label-background = ${color.shade1}
+label-background = ${color.bg}
 
 [module/date]
 type = internal/date
 date =  %A,%e %B
 label = %date%
 label-padding = 1
-label-background = ${color.shade1}
+label-background = ${color.bg}
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -167,10 +168,10 @@ ramp-volume-1 = 
 ramp-volume-2 = 
 
 format-volume-padding = 1
-format-volume-background= ${color.shade1}
+format-volume-background= ${color.bg}
 
 format-muted-padding = 1
-format-muted-background= ${color.shade1}
+format-muted-background= ${color.bg}
 [module/backlight]
 type = internal/xbacklight
 
@@ -193,25 +194,28 @@ interface = wlp4s0
 
 interval = 5
 
-label-connected =  %essid%
-label-disconnected =  Not Connected
+;label-connected =  %essid%
+label-connected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} %essid%%{A}%{A}
+label-disconnected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} Not Connected%{A}%{A} 
 label-connected-padding = 1
-label-connected-background = ${color.shade1}
+label-connected-background = ${color.bg}
 label-disconnected-padding = 1
-label-disconnected-background = ${color.shade1}
+label-disconnected-background = ${color.bg}
+
+
 
 
 [module/cpu]
 type = internal/cpu
 label =  %percentage%%
 label-padding = 1
-label-background = ${color.shade1}
+label-background = ${color.bg}
 
 [module/memory]
 type = internal/memory
 label =  %gb_used%
 label-padding = 1
-label-background = ${color.shade1}
+label-background = ${color.bg}
 
 [module/network]
 type = internal/network
@@ -263,7 +267,14 @@ type = custom/script
 exec = /home/incenger/.config/polybar/battery-combined-udev.sh
 tail = true
 format-padding = 1
-format-background=${color.shade1}
+format-background=${color.bg}
+
+[module/bluetooth]
+type = custom/text
+content = 
+;content-padding = 1
+content-background = ${color.bg}
+click-left = blueman-manager
 
 [module/spotify]
 type = custom/script
@@ -275,4 +286,11 @@ format-font= 5
 format-underline = #1db954
 format-foreground = #1db954
 format-padding=1
-format-background = ${color.shade1}
+format-background = ${color.bg}
+
+[module/powermenu]
+type = custom/text
+content = 
+content-padding = 1
+content-background = ${color.bg}
+click-left = /home/incenger/.config/polybar/pwmenu.sh
