@@ -143,6 +143,7 @@ call plug#end()
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
     set guicursor=
+    set termguicolors
 
 """ Content
 	set history=1000

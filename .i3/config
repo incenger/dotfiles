@@ -360,16 +360,16 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #1F1F1F #ffffff #FDF6E3  #556064
-  client.focused_inactive #1F1F1F #556064 #ffffff #454948  #1F1F1F
-  client.unfocused        #1F1F1F #556064 #ffffff #454948  #1F1F1F
-  client.urgent           #CB4B16 #FDF6E3 #ffffff #268BD2
-  client.placeholder      #000000 #0C0C0C #ffffff #000000
+  client.focused          #b0c4bb #2f2f38 #b0c4bb #81a2be  #81a2be
+  client.focused_inactive #b0c4bb #2f2f38 #b0c4bb #688486  #688486
+  client.unfocused        #b0c4bb #b0c4bb #2f2f38 #688486  #688486
+  client.urgent           #b0c4bb #2f2f38 #b0c4bb #688486  #688486
+  client.placeholder      #b0c4bb #2f2f38 #b0c4bb #688486  #688486
 
-  client.background       #2B2C2B
+  client.background       #2f2f38 
 
 
-default_border pixel 4
+default_border pixel 2
 #############################
 ### settings for i3-gaps: ###
 #############################

@@ -160,17 +160,17 @@ type = internal/pulseaudio
 
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume> 
 format-muted = 
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-format-volume-padding = 1
+format-volume-padding = 0
 format-volume-background= ${color.bg}
 
-format-muted-padding = 1
+format-muted-padding = 0
 format-muted-background= ${color.bg}
 [module/backlight]
 type = internal/xbacklight
