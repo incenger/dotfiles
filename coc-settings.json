@@ -6,8 +6,8 @@
     "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
     "suggest.noselect": false,
-    "suggest.detailField":"abbr",
-    "suggest.snippetIndicator": "~",
+    "suggest.detailField":"preview",
+    "suggest.snippetIndicator": "\uf9ce",
     "suggest.enablePreview":true,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",

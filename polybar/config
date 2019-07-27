@@ -4,6 +4,7 @@
 trans = #00000000
 white = #FFFFFF
 black = #000000
+manjaro = #34be5b
 
 bg = #262626
 fg = #A69585
@@ -73,11 +74,11 @@ override-redirect = false
 ; FONTS ;
 ;-------;
 
-font-0 = "xos4 Terminus:style=Bold:pixelsize=18;2"
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=12;1"
-font-4 = "Inconsolata Nerd Font:style=Medium:pixelsize=12"
+font-0 = "xos4 Terminus:style=Bold:size=16;2"
+font-1 = "Font Awesome 5 Free:style=Regular:size=12;1"
+font-2 = "Font Awesome 5 Free:style=Solid:size=12;1"
+font-3 = "Font Awesome 5 Brands:size=12;1"
+font-4 = "Inconsolata Nerd Font:style=Medium:size=12;1"
 
 ;--------;
 ; COLORS ;
@@ -95,9 +96,10 @@ padding-left = 0
 padding-right = 0
 module-margin = 0
 
-modules-left = i3 spotify
+modules-left = manjaro i3 spotify
 modules-center = date time
-modules-right =   memory cpu wlan pulseaudio battery-combined-udev bluetooth powermenu
+modules-right =   memory cpu wlan keyboard bluetooth pulseaudio battery-combined-udev powermenu
+
 
 ;---------;
 ; MODULES ;
@@ -149,7 +151,7 @@ label-background = ${color.bg}
 
 [module/date]
 type = internal/date
-date =  %A,%e %B
+date =  %A, %d %B
 label = %date%
 label-padding = 1
 label-background = ${color.bg}
@@ -167,10 +169,10 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-format-volume-padding = 0
+format-volume-padding = 1
 format-volume-background= ${color.bg}
 
-format-muted-padding = 0
+format-muted-padding = 1
 format-muted-background= ${color.bg}
 [module/backlight]
 type = internal/xbacklight
@@ -272,16 +274,15 @@ format-background=${color.bg}
 [module/bluetooth]
 type = custom/text
 content = 
-;content-padding = 1
+content-padding = 1
 content-background = ${color.bg}
 click-left = blueman-manager
 
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
 format = <label>
-exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Regular:pixelsize=12;3" --font="Inconsolata:style=Regular:pixelsize=12"
+exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Sold:size=12;1" 
 format-font= 5
 format-underline = #1db954
 format-foreground = #1db954
@@ -294,3 +295,42 @@ content = 
 content-padding = 1
 content-background = ${color.bg}
 click-left = /home/incenger/.config/polybar/pwmenu.sh
+
+[module/manjaro]
+type = custom/text
+content = 
+content-padding = 1
+content-background = ${color.bg}
+click-left = rofi -modi run,window,ssh -show run
+click-right = dmenu_run
+content-foreground = ${color.manjaro}
+
+[module/keyboard]
+type = internal/xkeyboard
+
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+
+format = <label-indicator>
+format-padding = 1
+format-background = ${color.bg}
+
+; Replaces label-indicator
+; Available tokens:
+;   %name%
+;   %icon%
+; Default: %name%
+label-indicator-on = %icon%
+
+; Available tokens:
+;   %name%
+;   %icon%
+; Default: (none)
+label-indicator-off = %icon%
+
+label-indicator-on-capslock = 
+label-indicator-off-capslock = 
+
+
+

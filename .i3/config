@@ -34,8 +34,9 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec rofi -show run
-bindsym Mod1+Tab exec rofi -show window
+bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+Shift+d exec rofi -show run -show-icons
+bindsym Mod1+Tab exec rofi -show window -show-icons
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
@@ -60,7 +61,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec terminal -e  ranger
+bindsym $mod+F4 exec terminal -e 'ranger'
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
@@ -216,6 +217,7 @@ for_window [class="Blueman-manager"] [floating] resize set 640 640; move absolut
 for_window [class="Nm-connection-editor"] floating enable border normal
 for_window [class="Nm-connection-editor"] [floating] resize set 500 500; move absolute position center;
 for_window [class="Spotify"] move to workspace $ws8
+for_window [class="Skype"] move to workspace $ws7
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -260,10 +262,10 @@ mode "resize" {
         bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
@@ -375,8 +377,8 @@ default_border pixel 2
 #############################
 
 # Set inner/outer gaps
-gaps inner 2
-gaps outer 0
+gaps inner 4
+gaps outer 4
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -447,7 +449,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # exec --no-startup-id compton
 
 # Change Background
-exec_always --no-startup-id feh ~/Pictures/never_forget.jpg --bg-scale
+exec_always --no-startup-id feh ~/dotfiles/mark-kirkpatrick-mk-landscape-05.jpg --bg-scale
 exec --no-startup-id ibus-daemon
 exec --no-startup-id terminal -e 'xset -b'
-exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.4
+exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.6

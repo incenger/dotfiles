@@ -19,7 +19,7 @@ URxvt*externalBorder:             0
 URxvt*perl-ext-common: fullscreen, clipboard
 URxvt*keysym.F11:   perl:fullscreen:switch
 
-URxvt.font:     xft:Inconsolata Nerd Font Mono:style=Medium:size=12, \
+URxvt.font:     xft:InconsolataGo Nerd Font Mono:style=Regular:size=12, \
                 xft:DejaVu Sans Mono:pixelsize:18,\
                 xft:Unifont:pixelsize:16,\
                 -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*

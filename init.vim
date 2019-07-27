@@ -36,6 +36,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 "______________________________LANGUAGE PACKAGES___________________________________"
 
+" Plug 'taigacute/spaceline.vim'
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -45,7 +46,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jsfaint/coc-neoinclude'
 
 """ Snippet
-Plug 'https://github.com/honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 """ Inclue Path
 Plug 'Shougo/neoinclude.vim'
@@ -238,6 +239,7 @@ call plug#end()
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
 
+
 """ Undo Tree
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
@@ -425,9 +427,14 @@ call plug#end()
 """ Lightline
        let g:lightline = {
                 \'colorscheme': 'wombat',
+                \ 'active': {
+                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
+                \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
+                \ },
                 \ 'component_function': {
                 \     'filetype':   'CustomLightlineFiletype',
                 \     'fileformat': 'CustomLightlineFileformat',
+                \      'gitbranch': 'fugitive#head',
                 \   }
                 \ }
 
@@ -519,7 +526,6 @@ call plug#end()
     " Show commands
     nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
 
-    " Highlight symbol under cursor on CursorHold
     " use <tab> for trigger completion and navigate to the next complete item
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -530,4 +536,15 @@ call plug#end()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
-
+    
+" let g:spaceline_seperate_style= 'none'
+" let g:spaceline_seperate_mode = 0
+" let g:spaceline_homemode_right = ''
+" let g:spaceline_filename_left  = ''
+" let g:spaceline_filesize_right = ''
+" let g:spaceline_gitinfo_left   = ''
+" let g:spaceline_gitinfo_right  = ''
+" let g:spaceline_cocexts_right  = ''
+" let g:spaceline_lineformat_right = ''
+" let g:spaceline_seperate_endseperate = ''
+" let g:spaceline_seperate_emptyseperate = ''
