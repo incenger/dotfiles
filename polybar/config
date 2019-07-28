@@ -125,9 +125,11 @@ date =  %H:%M
 label-padding = 1
 label-background = ${color.bg}
 
+
 [module/date]
 type = internal/date
-date =  %A, %d %B
+;date =  %A, %d %B
+date = %{A1:/home/incenger/.config/polybar/calendar.sh:}  %A, %d %B%{A}
 label = %date%
 label-padding = 1
 label-background = ${color.bg}
