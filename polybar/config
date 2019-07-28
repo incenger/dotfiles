@@ -5,46 +5,12 @@ trans = #00000000
 white = #FFFFFF
 black = #000000
 manjaro = #34be5b
+red = #FF5050
+green = #43B581
+blue = #3A71C1
 
 bg = #262626
 fg = #A69585
-fg-alt = #A9ABB0
-
-acolor = #FFFFFF
-curgent = #EF5350
-coccupied = #42A5F5
-
-shade1 = #262626
-shade2 = #37474F
-shade3 = #455A64
-shade4 = #546E7A
-shade5 = #607D8B
-shade6 = #78909C
-shade7 = #90A4AE
-shade8 = #B0BEC5
-ashade8 = #2C2C2C
-
-## Material Colors
-
-red = #e53935
-pink = #d81b60
-purple = #8e24aa
-deep-purple = #5e35b1
-indigo = #3949ab
-blue = #1e88e5
-light-blue = #039be5
-cyan = #00acc1
-teal = #00897b
-green = #43a047
-light-green = #7cb342
-lime = #c0ca33
-yellow = #fdd835
-amber = #ffb300
-orange = #fb8c00
-deep-orange = #f4511e
-brown = #6d4c41
-grey = #757575
-blue-gray = #546e7a
 
 
 
@@ -115,6 +81,11 @@ format-padding = 1
 
 format = <label-state>
 
+label-focused= %icon% %name%
+label-visible= %icon% %name%
+label-urgent = %icon% %name%
+label-unfocused= %icon%
+
 format-background = ${color.bg}
 
 label-focused-font = 3
@@ -122,25 +93,30 @@ label-visible-font = 3
 label-urgent-font = 3
 label-unfocused-font = 2
 
-ws-icon-default = 
-
-label-active-font = 3
-
-label-focused = 
-label-visible = 
-label-urgent = 
-label-unfocused = 
-
-label-unfocused-padding = 1
-label-focused-padding = 1
-label-urgent-padding = 1
-label-visible-padding = 1
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-5 = "6;"
+ws-icon-6 = "7;"
+ws-icon-default = 
 
 
+
+label-unfocused-padding = 2
+label-focused-padding = 2
+label-urgent-padding = 2
+label-visible-padding = 2
+
+
+label-focused-foreground = ${color.manjaro}
+label-focused-underline= ${color.manjaro}
+label-visible-foreground = ${color.blue}
+label-visible-underline= ${color.blue}
+label-urgent-foreground = ${color.red}
+label-urgent-underline= ${color.red}
 label-unfocused-foreground = ${color.fg}
-label-focused-foreground = ${color.fg}
-label-urgent-foreground = ${color.curgent}
-label-visible-foreground = ${color.coccupied}
 
 [module/time]
 type = internal/date
@@ -174,20 +150,6 @@ format-volume-background= ${color.bg}
 
 format-muted-padding = 1
 format-muted-background= ${color.bg}
-[module/backlight]
-type = internal/xbacklight
-
-; Use the following command to list available cards:
-; $ ls -1 /sys/class/backlight/
-output=eDP1
-
-format = <ramp> <label>
-
-label = %percentage%%
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
 
 [module/wlan]
 type = internal/network
@@ -196,14 +158,12 @@ interface = wlp4s0
 
 interval = 5
 
-;label-connected =  %essid%
 label-connected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} %essid%%{A}%{A}
 label-disconnected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} Not Connected%{A}%{A} 
 label-connected-padding = 1
 label-connected-background = ${color.bg}
 label-disconnected-padding = 1
 label-disconnected-background = ${color.bg}
-
 
 
 
@@ -223,7 +183,7 @@ label-background = ${color.bg}
 type = internal/network
 interface = wlp4s0
 label-connected =  %downspeed% |  %upspeed%
-j
+
 [module/temperature]
 type = internal/temperature
 
@@ -282,12 +242,12 @@ click-left = blueman-manager
 type = custom/script
 interval = 1
 format = <label>
-exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Sold:size=12;1" 
+exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Solid:size=12;1" 
 format-font= 5
-format-underline = #1db954
-format-foreground = #1db954
-format-padding=1
-format-background = ${color.bg}
+format-underline = ${color.manjaro} 
+format-foreground= ${color.manjaro} 
+format-margin= 1
+format-padding= 1
 
 [module/powermenu]
 type = custom/text
