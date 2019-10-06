@@ -8,7 +8,7 @@ set $mod Mod4
 workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 2
 new_float normal
 
 # Hide borders
@@ -19,15 +19,18 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
+# Align title center
+title_align center
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Noto Serif 11
+font xft:Noto Serif 9
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -35,8 +38,9 @@ bindsym $mod+Shift+q kill
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+d exec rofi -show drun -show-icons
-bindsym $mod+Shift+d exec rofi -show run -show-icons
+bindsym $mod+Shift+d exec rofi -show run 
 bindsym Mod1+Tab exec rofi -show window -show-icons
+bindsym $mod+Shift+c exec zenity --calendar
 
 # launch categorized menu
 # bindsym $mod+z exec --no-startup-id morc_menu
@@ -58,7 +62,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Ctrl+b exec termite -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F4 exec terminal -e 'ranger'
@@ -183,7 +187,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -208,7 +211,6 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
@@ -216,15 +218,18 @@ for_window [class="Blueman-manager"] floating enable border normal
 for_window [class="Blueman-manager"] [floating] resize set 640 640; move absolute position center;
 for_window [class="Nm-connection-editor"] floating enable border normal
 for_window [class="Nm-connection-editor"] [floating] resize set 500 500; move absolute position center;
+# assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="Skype"] move to workspace $ws5
-for_window [class="Slack"] move to workspace $ws7
+assign [class="Skype"] $ws5
+assign [class="Slack"] $ws7
+assign [class="jetbrains-studio"] $ws8
+for_window [title="^Android Emulator -"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -362,12 +367,17 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #b0c4bb #2f2f38 #b0c4bb #81a2be  #81a2be
-  client.focused_inactive #b0c4bb #2f2f38 #b0c4bb #688486  #688486
-  client.unfocused        #b0c4bb #b0c4bb #2f2f38 #688486  #688486
-  client.urgent           #b0c4bb #2f2f38 #b0c4bb #688486  #688486
-  client.placeholder      #b0c4bb #2f2f38 #b0c4bb #688486  #688486
+
+set $color_bg_focus #1B1918
+set $color_bg_unfocus #766E6B
+set $color_text_focus #A8A19F 
+
+# class                   border            backgr.           text              indic.   child_border
+  client.focused          $color_bg_focus   $color_bg_focus   $color_text_focus #81a2be  #CFB017
+  client.focused_inactive $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
+  client.unfocused        $color_bg_focus   $color_bg_unfocus $color_text_focus #688486  #454545
+  client.urgent           $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
+  client.placeholder      $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
 
   client.background       #2f2f38 
 
@@ -447,15 +457,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Start compton
-# exec --no-startup-id compton
+exec --no-startup-id compton --xrender-sync --xrender-sync-fence
 
 # Change Background
-exec_always --no-startup-id feh ~/dotfiles/mark-kirkpatrick-mk-landscape-05.jpg --bg-scale
+exec_always --no-startup-id feh -z ~/Pictures/Background --no-jump-on-resort --bg-scale 
 # Start ibus unikey
-exec --no-startup-id ibus-daemon
+exec --no-startup-id ibus-daemon --xim -d -r
 # Turn off beep sound
-exec --no-startup-id terminal -e 'xset -b'
+exec_always --no-startup-id terminal -e 'xset -b'
 # Change trackpoint speed
-exec --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.6
+exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.6
 # Change keyboard delay
-exec --no-startup-id xset r rate 350 30
+exec_always --no-startup-id xset r rate 300 30

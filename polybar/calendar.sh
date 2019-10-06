@@ -11,6 +11,7 @@ cal --color=always \
     | rofi \
     -i \
     -dmenu \
+    -font "InconsolataGo Nerd Font Mono 16"\
     -location 2 \
     -padding 20 \
     -line-padding 1\

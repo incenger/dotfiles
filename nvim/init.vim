@@ -1,42 +1,11 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
-
-"________________________________________________________________________________________________________________"
-"
-"         .----------------.  .----------------.  .----------------.  .----------------.  .----------------.
-"        | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
-"        | | ____   ____  | || |     _____    | || | ____    ____ | || |  _______     | || |     ______   | |
-"        | ||_  _| |_  _| | || |    |_   _|   | || ||_   \  /   _|| || | |_   __ \    | || |   .' ___  |  | |
-"        | |  \ \   / /   | || |      | |     | || |  |   \/   |  | || |   | |__) |   | || |  / .'   \_|  | |
-"        | |   \ \ / /    | || |      | |     | || |  | |\  /| |  | || |   |  __ /    | || |  | |         | |
-"        | |    \ ' /     | || |     _| |_    | || | _| |_\/_| |_ | || |  _| |  \ \_  | || |  \ `.___.'\  | |
-"        | |     \_/      | || |    |_____|   | || ||_____||_____|| || | |____| |___| | || |   `._____.'  | |
-"        | |              | || |              | || |              | || |              | || |              | |
-"        | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
-"         '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
-"
-"
-"
-"
-"         |  _ \            |_   _|          / ____|
-"         | |_) |  _   _      | |    _ __   | |        ___   _ __     __ _    ___   _ __
-"         |  _ <  | | | |     | |   | '_ \  | |       / _ \ | '_ \   / _` |  / _ \ | '__|
-"         | |_) | | |_| |    _| |_  | | | | | |____  |  __/ | | | | | (_| | |  __/ | |
-"         |____/   \__, |   |_____| |_| |_|  \_____|  \___| |_| |_|  \__, |  \___| |_|
-"                   __/ |                                             __/ |
-"                  |___/                                             |___/
-"
-"
-"                                   AND OTHER'S DOTFILES
-"
-"
-"________________________________________________________________________________________________________________"
-
+" Plug {{{ "
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-"______________________________LANGUAGE PACKAGES___________________________________"
 
-" Plug 'taigacute/spaceline.vim'
+" LANGUAGE PACKAGES {{{ "
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -45,29 +14,24 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jsfaint/coc-neoinclude'
 
-""" Snippet
+""" Snippet 
 Plug 'honza/vim-snippets'
 
 """ Inclue Path
 Plug 'Shougo/neoinclude.vim'
 
-""" Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 """ Function Signature in StatusLine
 Plug 'Shougo/echodoc.vim'
 
 """ Semantic Highlighting
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
-Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+" Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+
+" }}} LANGUAGE PACKAGES "
 
 
-"__________________________________________________________________________________"
-
-
-
-
-"_________________________________GENERAL__________________________________________"
+" GENERAL {{{ "
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
@@ -110,32 +74,44 @@ Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
 
 
-"__________________________________________________________________________________"
+" }}} GENERAL "
 
 
-
-
-"____________________________________UI____________________________________________"
+" UI {{{ "
 """ Theme
 Plug 'srcery-colors/srcery-vim'
 
+
 """ Status Line
+" Plug 'taigacute/spaceline.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
-"__________________________________________________________________________________"
+
+" }}} UI "
+
+
 call plug#end()
 
 
-"____________________________________GENERAL CONFIG________________________________"
+" }}} Plug "
 
-""" Indentation
+
+" GENERAL CONFIG {{{ "
+
+" Indentation {{{ "
+
     set tabstop=4
     set shiftwidth=4
     set softtabstop=4
     set expandtab
     set smarttab
 
-""" UI
+" }}} Indentation "
+
+" UI {{{ "
+
+    let g:srcery_italic = 1
+    set termguicolors
     colorscheme srcery
 	set mouse=a
 	set number
@@ -144,16 +120,23 @@ call plug#end()
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
     set guicursor=
-    set termguicolors
+    set signcolumn=yes
 
-""" Content
+" }}} UI "
+
+" Content {{{ "
+
 	set history=1000
     set noswapfile
     set autoread "automatically load buffer
     set noshowmode
     set encoding=utf-8
+    set shortmess+=c
 
-""" Filetype
+" }}} Content "
+
+" Filetype {{{ "
+
 	filetype indent on
 	filetype on
 	filetype plugin indent on
@@ -170,31 +153,37 @@ call plug#end()
                 \ set autoindent |
                 \ set fileformat=unix
 
-""" Searching
+" }}} Filetype "
+
+" Searching {{{ "
     set incsearch
     set nohlsearch
 	set ignorecase
 	set smartcase
     set inccommand=split
+" }}} Searching "
 
-""" Folding
+" Folding {{{ "
 	set foldenable
 	set foldmethod=indent
-	set foldlevelstart=3
+	set foldlevelstart=2
 	set foldnestmax=10
+" }}} Folding "
 
+" Windows {{{ "
 
-""" Windows
     set noequalalways
     set hidden
 
-"-------------------------------------------------------------------------------------------------"
+" }}} Windows "
+
+" }}} GENERAL CONFIG "
 
 
+" MAPPING {{{ "
 
-"---------------------------------------MAPPING---------------------------------------------------"
+" Movement {{{ "
 
-""" Movement
     nnoremap j gj
     nnoremap k gk
     nnoremap <C-J> <C-W><C-J>
@@ -202,8 +191,10 @@ call plug#end()
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
+" }}} Movement "
 
-""" General
+" General {{{ "
+
 	nnoremap <space> <nop>
 	let mapleader = "\<space>"
 	let maplocalleader = "\\"
@@ -218,29 +209,37 @@ call plug#end()
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+" }}} General "
 
-"-------------------------------------------------------------------------------------------------"
-
-
-
+" }}} MAPPING "
 
 
-"--------------------------------------PLUGIN CONFIG----------------------------------------------"
-""" Vista
+" PLUGIN CONFIG {{{ "
+
+" Vista {{{ "
+
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-""" NerdTree config
+" }}} Vista "
+
+
+" NerdTree {{{ "
+
 	nnoremap <F6> :NERDTreeToggle<CR>
-	let NERDTreeShowHidden=1 "not show dot files
+	let NERDTreeShowHidden=0 "not show dot files
 	"close nerdtree when closing vim
 	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    let g:NERDTreeFileExtensionHighlightFullName = 1
-    let g:NERDTreeExactMatchHighlightFullName = 1
-    let g:NERDTreePatternMatchHighlightFullName = 1
+    let g:NERDTreeHighlightCursorline = 0
+    let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+    let g:NERDTreeDisableExactMatchHighlight = 1
+    let g:NERDTreeDisablePatternMatchHighlight = 1
+    
+" }}} NerdTree "
 
 
-""" Undo Tree
+" Undo Tree {{{ "
+
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
     if has("persistent_undo")
@@ -255,74 +254,39 @@ call plug#end()
         let g:undotree_SetFocusWhenToggle = 1
     endif
 
-""" EasyMotion
+" }}} Undo Tree "
+
+
+" EasyMotion {{{ "
+
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
-""" ALE
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 0
-    let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
-    let g:ale_linters_explicit = 1
-    let g:ale_linters = {
-                \ 'cpp' : ['g++'],
-                \ 'python' : ['pyls'],
-                \}
-    let g:ale_python_pyls_config = {
-        \ "pyls": {
-            \ "plugins": {
-            \    "pyflakes": {
-            \       "enabled": v:true
-            \   },
-            \   "pydocstyle": {
-            \       "enabled": v:false
-            \   },
-            \   "pycodestyle": {
-            \       "enabled": v:true
-            \   },
-            \   "mccabe": {
-            \       "enabled": v:false
-            \   },
-            \   "autopep8": {
-            \       "enabled": v:false
-            \   },
-            \   "papf": {
-            \       "enabled": v:false
-            \   },
-            \   "pylint": {
-            \       "enabled": v:false
-            \   }
-            \}
-        \}
-    \}
-    let g:ale_sign_error = ''
-    let g:ale_sign_warning = ''
-    highlight clear ALEErrorSign
-    highlight clear ALEWarningSign
-
-    " nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-    " nmap <silent> <leader>j <Plug>(ale_next_wrap)
+" }}} EasyMotion "
 
 
-""" Snippet
-    " Plugin key-mappings.
-    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    " xmap <C-k>     <Plug>(neosnippet_expand_target)
+" Comment {{{ "
 
-""" Comment
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+    
+" }}} Comment "
 
-""" Fzf
+
+" Fzf {{{ "
     function! s:fzf_statusline()
         " Override statusline as you like
-        " highlight fzf1 ctermfg=161 ctermbg=251
-        " highlight fzf2 ctermfg=23 ctermbg=251
-        " highlight fzf3 ctermfg=237 ctermbg=251
+        highlight fzf1 ctermfg=161 ctermbg=251
+        highlight fzf2 ctermfg=23 ctermbg=251
+        highlight fzf3 ctermfg=237 ctermbg=251
         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
     endfunction
 
-	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+    " This is the default extra key bindings
+    let g:fzf_action = {
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-x': 'split',
+                \ 'ctrl-v': 'vsplit' }
+
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
     nnoremap <silent> <C-p>      :GFiles<CR>
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
@@ -332,11 +296,10 @@ call plug#end()
 	nnoremap <silent> <leader>m  :Marks<CR>
 	nnoremap <silent> <leader>p  :Commands<CR>
 	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
-	nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
-	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
-	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-	imap <C-x><C-l> <plug>(fzf-complete-line)
+	nnoremap <silent> <leader>f  :Files<CR>
 
+	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+	imap <C-x><C-b> <plug>(fzf-complete-line)
 
     let g:fzf_colors =
                 \ { 'fg':      ['fg', 'Normal'],
@@ -352,89 +315,37 @@ call plug#end()
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-	function! SearchWordWithAg()
-		execute 'Ag' expand('<cword>')
-	endfunction
-
-	function! SearchVisualSelectionWithAg() range
-		let old_reg = getreg('"')
-		let old_regtype = getregtype('"')
-		let old_clipboard = &clipboard
-		set clipboard&
-		normal! ""gvy
-		let selection = getreg('"')
-		call setreg('"', old_reg, old_regtype)
-		let &clipboard = old_clipboard
-		execute 'Ag' selection
-	endfunction
 
 
-""" Cpp-enhanced-highlight
-    let g:cpp_class_scope_highlight = 1
+" }}} Fzf "
+
+
+" Cpp-enhanced-highlight {{{ "
+    let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
+" }}} Cpp-enhanced-highlight "
 
-""" Deoplete
-    " if !exists('g:deoplete#omni#input_patterns')
-    "   let g:deoplete#omni#input_patterns = {}
-    " endif
 
-    " let g:deoplete#enable_at_startup = 1
-    " call deoplete#custom#option('auto_complete_delay', 0)
-    " call deoplete#custom#option('min_pattern_length', 4)
-    " call deoplete#custom#option('sources', {
-    "             \ '[]': ['around', 'buffer', 'neosnippet'],
-    "             \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
-    "             \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
-    "             \})
-    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" EchoDoc
+" EchoDoc {{{ "
 	let g:echodoc_enable_at_startup = 1
+" }}} EchoDoc "
 
-" LanguageClient
-    " Required for operations modifying multiple buffers like rename.
-    " let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
-    " let g:LanguageClient_diagnosticsEnable=0
-    " let g:LanguageClient_loadSettings = 1
-    " let g:LanguageClient_serverCommands = {
-    "     \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
-    "     \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
-    "     \ }
-    " nnoremap <F10> :call LanguageClient_contextMenu()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-" Pymode
-    let g:pymode = 1
-    let g:pymode_python = 'python3'
-    let g:pymode_syntax_all = 1
-    let g:pymode_run = 1
-    let g:pymode_breakpoint = 0
-    let g:pymode_rope = 0
-    let g:pymode_lint = 0
-    let g:pymode_doc = 0
-    let g:pymode_virtualenv = 0
-    let g:pymode_run_bind = '<F12>'
-    let g:python_host_prog='/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
-    let g:pymode_rope_completion = 0
-    let g:pymode_rope_complete_on_dot = 0
-
-""" Lightline
+" Lightline {{{ "
        let g:lightline = {
-                \'colorscheme': 'wombat',
+                \'colorscheme': 'srcery',
                 \ 'active': {
-                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
+                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename' ]],
                 \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
                 \ },
                 \ 'component_function': {
                 \     'filetype':   'CustomLightlineFiletype',
                 \     'fileformat': 'CustomLightlineFileformat',
                 \      'gitbranch': 'fugitive#head',
+                \     'cocstatus': 'coc#status',
                 \   }
                 \ }
 
@@ -450,12 +361,16 @@ call plug#end()
         return winwidth(0) > 70 ?
                     \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
+" }}} Lightline "
 
-""" Semshi
+
+" Semshi {{{ "
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
+" }}} Semshi "
 
-""" Coc-nvim
+
+" Coc-nvim {{{ "
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
@@ -467,9 +382,10 @@ call plug#end()
                 \'coc-git',
                 \'coc-json',
                 \'coc-pairs',
-                \'coc-python',
-                \'coc-highlight',
-                \'coc-emoji']
+                \'coc-emoji',
+                \'coc-python']
+
+
     " Use `[c` and `]c` to navigate diagnostics
     nmap <silent> [c <Plug>(coc-diagnostic-prev)
     nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -510,14 +426,6 @@ call plug#end()
     " Close the preview window when completion is done
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-    " augroup MyAutoCmd
-    "     autocmd!
-    "     " Setup formatexpr specified filetype(s).
-    "     " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    "     " Update signature help on jump placeholder
-    " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    " augroup end
-
     " Using CocList
     " Show all diagnostics
     nnoremap <silent> <space>cd  :<C-u>CocList diagnostics<cr>
@@ -525,6 +433,8 @@ call plug#end()
     nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
     " Show commands
     nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
+    " Search workspace symbols
+    nnoremap <silent> <leader>cs  :<C-u>CocList symbols<cr>
 
     " use <tab> for trigger completion and navigate to the next complete item
     function! s:check_back_space() abort
@@ -536,15 +446,9 @@ call plug#end()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
-    
-" let g:spaceline_seperate_style= 'none'
-" let g:spaceline_seperate_mode = 0
-" let g:spaceline_homemode_right = ''
-" let g:spaceline_filename_left  = ''
-" let g:spaceline_filesize_right = ''
-" let g:spaceline_gitinfo_left   = ''
-" let g:spaceline_gitinfo_right  = ''
-" let g:spaceline_cocexts_right  = ''
-" let g:spaceline_lineformat_right = ''
-" let g:spaceline_seperate_endseperate = ''
-" let g:spaceline_seperate_emptyseperate = ''
+" }}} Coc-nvim "
+
+
+" }}} PLUGIN CONFIG "
+
+
