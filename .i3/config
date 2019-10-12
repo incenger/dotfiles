@@ -382,14 +382,14 @@ set $color_text_focus #A8A19F
   client.background       #2f2f38 
 
 
-default_border pixel 2
+default_border pixel 3
 #############################
 ### settings for i3-gaps: ###
 #############################
 
 # Set inner/outer gaps
-gaps inner 4
-gaps outer 4
+gaps inner 8
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

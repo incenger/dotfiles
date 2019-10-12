@@ -40,11 +40,13 @@ override-redirect = false
 ; FONTS ;
 ;-------;
 
-font-0 = "xos4 Terminus:style=Bold:size=16;2"
+font-0 = "FantasqueSansMono Nerd Font:style=Medium:size=12;3"
 font-1 = "Font Awesome 5 Free:style=Regular:size=12;2"
 font-2 = "Font Awesome 5 Free:style=Solid:size=12;2"
 font-3 = "Font Awesome 5 Brands:size=12;2"
-font-4 = "Noto Serif:size=11;2"
+font-4 = "FantasqueSansMono Nerd Font:style=Regular:size=12;3"
+font-5 = "FantasqueSansMono Nerd Font:style=Bold:size=13;2"
+;font-4 = "Noto Serif:size=11;2"
 
 ;--------;
 ; COLORS ;
@@ -62,9 +64,9 @@ padding-left = 0
 padding-right = 0
 module-margin = 0
 
-modules-left = i3 spotify 
+modules-left = time i3 spotify 
 modules-center = title
-modules-right = memory cpu wlan pulseaudio keyboard battery-combined-udev bluetooth time powermenu 
+modules-right = memory cpu wlan pulseaudio keyboard bluetooth battery-combined-udev powermenu 
 
 
 ;---------;
@@ -91,7 +93,7 @@ format-background = ${color.bg}
 label-focused-font = 3
 label-visible-font = 3
 label-urgent-font = 3
-label-unfocused-font = 2
+label-unfocused-font = 3
 
 ws-icon-0 = "1;"
 ws-icon-1 = "2;"
@@ -110,7 +112,6 @@ label-focused-padding = 1
 label-urgent-padding = 1
 label-visible-padding = 1
 
-
 label-focused-background= ${color.manjaro}
 label-focused-foreground = ${color.bg}
 label-visible-background= ${color.manjaro}
@@ -122,9 +123,10 @@ label-unfocused-foreground = ${color.fg}
 [module/time]
 type = internal/date
 interval = 1.0
-date = %H:%M
+date = %H:%M
 label-padding = 1
 label-background = ${color.bg}
+label-font = 6
 
 
 [module/date]

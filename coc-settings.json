@@ -58,7 +58,7 @@
 	"diagnostic.errorSign": "●",
 	"diagnostic.warningSign": "●",
     "diagnostic.displayByAle": false,
-    "diagnostic.refreshAfterSave": true,
+    "diagnostic.refreshOnInsertMode": true,
 
     //Highlight
     "coc.preferences.colorSupport": false,
