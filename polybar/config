@@ -44,7 +44,7 @@ font-0 = "FantasqueSansMono Nerd Font:style=Medium:size=12;3"
 font-1 = "Font Awesome 5 Free:style=Regular:size=12;2"
 font-2 = "Font Awesome 5 Free:style=Solid:size=12;2"
 font-3 = "Font Awesome 5 Brands:size=12;2"
-font-4 = "FantasqueSansMono Nerd Font:style=Regular:size=12;3"
+font-4 = "Noto Serif:size=11;3"
 font-5 = "Inconsolata Nerd Font:style=Bold:size=13;2"
 
 ;--------;
@@ -65,7 +65,7 @@ module-margin = 0
 
 modules-left = time i3 spotify 
 modules-center = title
-modules-right = memory cpu wlan pulseaudio keyboard bluetooth battery-combined-udev powermenu 
+modules-right = memory cpu wired-network  wlan pulseaudio keyboard bluetooth battery-combined-udev powermenu 
 
 
 ;---------;
@@ -98,10 +98,9 @@ ws-icon-0 = "1;"
 ws-icon-1 = "2;"
 ws-icon-2 = "3;"
 ws-icon-3 = "4;"
-ws-icon-4 = "5;"
+ws-icon-4 = "5;"
 ws-icon-5 = "6;"
 ws-icon-6 = "7;"
-ws-icon-7 = "8;"
 ws-icon-default = 
 
 
@@ -159,15 +158,29 @@ format-muted-background= ${color.bg}
 type = internal/network
 
 interface = wlp4s0
-
-interval = 5
+interval = 1
 
 label-connected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} %essid%%{A}%{A}
-label-disconnected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:} Not Connected%{A}%{A} 
+label-disconnected = %{A1:networkmanager_dmenu:}%{A3:nm-connection-editor:}睊%{A}%{A} 
 label-connected-padding = 1
 label-connected-background = ${color.bg}
 label-disconnected-padding = 1
 label-disconnected-background = ${color.bg}
+
+
+[module/wired-network]
+type = internal/network
+interface = enp0s31f6
+
+interval = 1
+
+label-connected = %{A1:nm-connection-editor:} %local_ip%%{A}
+label-disconnected = 
+label-connected-padding = 1
+label-connected-background = ${color.bg}
+label-disconnected-padding = 0
+label-disconnected-background = ${color.bg}
+
 
 
 

@@ -18,3 +18,4 @@ rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Alt+h
 rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
 rofi.kb-row-down:                    Down,Control+n,Alt+j
 rofi.fullscreen:                     false
+rofi.icon-theme:                     Tela-brown

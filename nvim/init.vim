@@ -1,9 +1,9 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
+
 " Plug {{{ "
 
 call plug#begin('~/.local/share/nvim/plugged')
-
 
 " LANGUAGE PACKAGES {{{ "
 
@@ -29,7 +29,6 @@ Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Pyth
 " Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " }}} LANGUAGE PACKAGES "
-
 
 " GENERAL {{{ "
 
@@ -76,7 +75,6 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 
 " }}} GENERAL "
 
-
 " UI {{{ "
 """ Theme
 Plug 'srcery-colors/srcery-vim'
@@ -89,9 +87,7 @@ Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " }}} UI "
 
-
 call plug#end()
-
 
 " }}} Plug "
 
@@ -223,7 +219,6 @@ call plug#end()
 
 " }}} Vista "
 
-
 " NerdTree {{{ "
 
 	nnoremap <F6> :NERDTreeToggle<CR>
@@ -236,7 +231,6 @@ call plug#end()
     let g:NERDTreeDisablePatternMatchHighlight = 1
     
 " }}} NerdTree "
-
 
 " Undo Tree {{{ "
 
@@ -256,20 +250,17 @@ call plug#end()
 
 " }}} Undo Tree "
 
-
 " EasyMotion {{{ "
 
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
 " }}} EasyMotion "
 
-
 " Comment {{{ "
 
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
     
 " }}} Comment "
-
 
 " Fzf {{{ "
     function! s:fzf_statusline()
@@ -319,7 +310,6 @@ call plug#end()
 
 " }}} Fzf "
 
-
 " Cpp-enhanced-highlight {{{ "
     let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
@@ -328,11 +318,9 @@ call plug#end()
     let g:cpp_class_decl_highlight = 1
 " }}} Cpp-enhanced-highlight "
 
-
 " EchoDoc {{{ "
 	let g:echodoc_enable_at_startup = 1
 " }}} EchoDoc "
-
 
 " Lightline {{{ "
        let g:lightline = {
@@ -363,12 +351,10 @@ call plug#end()
     endfunction
 " }}} Lightline "
 
-
 " Semshi {{{ "
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
 " }}} Semshi "
-
 
 " Coc-nvim {{{ "
     let g:coc_snippet_next = '<TAB>'
@@ -448,7 +434,4 @@ call plug#end()
                 \ coc#refresh()
 " }}} Coc-nvim "
 
-
 " }}} PLUGIN CONFIG "
-
-

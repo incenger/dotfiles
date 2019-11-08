@@ -33,7 +33,7 @@ floating_modifier $mod
 bindsym $mod+Return exec termite
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
@@ -49,7 +49,7 @@ bindsym $mod+Shift+c exec zenity --calendar
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -65,7 +65,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+b exec termite -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec terminal -e 'ranger'
+bindsym $mod+F4 exec termite -e 'ranger'
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
@@ -107,7 +107,7 @@ bindsym $mod+Tab workspace back_and_forth
 # split orientation
 bindsym $mod+x split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+t split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -280,21 +280,22 @@ mode "resize" {
 
 # Lock screen
 bindsym $mod+Ctrl+l exec --no-startup-id i3lock-fancy --font "Ringbearer-Medium" --text "YOU SHALL NOT PASS"
+# bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 #exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 # exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+# exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id dropbox
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10  -locker /usr/bin/i3lock-fancy --font "Ringbearer-Medium" --text "YOU SHALL NOT PASS"
+# exec --no-startup-id xautolock -time 10  -locker /usr/bin/i3lock-fancy --font "Ringbearer-Medium" --text "YOU SHALL NOT PASS"
 
 
 # exec_always --no-startup-id ff-theme-util
@@ -371,12 +372,13 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 set $color_bg_focus #1B1918
 set $color_bg_unfocus #766E6B
 set $color_text_focus #A8A19F 
+set $color_urgent #FF5050
 
 # class                   border            backgr.           text              indic.   child_border
   client.focused          $color_bg_focus   $color_bg_focus   $color_text_focus #81a2be  #CFB017
   client.focused_inactive $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
   client.unfocused        $color_bg_focus   $color_bg_unfocus $color_text_focus #688486  #454545
-  client.urgent           $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
+  client.urgent           $color_bg_focus   $color_urgent     $color_text_focus #688486  #454545
   client.placeholder      $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
 
   client.background       #2f2f38 
