@@ -7,6 +7,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " LANGUAGE PACKAGES {{{ "
 
+""" LSP Neovim
+" Plug 'neovim/nvim-lsp'
+
 """ Language Support
 Plug 'sheerun/vim-polyglot'
 
@@ -51,9 +54,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 """ Folder Tree
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'scrooloose/nerdtree'
+ Plug 'ryanoasis/vim-devicons'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 """ Indentation
 Plug 'yggdroot/indentline'
@@ -61,6 +64,7 @@ Plug 'yggdroot/indentline'
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
+Plug 'google/vim-searchindex'
 
 """ Register Manager
 Plug 'junegunn/vim-peekaboo'
@@ -78,11 +82,11 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 " UI {{{ "
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-
+Plug 'joshdick/onedark.vim'
 
 """ Status Line
-" Plug 'taigacute/spaceline.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'taigacute/spaceline.vim'
+" Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
 " }}} UI "
@@ -106,9 +110,8 @@ call plug#end()
 
 " UI {{{ "
 
-    let g:srcery_italic = 1
     set termguicolors
-    colorscheme srcery
+    colorscheme srcery 
 	set mouse=a
 	set number
 	set relativenumber
@@ -139,6 +142,7 @@ call plug#end()
 	syntax enable
 
     """ Python
+    let g:python3_host_prog = "/home/incenger/anaconda3/bin/python3.7"
     autocmd BufNewFile,BufRead *.py set filetype=python
     autocmd BufNewFile,BufRead *.py
                 \ set tabstop=4 |
@@ -198,7 +202,7 @@ call plug#end()
 	inoremap jk <esc>
 	inoremap kj <esc>
     "Copy content of the whole file
-    nnoremap <leader>ya gg"+yG
+    nnoremap <leader>a gg"+yG
     " use tab to forward cycle
     inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
     " use s-tab to backward cycle
@@ -206,6 +210,20 @@ call plug#end()
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 " }}} General "
+
+" Folding {{{ "
+    nmap <leader>z0 :set foldlevel=0<CR>
+    nmap <leader>z1 :set foldlevel=1<CR>
+    nmap <leader>z2 :set foldlevel=2<CR>
+    nmap <leader>z3 :set foldlevel=3<CR>
+    nmap <leader>z4 :set foldlevel=4<CR>
+    nmap <leader>z5 :set foldlevel=5<CR>
+    nmap <leader>z6 :set foldlevel=6<CR>
+    nmap <leader>z7 :set foldlevel=7<CR>
+    nmap <leader>z8 :set foldlevel=8<CR>
+    nmap <leader>z9 :set foldlevel=9<CR>
+
+" }}} Folding "
 
 " }}} MAPPING "
 
@@ -221,14 +239,14 @@ call plug#end()
 
 " NerdTree {{{ "
 
-	nnoremap <F6> :NERDTreeToggle<CR>
-	let NERDTreeShowHidden=0 "not show dot files
-	"close nerdtree when closing vim
-	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    let g:NERDTreeHighlightCursorline = 0
-    let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-    let g:NERDTreeDisableExactMatchHighlight = 1
-    let g:NERDTreeDisablePatternMatchHighlight = 1
+	"nnoremap <F6> :NERDTreeToggle<CR>
+	"let NERDTreeShowHidden=0 "not show dot files
+	""close nerdtree when closing vim
+	"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "let g:NERDTreeHighlightCursorline = 0
+    "let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+    "let g:NERDTreeDisableExactMatchHighlight = 1
+    "let g:NERDTreeDisablePatternMatchHighlight = 1
     
 " }}} NerdTree "
 
@@ -306,6 +324,15 @@ call plug#end()
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
+    " [Buffers] Jump to the existing window if possible
+    let g:fzf_buffers_jump = 1
+
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    command! -bang -nargs=? -complete=dir Files
+                \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
 
 
 " }}} Fzf "
@@ -323,32 +350,35 @@ call plug#end()
 " }}} EchoDoc "
 
 " Lightline {{{ "
-       let g:lightline = {
-                \'colorscheme': 'srcery',
-                \ 'active': {
-                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename' ]],
-                \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
-                \ },
-                \ 'component_function': {
-                \     'filetype':   'CustomLightlineFiletype',
-                \     'fileformat': 'CustomLightlineFileformat',
-                \      'gitbranch': 'fugitive#head',
-                \     'cocstatus': 'coc#status',
-                \   }
-                \ }
+       " let g:lightline = {
+       "          \'colorscheme': 'srcery',
+       "          \ 'active': {
+       "          \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
+       "          \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
+       "          \ },
+       "          \ 'component_function': {
+       "          \     'filetype':   'CustomLightlineFiletype',
+       "          \     'fileformat': 'CustomLightlineFileformat',
+       "          \      'gitbranch': 'fugitive#head',
+       "          \     'cocstatus': 'coc#status',
+       "          \   }
+       "          \ }
 
-    function! CustomLightlineFiletype()
-        return winwidth(0) > 70 ?
-                    \ (strlen(&filetype) ?
-                    \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-                    \ : 'no ft')
-                    \ : ''
-    endfunction
+    " " Force lightline update
+    " autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-    function! CustomLightlineFileformat()
-        return winwidth(0) > 70 ?
-                    \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-    endfunction
+    " function! CustomLightlineFiletype()
+       "  return winwidth(0) > 70 ?
+       "              \ (strlen(&filetype) ?
+       "              \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+       "              \ : 'no ft')
+       "              \ : ''
+    " endfunction
+
+    " function! CustomLightlineFileformat()
+       "  return winwidth(0) > 70 ?
+       "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    " endfunction
 " }}} Lightline "
 
 " Semshi {{{ "
@@ -356,7 +386,7 @@ call plug#end()
     let g:semshi#mark_selected_nodes=1
 " }}} Semshi "
 
-" Coc-nvim {{{ "
+" Coc.nvim {{{ "
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
@@ -365,11 +395,13 @@ call plug#end()
 
     let g:coc_global_extensions =[
                 \'coc-snippets',
+                \'coc-highlight',
                 \'coc-git',
                 \'coc-json',
                 \'coc-pairs',
                 \'coc-emoji',
-                \'coc-python']
+                \'coc-python',
+                \'coc-explorer']
 
 
     " Use `[c` and `]c` to navigate diagnostics
@@ -400,7 +432,7 @@ call plug#end()
     endfunction
 
     " Use <CR> tor confirm completion
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
     " Ctrl Space to trigger completion
     inoremap <silent><expr> <c-space> coc#refresh()
@@ -432,6 +464,26 @@ call plug#end()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
+
+    " Use `:Format` to format current buffer
+    command! -nargs=0 Format :call CocAction('format')
+
+    " Use `:Fold` to fold current buffer
+    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+    " use `:OR` for organize import of current buffer
+    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+    " coc-explorer
+    noremap <silent> <leader>e :CocCommand explorer
+            \ --toggle
+            \ --sources=buffer+,file+
+            \ --file-columns=git:selection:clip:diagnosticError:indent:icon:filename;size;modified;readonly
+            \ <CR>
 " }}} Coc-nvim "
+
+""Spaceline
+let g:spaceline_line_symbol = 0
+let g:spaceline_seperate_style= 'none'
 
 " }}} PLUGIN CONFIG "

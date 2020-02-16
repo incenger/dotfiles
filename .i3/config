@@ -30,7 +30,7 @@ font xft:Noto Serif 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -62,10 +62,10 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec termite -e 'bmenu'
+bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec termite -e 'ranger'
+bindsym $mod+F4 exec i3-sensible-terminal -e 'ranger'
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
@@ -110,7 +110,7 @@ bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+t split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+z fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -221,7 +221,7 @@ for_window [class="Nm-connection-editor"] [floating] resize set 500 500; move ab
 # assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="Skype"] $ws5
-assign [class="Slack"] $ws7
+assign [class="Slack"] $ws5
 assign [class="jetbrains-studio"] $ws8
 for_window [title="^Android Emulator -"] floating enable
 
@@ -286,12 +286,12 @@ bindsym $mod+Ctrl+l exec --no-startup-id i3lock-fancy --font "Ringbearer-Medium"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 #exec --no-startup-id manjaro-hello
-# exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 # exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+# exec --no-startup-id clipit
 exec --no-startup-id dropbox
-# exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
@@ -373,9 +373,10 @@ set $color_bg_focus #1B1918
 set $color_bg_unfocus #766E6B
 set $color_text_focus #A8A19F 
 set $color_urgent #FF5050
+set $color_border #12CB43
 
 # class                   border            backgr.           text              indic.   child_border
-  client.focused          $color_bg_focus   $color_bg_focus   $color_text_focus #81a2be  #CFB017
+  client.focused          $color_bg_focus   $color_bg_focus   $color_text_focus #81a2be  $color_border
   client.focused_inactive $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
   client.unfocused        $color_bg_focus   $color_bg_unfocus $color_text_focus #688486  #454545
   client.urgent           $color_bg_focus   $color_urgent     $color_text_focus #688486  #454545
@@ -384,7 +385,7 @@ set $color_urgent #FF5050
   client.background       #2f2f38 
 
 
-default_border pixel 3
+default_border pixel 2
 #############################
 ### settings for i3-gaps: ###
 #############################
@@ -461,8 +462,11 @@ bindsym XF86AudioPrev exec playerctl previous
 # Start compton
 exec --no-startup-id compton --xrender-sync --xrender-sync-fence
 
+# Start Albert
+exec --no-startup-id albert
+
 # Change Background
-exec_always --no-startup-id feh -z ~/Pictures/Background --no-jump-on-resort --bg-scale 
+exec_always --no-startup-id feh -z ~/Pictures/Background/1 --no-jump-on-resort --bg-fill
 # Start ibus unikey
 exec --no-startup-id ibus-daemon --xim -d -r
 # Turn off beep sound
@@ -471,3 +475,7 @@ exec_always --no-startup-id terminal -e 'xset -b'
 exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.6
 # Change keyboard delay
 exec_always --no-startup-id xset r rate 300 30
+# Rofi google search
+bindsym $mod+g exec ~/dotfiles/rofi/rofi_google_search.sh
+# Start pcmanfm in background for auto mounting partition
+exec --no-startup-id pcmanfm -d
