@@ -64,7 +64,7 @@ padding-left = 0
 padding-right = 0
 module-margin = 0
 tray-position=right
-tray-padding=1
+tray-padding=4
 
 modules-left = time i3 spotify 
 modules-center = title
@@ -128,9 +128,10 @@ label-unfocused-foreground = ${color.fg}
 type = internal/date
 interval = 1.0
 date = %H:%M
-label-padding = 1
+label-padding-right = 2
+label-padding-left = 1
 label-background = ${color.bg}
-label-font = 6
+label-font = 1
 
 
 [module/date]
@@ -147,7 +148,7 @@ type = internal/pulseaudio
 
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-format-volume = <ramp-volume>  <label-volume>
+format-volume = <ramp-volume> <label-volume>
 format-muted = 婢
 
 ramp-volume-0 = 

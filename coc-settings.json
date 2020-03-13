@@ -44,6 +44,8 @@
     "explorer.icon.expanded": "▾",
     "explorer.icon.collapsed": "▸",
     "explorer.icon.enableNerdfont": true,
+    "explorer.file.child.labelingTemplate": "[link][diagnosticWarning][diagnosticError][size][modified][readonly]",
+
 
 
     //Diagnostic

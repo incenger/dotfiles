@@ -29,7 +29,7 @@ Plug 'Shougo/echodoc.vim'
 
 """ Semantic Highlighting
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
-" Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " }}} LANGUAGE PACKAGES "
 
@@ -139,6 +139,7 @@ call plug#end()
 	filetype indent on
 	filetype on
 	filetype plugin indent on
+    set cindent
 	syntax enable
 
     """ Python
@@ -475,11 +476,32 @@ call plug#end()
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
     " coc-explorer
-    noremap <silent> <leader>e :CocCommand explorer
-            \ --toggle
-            \ --sources=buffer+,file+
-            \ --file-columns=git:selection:clip:diagnosticError:indent:icon:filename;size;modified;readonly
-            \ <CR>
+    let g:coc_explorer_global_presets = {
+                \   '.vim': {
+                \      'root-uri': '~/.vim',
+                \   },
+                \   'floating': {
+                \      'position': 'floating',
+                \   },
+                \   'floatingLeftside': {
+                \      'position': 'floating',
+                \      'floating-position': 'left-center',
+                \      'floating-width': 50,
+                \   },
+                \   'floatingRightside': {
+                \      'position': 'floating',
+                \      'floating-position': 'left-center',
+                \      'floating-width': 50,
+                \   },
+                \   'simplify': {
+                \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
+                \     'file.child.labeling.template': '[diagnosticWarning][diagnosticError][size][modified][readonly]'
+                \   }
+                \ }
+    noremap <silent> <leader>e :CocCommand explorer<CR>
+            " \ --toggle
+            " \ --sources=buffer+,file+
+            " \ <CR>
 " }}} Coc-nvim "
 
 ""Spaceline
