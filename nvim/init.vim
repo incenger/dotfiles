@@ -1,11 +1,11 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
 
-" Plug {{{ "
+" Plug {{{
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" LANGUAGE PACKAGES {{{ "
+" LANGUAGE PACKAGES {{{
 
 """ LSP Neovim
 " Plug 'neovim/nvim-lsp'
@@ -33,7 +33,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
 " }}} LANGUAGE PACKAGES "
 
-" GENERAL {{{ "
+" GENERAL {{{
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
@@ -69,6 +69,9 @@ Plug 'google/vim-searchindex'
 """ Register Manager
 Plug 'junegunn/vim-peekaboo'
 
+""" Pairing
+Plug 'jiangmiao/auto-pairs'
+
 """ Executing Unix Command
 Plug 'tpope/vim-eunuch'
 
@@ -79,10 +82,11 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 
 " }}} GENERAL "
 
-" UI {{{ "
+" UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'jaredgorski/spacecamp'
 
 """ Status Line
 Plug 'taigacute/spaceline.vim'
@@ -96,19 +100,21 @@ call plug#end()
 " }}} Plug "
 
 
-" GENERAL CONFIG {{{ "
+""" GENERAL CONFIG 
 
-" Indentation {{{ "
+" Indentation {{{
 
     set tabstop=4
     set shiftwidth=4
     set softtabstop=4
     set expandtab
     set smarttab
+    set autoindent
+    set smartindent
 
 " }}} Indentation "
 
-" UI {{{ "
+" UI {{{
 
     set termguicolors
     colorscheme srcery 
@@ -123,7 +129,7 @@ call plug#end()
 
 " }}} UI "
 
-" Content {{{ "
+" Content {{{
 
 	set history=1000
     set noswapfile
@@ -134,12 +140,11 @@ call plug#end()
 
 " }}} Content "
 
-" Filetype {{{ "
+" Filetype {{{
 
 	filetype indent on
 	filetype on
 	filetype plugin indent on
-    set cindent
 	syntax enable
 
     """ Python
@@ -154,9 +159,10 @@ call plug#end()
                 \ set autoindent |
                 \ set fileformat=unix
 
+
 " }}} Filetype "
 
-" Searching {{{ "
+" Searching {{{
     set incsearch
     set nohlsearch
 	set ignorecase
@@ -164,26 +170,23 @@ call plug#end()
     set inccommand=split
 " }}} Searching "
 
-" Folding {{{ "
+" Folding {{{
 	set foldenable
 	set foldmethod=indent
 	set foldlevelstart=2
 	set foldnestmax=10
 " }}} Folding "
 
-" Windows {{{ "
+" Windows {{{
 
     set noequalalways
     set hidden
 
 " }}} Windows "
 
-" }}} GENERAL CONFIG "
+""" MAPPING
 
-
-" MAPPING {{{ "
-
-" Movement {{{ "
+" Movement {{{
 
     nnoremap j gj
     nnoremap k gk
@@ -194,7 +197,7 @@ call plug#end()
 
 " }}} Movement "
 
-" General {{{ "
+" General {{{
 
 	nnoremap <space> <nop>
 	let mapleader = "\<space>"
@@ -212,7 +215,7 @@ call plug#end()
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 " }}} General "
 
-" Folding {{{ "
+" Folding {{{
     nmap <leader>z0 :set foldlevel=0<CR>
     nmap <leader>z1 :set foldlevel=1<CR>
     nmap <leader>z2 :set foldlevel=2<CR>
@@ -226,19 +229,18 @@ call plug#end()
 
 " }}} Folding "
 
-" }}} MAPPING "
 
 
-" PLUGIN CONFIG {{{ "
+""" PLUGIN CONFIG 
 
-" Vista {{{ "
+" Vista {{{
 
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-" }}} Vista "
+" }}} Vista 
 
-" NerdTree {{{ "
+" NerdTree {{{
 
 	"nnoremap <F6> :NERDTreeToggle<CR>
 	"let NERDTreeShowHidden=0 "not show dot files
@@ -251,7 +253,7 @@ call plug#end()
     
 " }}} NerdTree "
 
-" Undo Tree {{{ "
+" Undo Tree {{{
 
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
@@ -269,19 +271,19 @@ call plug#end()
 
 " }}} Undo Tree "
 
-" EasyMotion {{{ "
+" EasyMotion {{{
 
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
 " }}} EasyMotion "
 
-" Comment {{{ "
+" Comment {{{
 
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
     
 " }}} Comment "
 
-" Fzf {{{ "
+" Fzf {{{
     function! s:fzf_statusline()
         " Override statusline as you like
         highlight fzf1 ctermfg=161 ctermbg=251
@@ -338,7 +340,7 @@ call plug#end()
 
 " }}} Fzf "
 
-" Cpp-enhanced-highlight {{{ "
+" Cpp-enhanced-highlight {{{
     let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
@@ -346,11 +348,11 @@ call plug#end()
     let g:cpp_class_decl_highlight = 1
 " }}} Cpp-enhanced-highlight "
 
-" EchoDoc {{{ "
+" EchoDoc {{{
 	let g:echodoc_enable_at_startup = 1
 " }}} EchoDoc "
 
-" Lightline {{{ "
+" Lightline {{{
        " let g:lightline = {
        "          \'colorscheme': 'srcery',
        "          \ 'active': {
@@ -382,12 +384,12 @@ call plug#end()
     " endfunction
 " }}} Lightline "
 
-" Semshi {{{ "
+" Semshi {{{
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
 " }}} Semshi "
 
-" Coc.nvim {{{ "
+" Coc.nvim {{{
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
@@ -396,10 +398,8 @@ call plug#end()
 
     let g:coc_global_extensions =[
                 \'coc-snippets',
-                \'coc-highlight',
                 \'coc-git',
                 \'coc-json',
-                \'coc-pairs',
                 \'coc-emoji',
                 \'coc-python',
                 \'coc-explorer']
@@ -504,8 +504,8 @@ call plug#end()
             " \ <CR>
 " }}} Coc-nvim "
 
-""Spaceline
-let g:spaceline_line_symbol = 0
-let g:spaceline_seperate_style= 'none'
+" Spaceline {{{ 
+    let g:spaceline_line_symbol = 0
+    let g:spaceline_seperate_style= 'none'
+" }}} Spaceline
 
-" }}} PLUGIN CONFIG "
