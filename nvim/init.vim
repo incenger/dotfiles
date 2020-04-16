@@ -85,8 +85,7 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 " UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'jaredgorski/spacecamp'
+Plug 'sjl/badwolf'
 
 """ Status Line
 Plug 'taigacute/spaceline.vim'
@@ -506,6 +505,6 @@ call plug#end()
 
 " Spaceline {{{ 
     let g:spaceline_line_symbol = 0
-    let g:spaceline_seperate_style= 'none'
+    let g:spaceline_seperate_style= 'slant'
 " }}} Spaceline
 

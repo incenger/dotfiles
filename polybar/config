@@ -148,9 +148,9 @@ type = internal/pulseaudio
 
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-format-volume = <ramp-volume> <label-volume>
-format-muted = 婢
+format-volume = <ramp-volume>  <label-volume>
 
+format-muted = 婢
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
@@ -254,6 +254,7 @@ exec = /home/incenger/.config/polybar/battery-combined-udev.sh
 tail = true
 format-padding = 1
 format-background=${color.bg}
+click-right = xfce4-power-manager-settings&
 
 [module/bluetooth]
 type = custom/text
