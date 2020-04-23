@@ -23,7 +23,6 @@ Plug 'honza/vim-snippets'
 """ Inclue Path
 Plug 'Shougo/neoinclude.vim'
 
-
 """ Function Signature in StatusLine
 Plug 'Shougo/echodoc.vim'
 
