@@ -142,6 +142,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export XDG_RUNTIME_DIR=/home/eddie/
+export XDG_RUNTIME_DIR=/tmp/
 export RUNLEVEL=3
 export GPG_TTY=$(tty)
