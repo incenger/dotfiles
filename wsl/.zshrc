@@ -144,3 +144,4 @@ unset __conda_setup
 
 export XDG_RUNTIME_DIR=/home/eddie/
 export RUNLEVEL=3
+export GPG_TTY=$(tty)
