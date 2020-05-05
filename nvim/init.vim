@@ -78,7 +78,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
 
-
 " }}} GENERAL "
 
 " UI {{{
@@ -351,35 +350,35 @@ call plug#end()
 " }}} EchoDoc "
 
 " Lightline {{{
-       " let g:lightline = {
-       "          \'colorscheme': 'srcery',
-       "          \ 'active': {
-       "          \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
-       "          \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
-       "          \ },
-       "          \ 'component_function': {
-       "          \     'filetype':   'CustomLightlineFiletype',
-       "          \     'fileformat': 'CustomLightlineFileformat',
-       "          \      'gitbranch': 'fugitive#head',
-       "          \     'cocstatus': 'coc#status',
-       "          \   }
-       "          \ }
+       let g:lightline = {
+                \'colorscheme': 'srcery',
+                \ 'active': {
+                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
+                \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
+                \ },
+                \ 'component_function': {
+                \     'filetype':   'CustomLightlineFiletype',
+                \     'fileformat': 'CustomLightlineFileformat',
+                \      'gitbranch': 'fugitive#head',
+                \     'cocstatus': 'coc#status',
+                \   }
+                \ }
 
-    " " Force lightline update
-    " autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+    " Force lightline update
+    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-    " function! CustomLightlineFiletype()
-       "  return winwidth(0) > 70 ?
-       "              \ (strlen(&filetype) ?
-       "              \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-       "              \ : 'no ft')
-       "              \ : ''
-    " endfunction
+    function! CustomLightlineFiletype()
+        return winwidth(0) > 70 ?
+                    \ (strlen(&filetype) ?
+                    \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+                    \ : 'no ft')
+                    \ : ''
+    endfunction
 
-    " function! CustomLightlineFileformat()
-       "  return winwidth(0) > 70 ?
-       "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-    " endfunction
+    function! CustomLightlineFileformat()
+        return winwidth(0) > 70 ?
+                    \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    endfunction
 " }}} Lightline "
 
 " Semshi {{{
@@ -504,6 +503,6 @@ call plug#end()
 
 " Spaceline {{{ 
     let g:spaceline_line_symbol = 0
-    let g:spaceline_seperate_style= 'slant'
+    let g:spaceline_seperate_style= 'none'
 " }}} Spaceline
 
