@@ -84,11 +84,15 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 """ Theme
 Plug 'srcery-colors/srcery-vim'
 Plug 'sjl/badwolf'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 """ Status Line
 Plug 'taigacute/spaceline.vim'
 " Plug 'itchyny/lightline.vim'
+" Plug 'liuchengxu/eleline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
+
+Plug 't9md/vim-choosewin'
 
 " }}} UI "
 
@@ -114,7 +118,7 @@ call plug#end()
 " UI {{{
 
     set termguicolors
-    colorscheme srcery 
+    colorscheme srcery
 	set mouse=a
 	set number
 	set relativenumber
@@ -151,7 +155,7 @@ call plug#end()
                 \ set tabstop=4 |
                 \ set softtabstop=4 |
                 \ set shiftwidth=4 |
-                \ set textwidth=79 |
+                \ set textwidth=120 |
                 \ set expandtab |
                 \ set autoindent |
                 \ set fileformat=unix
@@ -170,7 +174,7 @@ call plug#end()
 " Folding {{{
 	set foldenable
 	set foldmethod=indent
-	set foldlevelstart=2
+	set foldlevelstart=99
 	set foldnestmax=10
 " }}} Folding "
 
@@ -181,6 +185,10 @@ call plug#end()
 
 " }}} Windows "
 
+" Others {{{
+    set cmdheight=2
+
+" }}} Others "
 """ MAPPING
 
 " Movement {{{
@@ -201,13 +209,12 @@ call plug#end()
 	let maplocalleader = "\\"
 	nnoremap ; :
 	inoremap jk <esc>
-	inoremap kj <esc>
     "Copy content of the whole file
     nnoremap <leader>a gg"+yG
     " use tab to forward cycle
-    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
     " use s-tab to backward cycle
-    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 " }}} General "
@@ -236,19 +243,6 @@ call plug#end()
     let g:vista#renderer#enable_icon = 1
 
 " }}} Vista 
-
-" NerdTree {{{
-
-	"nnoremap <F6> :NERDTreeToggle<CR>
-	"let NERDTreeShowHidden=0 "not show dot files
-	""close nerdtree when closing vim
-	"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    "let g:NERDTreeHighlightCursorline = 0
-    "let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-    "let g:NERDTreeDisableExactMatchHighlight = 1
-    "let g:NERDTreeDisablePatternMatchHighlight = 1
-    
-" }}} NerdTree "
 
 " Undo Tree {{{
 
@@ -332,6 +326,8 @@ call plug#end()
 
     command! -bang -nargs=? -complete=dir Files
                 \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+
 
 
 
@@ -462,6 +458,7 @@ call plug#end()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
     " Use `:Format` to format current buffer
     command! -nargs=0 Format :call CocAction('format')
@@ -506,3 +503,9 @@ call plug#end()
     let g:spaceline_seperate_style= 'none'
 " }}} Spaceline
 
+" vim-choosewin {{{
+
+    let g:choosewin_overlay_enable = 1
+    nmap <leader>-  <Plug>(choosewin)
+
+" }}}
