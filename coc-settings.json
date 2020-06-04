@@ -4,6 +4,7 @@
     //"suggest.timeout": 500,
     "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
+    "suggest.enablePreview": true,
     "suggest.minTriggerInputLength": 2,
     "suggest.detailField": "abbr",
     "suggest.completionItemKindLabels": {
