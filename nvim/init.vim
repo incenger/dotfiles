@@ -28,7 +28,7 @@ Plug 'Shougo/echodoc.vim'
 
 """ Semantic Highlighting
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
-Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
+Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': 'cpp'}
 
 " }}} LANGUAGE PACKAGES "
 
