@@ -83,8 +83,7 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 " UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-Plug 'sjl/badwolf'
-Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
+Plug 'liuchengxu/space-vim-dark'
 
 """ Status Line
 Plug 'taigacute/spaceline.vim'
@@ -117,8 +116,8 @@ call plug#end()
 
 " UI {{{
 
-    set termguicolors
     colorscheme srcery
+    set termguicolors
 	set mouse=a
 	set number
 	set relativenumber
@@ -420,12 +419,9 @@ call plug#end()
 " Coc.nvim {{{
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
-    let g:coc_status_error_sign = '•'
-    let g:coc_status_warning_sign = '•'
     set updatetime=300
 
     let g:coc_global_extensions =[
-                \'coc-snippets',
                 \'coc-git',
                 \'coc-json',
                 \'coc-emoji',
@@ -534,8 +530,9 @@ call plug#end()
 " }}} Coc-nvim "
 
 " Spaceline {{{ 
-    let g:spaceline_line_symbol = 0
-    let g:spaceline_seperate_style= 'none'
+    let g:spaceline_seperate_style='arrow'
+    let g:spaceline_diagnostic_errorsign='•'
+    let g:spaceline_diagnostic_warnsign='•'
 " }}} Spaceline
 
 " vim-choosewin {{{

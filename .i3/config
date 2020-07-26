@@ -224,10 +224,6 @@ for_window [class="Nm-connection-editor"] [floating] resize set 500 500; move ab
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="Skype"] $ws5
 assign [class="Slack"] $ws5
-assign [class="jetbrains-studio"] $ws8
-for_window [title="^Android Emulator -"] floating enable
-# Drawing opengl window
-for_window [title="^Draw_OpenGL"] floating enable
 
 
 # switch to workspace with urgent window automatically
