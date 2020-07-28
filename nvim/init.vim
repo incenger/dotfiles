@@ -187,6 +187,11 @@ call plug#end()
 " Others {{{
     set cmdheight=2
 
+    augroup highlight_yank
+        autocmd!
+        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+    augroup END
+
 " }}} Others "
 """ MAPPING
 
@@ -231,7 +236,6 @@ call plug#end()
     nmap <leader>z9 :set foldlevel=9<CR>
 
 " }}} Folding "
-
 
 
 """ PLUGIN CONFIG 
@@ -328,6 +332,7 @@ call plug#end()
                 \ 'header':  ['fg', 'Comment'] }
     " [Buffers] Jump to the existing window if possible
     let g:fzf_buffers_jump = 1
+
 
     " [[B]Commits] Customize the options used by 'git log':
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -540,4 +545,11 @@ call plug#end()
     let g:choosewin_overlay_enable = 1
     nmap <leader>-  <Plug>(choosewin)
 
+" }}}
+
+" vim-fugitive {{{
+    nmap <leader>gj :diffget //3<CR>
+    nmap <leader>gf :diffget //2<CR>
+    nmap <leader>gs :G<CR>
+    nmap <leader>gv :GV<CR>
 " }}}
