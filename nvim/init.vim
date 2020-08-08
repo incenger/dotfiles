@@ -116,8 +116,8 @@ call plug#end()
 
 " UI {{{
 
-    colorscheme srcery
     set termguicolors
+    colorscheme srcery
 	set mouse=a
 	set number
 	set relativenumber
@@ -535,7 +535,7 @@ call plug#end()
 " }}} Coc-nvim "
 
 " Spaceline {{{ 
-    let g:spaceline_seperate_style='arrow'
+    let g:spaceline_seperate_style='slant-cons'
     let g:spaceline_diagnostic_errorsign='•'
     let g:spaceline_diagnostic_warnsign='•'
 " }}} Spaceline

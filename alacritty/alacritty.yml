@@ -191,6 +191,7 @@ colors:
     magenta: '0xf996e2'
     cyan:    '0x23edda'
     white:   '0xf9f9f9'
+
 # colors:
 #  # Default colors
 #  primary:
