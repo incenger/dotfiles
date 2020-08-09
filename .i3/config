@@ -369,18 +369,19 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Theme colors
 
-set $color_bg_focus #1B1918
-set $color_bg_unfocus #766E6B
-set $color_text_focus #A8A19F 
+set $color_bg_focus #979A9B
+set $color_bg_unfocus #2F3437
+set $color_text_focus #FFFFFF
+set $color_text_unfocus #979A9B
 set $color_urgent #FF5050
-set $color_border #12CB43
+set $color_border #f2a365
 
 # class                   border            backgr.           text              indic.   child_border
-  client.focused          $color_bg_focus   $color_bg_focus   $color_text_focus #81a2be  $color_border
-  client.focused_inactive $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
-  client.unfocused        $color_bg_focus   $color_bg_unfocus $color_text_focus #688486  #454545
-  client.urgent           $color_bg_focus   $color_urgent     $color_text_focus #688486  #454545
-  client.placeholder      $color_bg_focus   $color_bg_focus   $color_text_focus #688486  #454545
+  client.focused          $color_bg_unfocus   $color_bg_focus   $color_text_focus #81a2be  $color_border
+  client.focused_inactive $color_bg_unfocus   $color_bg_focus   $color_text_focus #688486  #454545
+  client.unfocused        $color_bg_unfocus   $color_bg_unfocus $color_text_unfocus #688486  #454545
+  client.urgent           $color_bg_unfocus   $color_urgent     $color_text_focus #688486  #454545
+  client.placeholder      $color_bg_unfocus   $color_bg_focus   $color_text_focus #688486  #454545
 
   client.background       #2f2f38 
 
