@@ -467,7 +467,7 @@ exec --no-startup-id compton --xrender-sync --xrender-sync-fence
 exec --no-startup-id albert
 
 # Change Background
-exec_always --no-startup-id feh -z ~/Pictures/Background/1 --no-jump-on-resort --bg-fill &
+exec_always --no-startup-id feh -z ~/dotfiles/background/Minimalism --no-jump-on-resort --bg-fill &
 # Start ibus unikey
 exec --no-startup-id ibus-daemon --xim -d -r
 # Turn off beep sound
