@@ -36,12 +36,12 @@ override-redirect = false
 ; FONTS ;
 ;-------;
 
-font-0 = "FantasqueSansMono Nerd Font:style=Medium:size=12;3"
-font-1 = "Font Awesome 5 Free:style=Regular:size=12;2"
-font-2 = "Font Awesome 5 Free:style=Solid:size=12;2"
-font-3 = "Font Awesome 5 Brands:size=12;2"
-font-4 = "SF Pro Text Medium:size=11;3"
-font-5 = "Inconsolata Nerd Font:style=Bold:size=13;2"
+font-0 = "SauceCodePro Nerd Font:style=Medium:size=11;3"
+font-1 = "Font Awesome 5 Free:style=Regular:size=11;2"
+font-2 = "Font Awesome 5 Free:style=Solid:size=11;2"
+font-3 = "Font Awesome 5 Brands:size=11;2"
+font-4 = "SF Pro Text Medium:size=10;3"
+font-5 = "Inconsolata Nerd Font:style=Bold:size=12;2"
 
 ;--------;
 ; COLORS ;
@@ -63,7 +63,7 @@ tray-padding=4
 
 modules-left = time i3 spotify 
 modules-center = title
-modules-right = memory cpu pulseaudio keyboard battery-combined-udev 
+modules-right = temperature  memory cpu pulseaudio keyboard battery-combined-udev 
 
 
 
@@ -142,7 +142,7 @@ type = internal/pulseaudio
 
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-format-volume = <ramp-volume>  <label-volume>
+format-volume = <ramp-volume> <label-volume>
 
 format-muted = 婢
 ramp-volume-0 = 
@@ -187,7 +187,7 @@ label-disconnected-background = ${color.bg}
 
 [module/cpu]
 type = internal/cpu
-label =   %percentage%%
+label =  %percentage%%
 label-padding = 1
 label-background = ${color.bg}
 
@@ -240,7 +240,7 @@ format = <label>
 ;   %temperature-c%   (default, temperature in °C)
 ;   %temperature-f%   (temperature in °F)
 label =  %temperature-c%°C
-
+label-padding = 1
 
 [module/battery-combined-udev]
 type = custom/script
@@ -314,8 +314,8 @@ label-indicator-off-capslock =
 
 [module/title]
 type = internal/xwindow
-format-padding = 2
 format-foreground = ${color.manjaro}
+format-underline = ${color.manjaro} 
 label =%title%
 label-maxlen = 40
 format-font = 5

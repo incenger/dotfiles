@@ -53,9 +53,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 """ Folder Tree
-" Plug 'scrooloose/nerdtree'
- Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 
 """ Indentation
 Plug 'yggdroot/indentline'
@@ -429,7 +427,6 @@ call plug#end()
     let g:coc_global_extensions =[
                 \'coc-git',
                 \'coc-json',
-                \'coc-emoji',
                 \'coc-python',
                 \'coc-explorer']
 
@@ -535,7 +532,8 @@ call plug#end()
 " }}} Coc-nvim "
 
 " Spaceline {{{ 
-    let g:spaceline_seperate_style='slant-cons'
+    let g:spaceline_colorscheme = 'space'
+    let g:spaceline_seperate_style='none'
     let g:spaceline_diagnostic_errorsign='•'
     let g:spaceline_diagnostic_warnsign='•'
 " }}} Spaceline

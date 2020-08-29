@@ -1,8 +1,9 @@
-Xft.dpi:       116
+/* Xft.dpi:       116 */
+Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
-Xft.autohint:  false
+Xft.autohint:  true
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
@@ -19,7 +20,7 @@ URxvt*externalBorder:             0
 URxvt*perl-ext-common: fullscreen, clipboard
 URxvt*keysym.F11:   perl:fullscreen:switch
 
-URxvt.font:     xft:InconsolataGo Nerd Font Mono:style=Regular:size=11, \
+URxvt.font:     xft:InconsolataGo Nerd Font Mono:style=Regular:size=12, \
                 xft:DejaVu Sans Mono:pixelsize:18,\
                 xft:Unifont:pixelsize:16,\
                 -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
