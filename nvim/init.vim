@@ -7,8 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " LANGUAGE PACKAGES {{{
 
-""" LSP Neovim
-" Plug 'neovim/nvim-lsp'
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -84,9 +82,7 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'liuchengxu/space-vim-dark'
 
 """ Status Line
-Plug 'taigacute/spaceline.vim'
-" Plug 'itchyny/lightline.vim'
-" Plug 'liuchengxu/eleline.vim'
+Plug 'hardcoreplayers/spaceline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
 Plug 't9md/vim-choosewin'
@@ -124,6 +120,8 @@ call plug#end()
     set cursorline " Highlight current line
     set guicursor=
     set signcolumn=yes
+    set splitbelow splitright    
+    set fillchars+=vert:\| 
 
 " }}} UI "
 
@@ -183,14 +181,12 @@ call plug#end()
 " }}} Windows "
 
 " Others {{{
+
     set cmdheight=2
 
-    augroup highlight_yank
-        autocmd!
-        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-    augroup END
-
 " }}} Others "
+
+
 """ MAPPING
 
 " Movement {{{
@@ -213,10 +209,7 @@ call plug#end()
 	inoremap jk <esc>
     "Copy content of the whole file
     nnoremap <leader>a gg"+yG
-    " use tab to forward cycle
-    " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-    " use s-tab to backward cycle
-    " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 " }}} General "
@@ -526,9 +519,7 @@ call plug#end()
                 \   }
                 \ }
     noremap <silent> <leader>e :CocCommand explorer<CR>
-            " \ --toggle
-            " \ --sources=buffer+,file+
-            " \ <CR>
+
 " }}} Coc-nvim "
 
 " Spaceline {{{ 
