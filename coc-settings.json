@@ -51,7 +51,8 @@
 
     //Diagnostic
     "diagnostic.signOffset": 9999999,
-    "diagnostic.displayByAle": false,
+    "diagnostic.errorSign": "●",
+    "diagnostic.warningSign": "●",
     "diagnostic.refreshOnInsertMode": true,
 
     //Git
@@ -95,9 +96,7 @@
                 },
                 "highlight": { "lsRanges" : true }
             }
-        },
-
-        //Python
+        }
     }
 
 }
