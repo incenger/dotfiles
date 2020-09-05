@@ -477,6 +477,7 @@ exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput 
 # Change keyboard delay
 exec_always --no-startup-id xset r rate 300 30
 # Rofi google search
-# bindsym $mod+g exec ~/dotfiles/rofi/rofi_google_search.sh
+bindsym $mod+g exec ~/dotfiles/rofi/rofi_google_search.sh
+
 # Start pcmanfm in background for auto mounting partition
 # exec --no-startup-id pcmanfm -d
