@@ -27,6 +27,9 @@ Plug 'Shougo/echodoc.vim'
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': 'cpp'}
 
+""" Docs Generator
+Plug 'kkoomen/vim-doge'
+
 " }}} LANGUAGE PACKAGES "
 
 " GENERAL {{{
@@ -546,3 +549,8 @@ call plug#end()
     nmap <leader>gs :G<CR>
     nmap <leader>gv :GV<CR>
 " }}}
+
+" vim-doge {{{
+    let g:doge_doc_standard_python="google"
+" }}}
+
