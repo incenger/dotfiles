@@ -133,6 +133,7 @@ call plug#end()
     set noshowmode
     set encoding=utf-8
     set shortmess+=c
+    set scrolloff=10
 
 " }}} Content "
 
@@ -424,13 +425,13 @@ call plug#end()
                 \'coc-explorer']
 
 
-    " Use `[c` and `]c` to navigate diagnostics
-    nmap <silent> [c <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]c <Plug>(coc-diagnostic-next)
+    "Navigate diagnostics
+    nmap <silent> <leader>pd <Plug>(coc-diagnostic-prev)
+    nmap <silent> <leader>nd <Plug>(coc-diagnostic-next)
 
     " navigate chunks of current buffer
-    nmap [g <Plug>(coc-git-prevchunk)
-    nmap ]g <Plug>(coc-git-nextchunk)
+    nmap <silent> <leader>pc  <Plug>(coc-git-prevchunk)
+    nmap <silent> <leader>nc  <Plug>(coc-git-nextchunk)
     " show chunk diff at current position
     nmap gs <Plug>(coc-git-chunkinfo)
 
@@ -451,15 +452,12 @@ call plug#end()
         endif
     endfunction
 
-    " Use <CR> tor confirm completion
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
     " Ctrl Space to trigger completion
     inoremap <silent><expr> <c-space> coc#refresh()
 
     " Remap for rename current word
     nmap <leader>rn <Plug>(coc-rename)
-
 
     " Close the preview window when completion is done
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -475,16 +473,23 @@ call plug#end()
     nnoremap <silent> <leader>cs  :<C-u>CocList symbols<cr>
 
     " use <tab> for trigger completion and navigate to the next complete item
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
     inoremap <silent><expr> <Tab>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <CR> tor confirm completion
+    if exists('*complete_info')
+      inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    else
+      inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    endif
 
     " Use `:Format` to format current buffer
     command! -nargs=0 Format :call CocAction('format')
