@@ -130,10 +130,9 @@ label-font = 1
 
 [module/date]
 type = internal/date
-;date =  %A, %d %B
-date = %{A3:/home/incenger/.config/polybar/calendar.sh:} %A, %d %B%{A}
+date = %a-%d-%b
 label = %date%
-label-padding = 1
+label-padding-left = 1
 label-background = ${color.bg}
 
 
