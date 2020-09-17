@@ -87,8 +87,6 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
-Plug 't9md/vim-choosewin'
-
 " }}} UI "
 
 call plug#end()
@@ -273,9 +271,9 @@ call plug#end()
 
 " Fzf {{{
 
-    " Use ag by default
-    if executable('ag')
-        let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+    " Use rg if possible
+    if executable('rg')
+        let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore'
     endif
 
     " Consistent top to bottom result
@@ -296,18 +294,20 @@ call plug#end()
                 \ 'ctrl-v': 'vsplit' }
 
     autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
     nnoremap <silent> <C-p>      :GFiles<CR>
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
 	nnoremap <silent> <leader>l  :Lines<CR>
-	nnoremap <silent> <leader>o  :Tags<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
-	nnoremap <silent> <leader>p  :Commands<CR>
-	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
+	" nnoremap <silent> <leader>p  :Commands<CR>
+	nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
+    "Search current word in current working directory with Ag
+	nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR> 
 	nnoremap <silent> <leader>f  :Files<CR>
 
-	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+    inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 	imap <C-x><C-b> <plug>(fzf-complete-line)
 
     let g:fzf_colors =
@@ -324,9 +324,9 @@ call plug#end()
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
+
     " [Buffers] Jump to the existing window if possible
     let g:fzf_buffers_jump = 1
-
 
     " [[B]Commits] Customize the options used by 'git log':
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -359,10 +359,6 @@ call plug#end()
         call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
         au BufWipeout <buffer> exe 'bw '.s:buf
     endfunction
-
-
-
-
 
 " }}} Fzf "
 
@@ -496,9 +492,6 @@ call plug#end()
     " Use `:Format` to format current buffer
     command! -nargs=0 Format :call CocAction('format')
 
-    " Use `:Fold` to fold current buffer
-    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
     " use `:OR` for organize import of current buffer
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
@@ -535,13 +528,6 @@ call plug#end()
     let g:spaceline_diagnostic_errorsign='•'
     let g:spaceline_diagnostic_warnsign='•'
 " }}} Spaceline
-
-" vim-choosewin {{{
-
-    let g:choosewin_overlay_enable = 1
-    nmap <leader>-  <Plug>(choosewin)
-
-" }}}
 
 " vim-fugitive {{{
     nmap <leader>gj :diffget //3<CR>
