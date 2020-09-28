@@ -110,6 +110,9 @@ label-visible-padding = 1
 label-focused-foreground = ${color.manjaro}
 label-focused-underline= ${color.manjaro}
 
+label-unfocused-foreground = ${color.manjaro_visible}
+label-unfocused-underline= ${color.manjaro_visible}
+
 ;label-visible-background= ${color.manjaro}
 label-visible-foreground = ${color.manjaro_visible}
 label-visible-underline= ${color.manjaro_visible}

@@ -6,7 +6,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " LANGUAGE PACKAGES {{{
 
-
 """ Language Support
 Plug 'sheerun/vim-polyglot'
 
@@ -81,7 +80,6 @@ Plug 'junegunn/gv.vim'     "Git Commit Browser
 " UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-Plug 'liuchengxu/space-vim-dark'
 
 """ Status Line
 Plug 'hardcoreplayers/spaceline.vim'
@@ -208,8 +206,9 @@ call plug#end()
 	let maplocalleader = "\\"
 	nnoremap ; :
 	inoremap jk <esc>
-    "Copy content of the whole file
-    nnoremap <leader>a gg"+yG
+
+    "Copy content of current buffer into clipboard
+    nnoremap <leader>a :%y+<CR>
 
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
@@ -226,7 +225,6 @@ call plug#end()
     nmap <leader>z7 :set foldlevel=7<CR>
     nmap <leader>z8 :set foldlevel=8<CR>
     nmap <leader>z9 :set foldlevel=9<CR>
-
 " }}} Folding "
 
 
@@ -417,11 +415,11 @@ call plug#end()
     set updatetime=300
 
     let g:coc_global_extensions =[
+                \'coc-snippets',
                 \'coc-git',
                 \'coc-json',
                 \'coc-python',
                 \'coc-explorer']
-
 
     "Navigate diagnostics
     nmap <silent> <leader>pd <Plug>(coc-diagnostic-prev)
@@ -484,9 +482,9 @@ call plug#end()
 
     " Use <CR> tor confirm completion
     if exists('*complete_info')
-      inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+        inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
     else
-      inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+        inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     endif
 
     " Use `:Format` to format current buffer
@@ -496,30 +494,7 @@ call plug#end()
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
     " coc-explorer
-    let g:coc_explorer_global_presets = {
-                \   '.vim': {
-                \      'root-uri': '~/.vim',
-                \   },
-                \   'floating': {
-                \      'position': 'floating',
-                \   },
-                \   'floatingLeftside': {
-                \      'position': 'floating',
-                \      'floating-position': 'left-center',
-                \      'floating-width': 50,
-                \   },
-                \   'floatingRightside': {
-                \      'position': 'floating',
-                \      'floating-position': 'left-center',
-                \      'floating-width': 50,
-                \   },
-                \   'simplify': {
-                \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
-                \     'file.child.labeling.template': '[diagnosticWarning][diagnosticError][size][modified][readonly]'
-                \   }
-                \ }
     noremap <silent> <leader>e :CocCommand explorer<CR>
-
 " }}} Coc-nvim "
 
 " Spaceline {{{ 
