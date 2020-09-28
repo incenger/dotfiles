@@ -1,43 +1,10 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
-
-"________________________________________________________________________________________________________________"
-"
-"         .----------------.  .----------------.  .----------------.  .----------------.  .----------------.
-"        | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
-"        | | ____   ____  | || |     _____    | || | ____    ____ | || |  _______     | || |     ______   | |
-"        | ||_  _| |_  _| | || |    |_   _|   | || ||_   \  /   _|| || | |_   __ \    | || |   .' ___  |  | |
-"        | |  \ \   / /   | || |      | |     | || |  |   \/   |  | || |   | |__) |   | || |  / .'   \_|  | |
-"        | |   \ \ / /    | || |      | |     | || |  | |\  /| |  | || |   |  __ /    | || |  | |         | |
-"        | |    \ ' /     | || |     _| |_    | || | _| |_\/_| |_ | || |  _| |  \ \_  | || |  \ `.___.'\  | |
-"        | |     \_/      | || |    |_____|   | || ||_____||_____|| || | |____| |___| | || |   `._____.'  | |
-"        | |              | || |              | || |              | || |              | || |              | |
-"        | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
-"         '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
-"
-"
-"
-"
-"         |  _ \            |_   _|          / ____|
-"         | |_) |  _   _      | |    _ __   | |        ___   _ __     __ _    ___   _ __
-"         |  _ <  | | | |     | |   | '_ \  | |       / _ \ | '_ \   / _` |  / _ \ | '__|
-"         | |_) | | |_| |    _| |_  | | | | | |____  |  __/ | | | | | (_| | |  __/ | |
-"         |____/   \__, |   |_____| |_| |_|  \_____|  \___| |_| |_|  \__, |  \___| |_|
-"                   __/ |                                             __/ |
-"                  |___/                                             |___/
-"
-"
-"                                   AND OTHER'S DOTFILES
-"
-"
-"________________________________________________________________________________________________________________"
-
+" Plug {{{
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-"______________________________LANGUAGE PACKAGES___________________________________"
-
-""" Linters
-" Plug 'w0rp/ale'
+" LANGUAGE PACKAGES {{{
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -45,16 +12,13 @@ Plug 'sheerun/vim-polyglot'
 """ Coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
-""" Snippet
-Plug 'https://github.com/honza/vim-snippets'
+""" Snippet 
+Plug 'honza/vim-snippets'
 
 """ Inclue Path
 Plug 'Shougo/neoinclude.vim'
 
-""" Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 """ Function Signature in StatusLine
 Plug 'Shougo/echodoc.vim'
@@ -63,22 +27,18 @@ Plug 'Shougo/echodoc.vim'
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
 Plug 'octol/vim-cpp-enhanced-highlight', {'for' : 'cpp'} "For CPP
 
+""" Docs Generator
+Plug 'kkoomen/vim-doge'
 
-"__________________________________________________________________________________"
+" }}} LANGUAGE PACKAGES "
 
-
-
-
-"_________________________________GENERAL__________________________________________"
+" GENERAL {{{
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
 
 """ History Tree of File
 Plug 'mbbill/undotree'
-
-""" Pairing
-Plug 'jiangmiao/auto-pairs'
 
 """ Bracket surrounding text
 Plug 'tpope/vim-surround'
@@ -88,16 +48,12 @@ Plug 'tpope/vim-commentary'
 
 """ Generate and Manage Tags
 Plug 'liuchengxu/vista.vim'
-" Plug 'majutsushi/tagbar'
-" Plug 'ludovicchabant/vim-gutentags'
 
 """ Tmux Navigator
 Plug 'christoomey/vim-tmux-navigator'
 
 """ Folder Tree
-Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 """ Indentation
 Plug 'yggdroot/indentline'
@@ -105,41 +61,58 @@ Plug 'yggdroot/indentline'
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
+Plug 'google/vim-searchindex'
 
 """ Register Manager
 Plug 'junegunn/vim-peekaboo'
 
+""" Pairing
+Plug 'jiangmiao/auto-pairs'
+
 """ Executing Unix Command
 Plug 'tpope/vim-eunuch'
 
-"__________________________________________________________________________________"
+""" Git
+Plug 'tpope/vim-fugitive'  "Git Wrapper
+Plug 'junegunn/gv.vim'     "Git Commit Browser
 
 
+" }}} GENERAL "
 
-
-"____________________________________UI____________________________________________"
+" UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
 
 """ Status Line
+" Plug 'taigacute/spaceline.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
-"__________________________________________________________________________________"
+
+Plug 't9md/vim-choosewin'
+" }}} UI "
+
 call plug#end()
 
+" }}} Plug "
 
-"____________________________________GENERAL CONFIG________________________________"
+""" GENERAL CONFIG 
 
-""" Indentation
+" Indentation {{{
+
     set tabstop=4
     set shiftwidth=4
     set softtabstop=4
     set expandtab
     set smarttab
+    set autoindent
+    set smartindent
 
-""" UI
+" }}} Indentation "
+
+" UI {{{
+
     set termguicolors
-    colorscheme srcery
+    colorscheme srcery 
 	set mouse=a
 	set number
 	set relativenumber
@@ -147,56 +120,74 @@ call plug#end()
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
     set guicursor=
+    set signcolumn=yes
 
-""" Content
+" }}} UI "
+
+" Content {{{
+
 	set history=1000
     set noswapfile
     set autoread "automatically load buffer
     set noshowmode
     set encoding=utf-8
+    set shortmess+=c
 
-""" Filetype
+" }}} Content "
+
+" Filetype {{{
+
 	filetype indent on
 	filetype on
 	filetype plugin indent on
 	syntax enable
 
     """ Python
+    let g:python3_host_prog = "/home/eddie/miniconda3/bin/python3.7"
     autocmd BufNewFile,BufRead *.py set filetype=python
     autocmd BufNewFile,BufRead *.py
                 \ set tabstop=4 |
                 \ set softtabstop=4 |
                 \ set shiftwidth=4 |
-                \ set textwidth=79 |
+                \ set textwidth=120 |
                 \ set expandtab |
                 \ set autoindent |
                 \ set fileformat=unix
 
-""" Searching
+
+" }}} Filetype "
+
+" Searching {{{
     set incsearch
     set nohlsearch
 	set ignorecase
 	set smartcase
     set inccommand=split
+" }}} Searching "
 
-""" Folding
+" Folding {{{
 	set foldenable
 	set foldmethod=indent
-	set foldlevelstart=3
+	set foldlevelstart=99
 	set foldnestmax=10
+" }}} Folding "
 
+" Windows {{{
 
-""" Windows
     set noequalalways
     set hidden
 
-"-------------------------------------------------------------------------------------------------"
+" }}} Windows "
 
+" Others {{{
+    set cmdheight=2
 
+" }}} Others "
 
-"---------------------------------------MAPPING---------------------------------------------------"
+""" MAPPING
 
-""" Movement
+" Movement {{{
+
     nnoremap j gj
     nnoremap k gk
     nnoremap <C-J> <C-W><C-J>
@@ -204,44 +195,60 @@ call plug#end()
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
+" }}} Movement "
 
-""" General
+" General {{{
+
 	nnoremap <space> <nop>
 	let mapleader = "\<space>"
 	let maplocalleader = "\\"
 	nnoremap ; :
 	inoremap jk <esc>
-	inoremap kj <esc>
     "Copy content of the whole file
-    nnoremap <leader>ya gg"+yG
-    " use tab to forward cycle
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " use s-tab to backward cycle
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    " Remove whitespace
+    nnoremap <leader>a :%y"+<CR>
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+" }}} General "
 
-"-------------------------------------------------------------------------------------------------"
+" Folding {{{
+    nmap <leader>z0 :set foldlevel=0<CR>
+    nmap <leader>z1 :set foldlevel=1<CR>
+    nmap <leader>z2 :set foldlevel=2<CR>
+    nmap <leader>z3 :set foldlevel=3<CR>
+    nmap <leader>z4 :set foldlevel=4<CR>
+    nmap <leader>z5 :set foldlevel=5<CR>
+    nmap <leader>z6 :set foldlevel=6<CR>
+    nmap <leader>z7 :set foldlevel=7<CR>
+    nmap <leader>z8 :set foldlevel=8<CR>
+    nmap <leader>z9 :set foldlevel=9<CR>
+
+" }}} Folding "
 
 
 
+""" PLUGIN CONFIG 
 
+" Vista {{{
 
-"--------------------------------------PLUGIN CONFIG----------------------------------------------"
-""" Vista
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-""" NerdTree config
-	nnoremap <F6> :NERDTreeToggle<CR>
-	let NERDTreeShowHidden=1 "not show dot files
-	"close nerdtree when closing vim
-	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    let g:NERDTreeFileExtensionHighlightFullName = 1
-    let g:NERDTreeExactMatchHighlightFullName = 1
-    let g:NERDTreePatternMatchHighlightFullName = 1
+" }}} Vista 
 
-""" Undo Tree
+" NerdTree {{{
+
+	"nnoremap <F6> :NERDTreeToggle<CR>
+	"let NERDTreeShowHidden=0 "not show dot files
+	""close nerdtree when closing vim
+	"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "let g:NERDTreeHighlightCursorline = 0
+    "let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+    "let g:NERDTreeDisableExactMatchHighlight = 1
+    "let g:NERDTreeDisablePatternMatchHighlight = 1
+    
+" }}} NerdTree "
+
+" Undo Tree {{{
+
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
     if has("persistent_undo")
@@ -256,74 +263,46 @@ call plug#end()
         let g:undotree_SetFocusWhenToggle = 1
     endif
 
-""" EasyMotion
+" }}} Undo Tree "
+
+" EasyMotion {{{
+
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
-""" ALE
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 0
-    let g:ale_echo_msg_format ='[%linter%] %s [%severity%]'
-    let g:ale_linters_explicit = 1
-    let g:ale_linters = {
-                \ 'cpp' : ['g++'],
-                \ 'python' : ['pyls'],
-                \}
-    let g:ale_python_pyls_config = {
-        \ "pyls": {
-            \ "plugins": {
-            \    "pyflakes": {
-            \       "enabled": v:true
-            \   },
-            \   "pydocstyle": {
-            \       "enabled": v:false
-            \   },
-            \   "pycodestyle": {
-            \       "enabled": v:true
-            \   },
-            \   "mccabe": {
-            \       "enabled": v:false
-            \   },
-            \   "autopep8": {
-            \       "enabled": v:false
-            \   },
-            \   "papf": {
-            \       "enabled": v:false
-            \   },
-            \   "pylint": {
-            \       "enabled": v:false
-            \   }
-            \}
-        \}
-    \}
-    let g:ale_sign_error = ''
-    let g:ale_sign_warning = ''
-    highlight clear ALEErrorSign
-    highlight clear ALEWarningSign
+" }}} EasyMotion "
 
-    " nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-    " nmap <silent> <leader>j <Plug>(ale_next_wrap)
+" Comment {{{
 
-
-""" Snippet
-    " Plugin key-mappings.
-    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    " xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-""" Comment
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+    
+" }}} Comment "
 
-""" Fzf
+" Fzf {{{
+
+    " Use rg if possible
+    if executable('rg')
+        let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore'
+    endif
+
+    " Consistent top to bottom result
+    let $FZF_DEFAULT_OPTS="--reverse "
+
+
     function! s:fzf_statusline()
         " Override statusline as you like
-        " highlight fzf1 ctermfg=161 ctermbg=251
-        " highlight fzf2 ctermfg=23 ctermbg=251
-        " highlight fzf3 ctermfg=237 ctermbg=251
+        highlight fzf1 ctermfg=161 ctermbg=251
+        highlight fzf2 ctermfg=23 ctermbg=251
+        highlight fzf3 ctermfg=237 ctermbg=251
         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
     endfunction
 
-	autocmd! User FzfStatusLine call <SID>fzf_statusline()
+    " This is the default extra key bindings
+    let g:fzf_action = {
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-x': 'split',
+                \ 'ctrl-v': 'vsplit' }
+
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
     nnoremap <silent> <C-p>      :GFiles<CR>
 	nnoremap <silent> <leader>b  :Buffers<CR>
 	nnoremap <silent> <leader>;  :History: <CR>
@@ -332,12 +311,13 @@ call plug#end()
 	nnoremap <silent> <leader>?  :History/<CR>
 	nnoremap <silent> <leader>m  :Marks<CR>
 	nnoremap <silent> <leader>p  :Commands<CR>
-	nnoremap <silent> <leader>/  :execute 'Ag ' . input('Ag/') <CR>
-	nnoremap <silent> <leader>f  :call SearchWordWithAg()<CR>
-	vnoremap <silent> <leader>f  :call SearchVisualSelectionWithAg()<CR>
-	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-	imap <C-x><C-l> <plug>(fzf-complete-line)
+	nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
+    "Search current word in current working directory with Ag
+	nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR> 
+	nnoremap <silent> <leader>f  :Files<CR>
 
+    inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+	imap <C-x><C-b> <plug>(fzf-complete-line)
 
     let g:fzf_colors =
                 \ { 'fg':      ['fg', 'Normal'],
@@ -353,86 +333,78 @@ call plug#end()
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-	function! SearchWordWithAg()
-		execute 'Ag' expand('<cword>')
-	endfunction
+    
 
-	function! SearchVisualSelectionWithAg() range
-		let old_reg = getreg('"')
-		let old_regtype = getregtype('"')
-		let old_clipboard = &clipboard
-		set clipboard&
-		normal! ""gvy
-		let selection = getreg('"')
-		call setreg('"', old_reg, old_regtype)
-		let &clipboard = old_clipboard
-		execute 'Ag' selection
-	endfunction
+    " Disable preview window
 
+    " [Buffers] Jump to the existing window if possible
+    let g:fzf_buffers_jump = 1
 
-""" Cpp-enhanced-highlight
-    let g:cpp_class_scope_highlight = 1
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    command! -bang -nargs=? -complete=dir Files
+                \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+    let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
+    " floating fzf window with borders
+    function! CreateCenteredFloatingWindow()
+        let width = min([&columns - 4, max([80, &columns - 20])])
+        let height = min([&lines - 4, max([20, &lines - 10])])
+        let top = ((&lines - height) / 2) - 1
+        let left = (&columns - width) / 2
+        let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+        let top = "╭" . repeat("─", width - 2) . "╮"
+        let mid = "│" . repeat(" ", width - 2) . "│"
+        let bot = "╰" . repeat("─", width - 2) . "╯"
+        let lines = [top] + repeat([mid], height - 2) + [bot]
+        let s:buf = nvim_create_buf(v:false, v:true)
+        call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+        call nvim_open_win(s:buf, v:true, opts)
+        set winhl=Normal:Floating
+        let opts.row += 1
+        let opts.height -= 2
+        let opts.col += 2
+        let opts.width -= 4
+        call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+        au BufWipeout <buffer> exe 'bw '.s:buf
+    endfunction
+" }}} Fzf "
+
+" Cpp-enhanced-highlight {{{
+    let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
+" }}} Cpp-enhanced-highlight "
 
-""" Deoplete
-    " if !exists('g:deoplete#omni#input_patterns')
-    "   let g:deoplete#omni#input_patterns = {}
-    " endif
-
-    " let g:deoplete#enable_at_startup = 1
-    " call deoplete#custom#option('auto_complete_delay', 0)
-    " call deoplete#custom#option('min_pattern_length', 4)
-    " call deoplete#custom#option('sources', {
-    "             \ '[]': ['around', 'buffer', 'neosnippet'],
-    "             \ 'cpp' : ['around', 'file', 'buffer', 'tag', 'neosnippet'],
-    "             \ 'python': ['around', 'file', 'buffer', 'LanguageClient','tag', 'neosnippet'],
-    "             \})
-    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" EchoDoc
+" EchoDoc {{{
 	let g:echodoc_enable_at_startup = 1
+" }}} EchoDoc "
 
-" LanguageClient
-    " Required for operations modifying multiple buffers like rename.
-    " let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
-    " let g:LanguageClient_diagnosticsEnable=0
-    " let g:LanguageClient_loadSettings = 1
-    " let g:LanguageClient_serverCommands = {
-    "     \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
-    "     \ 'python3': ['pyls', '--log-file=/tmp/pyls3.log'],
-    "     \ }
-    " nnoremap <F10> :call LanguageClient_contextMenu()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    " autocmd FileType python,python3 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-" Pymode
-    let g:pymode = 1
-    let g:pymode_python = 'python3'
-    let g:pymode_syntax_all = 1
-    let g:pymode_run = 1
-    let g:pymode_breakpoint = 0
-    let g:pymode_rope = 0
-    let g:pymode_lint = 0
-    let g:pymode_doc = 0
-    let g:pymode_virtualenv = 0
-    let g:pymode_run_bind = '<F12>'
-    let g:python_host_prog='/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
-    let g:pymode_rope_completion = 0
-    let g:pymode_rope_complete_on_dot = 0
-
-""" Lightline
+" Lightline {{{
        let g:lightline = {
-                \'colorscheme': 'wombat',
+                \'colorscheme': 'deus',
+                \ 'component': {
+                \   'lineinfo': '%3l:%-2c%<',
+                \ },
+                \ 'active': {
+                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
+                \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
+                \ },
                 \ 'component_function': {
                 \     'filetype':   'CustomLightlineFiletype',
                 \     'fileformat': 'CustomLightlineFileformat',
-                \   }
+                \     'gitbranch': 'fugitive#head',
+                \     'cocstatus': 'coc#status',
                 \ }
+                \ }
+
+    " Force lightline update
+    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
     function! CustomLightlineFiletype()
         return winwidth(0) > 70 ?
@@ -446,36 +418,41 @@ call plug#end()
         return winwidth(0) > 70 ?
                     \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
+" }}} Lightline "
 
-    """ Semshi
+" Semshi {{{
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
-    """ Better-whitespace
-    let g:strip_whitespace_on_save=1
-    let g:strip_whitespace_confirm=0
+" }}} Semshi "
 
-    """ Coc-nvim
+" Coc.nvim {{{
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
-    let g:coc_status_error_sign = '•'
-    let g:coc_status_warning_sign = '•'
-    set updatetime=200
+    set updatetime=300
 
     let g:coc_global_extensions =[
-                \'coc-snippets',
+                \'coc-git',
                 \'coc-json',
                 \'coc-python',
-                \'coc-highlight',
-                \'coc-emoji']
-    " Use `[c` and `]c` to navigate diagnostics
-    nmap <silent> [c <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]c <Plug>(coc-diagnostic-next)
+                \'coc-explorer']
+
+
+    "Navigate diagnostics
+    nmap <silent> <leader>pd <Plug>(coc-diagnostic-prev)
+    nmap <silent> <leader>nd <Plug>(coc-diagnostic-next)
+
+    " navigate chunks of current buffer
+    nmap <silent> <leader>pc  <Plug>(coc-git-prevchunk)
+    nmap <silent> <leader>nc  <Plug>(coc-git-nextchunk)
+    " show chunk diff at current position
+    nmap gs <Plug>(coc-git-chunkinfo)
 
     " Remap keys for gotos
     nmap <silent> gd <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -487,27 +464,15 @@ call plug#end()
         endif
     endfunction
 
-    " Use <CR> tor confirm completion
-    " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-    " Highlight symbol under cursor on CursorHold
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
+    " Ctrl Space to trigger completion
+    inoremap <silent><expr> <c-space> coc#refresh()
 
     " Remap for rename current word
     nmap <leader>rn <Plug>(coc-rename)
 
-
     " Close the preview window when completion is done
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    " augroup MyAutoCmd
-    "     autocmd!
-    "     " Setup formatexpr specified filetype(s).
-    "     " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    "     " Update signature help on jump placeholder
-    " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    " augroup end
 
     " Using CocList
     " Show all diagnostics
@@ -516,16 +481,85 @@ call plug#end()
     nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
     " Show commands
     nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
+    " Search workspace symbols
+    nnoremap <silent> <leader>cs  :<C-u>CocList symbols<cr>
 
-    " Highlight symbol under cursor on CursorHold
     " use <tab> for trigger completion and navigate to the next complete item
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
     inoremap <silent><expr> <Tab>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <CR> tor confirm completion
+    if exists('*complete_info')
+        inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    else
+        inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    endif
+
+    " Use `:Format` to format current buffer
+    command! -nargs=0 Format :call CocAction('format')
+
+    " Use `:Fold` to fold current buffer
+    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+    " use `:OR` for organize import of current buffer
+    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+    " coc-explorer
+    let g:coc_explorer_global_presets = {
+                \   '.vim': {
+                \      'root-uri': '~/.vim',
+                \   },
+                \   'floating': {
+                \      'position': 'floating',
+                \   },
+                \   'floatingLeftside': {
+                \      'position': 'floating',
+                \      'floating-position': 'left-center',
+                \      'floating-width': 50,
+                \   },
+                \   'floatingRightside': {
+                \      'position': 'floating',
+                \      'floating-position': 'left-center',
+                \      'floating-width': 50,
+                \   },
+                \   'simplify': {
+                \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
+                \     'file.child.labeling.template': '[diagnosticWarning][diagnosticError][size][modified][readonly]'
+                \   }
+                \ }
+    noremap <silent> <leader>e :CocCommand explorer<CR>
+
+" }}} Coc-nvim "
+
+" Spaceline {{{ 
+    let g:spaceline_colorscheme = 'space'
+    let g:spaceline_seperate_style='none'
+    let g:spaceline_diagnostic_errorsign='•'
+    let g:spaceline_diagnostic_warnsign='•'
+" }}} Spaceline
+
+" vim-choosewin {{{
+
+    let g:choosewin_overlay_enable = 1
+    nmap <leader>-  <Plug>(choosewin)
+
+" }}}
+
+" vim-fugitive {{{
+    nmap <leader>gj :diffget //3<CR>
+    nmap <leader>gf :diffget //2<CR>
+    nmap <leader>gs :G<CR>
+    nmap <leader>gv :GV<CR>
+" }}}
+
+" vim-doge {{{
+    let g:doge_doc_standard_python="google"
+" }}}
