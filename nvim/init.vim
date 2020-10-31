@@ -85,6 +85,7 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
 
+
 " }}} UI "
 
 call plug#end()
@@ -324,7 +325,7 @@ call plug#end()
                 \ 'header':  ['fg', 'Comment'] }
 
     " [Buffers] Jump to the existing window if possible
-    let g:fzf_buffers_jump = 1
+    let g:fzf_buffers_jump = 0
 
     " [[B]Commits] Customize the options used by 'git log':
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -373,35 +374,35 @@ call plug#end()
 " }}} EchoDoc "
 
 " Lightline {{{
-       let g:lightline = {
-                \'colorscheme': 'srcery',
-                \ 'active': {
-                \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
-                \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
-                \ },
-                \ 'component_function': {
-                \     'filetype':   'CustomLightlineFiletype',
-                \     'fileformat': 'CustomLightlineFileformat',
-                \      'gitbranch': 'fugitive#head',
-                \     'cocstatus': 'coc#status',
-                \   }
-                \ }
+       " let g:lightline = {
+       "          \'colorscheme': 'srcery',
+       "          \ 'active': {
+       "          \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
+       "          \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
+       "          \ },
+       "          \ 'component_function': {
+       "          \     'filetype':   'CustomLightlineFiletype',
+       "          \     'fileformat': 'CustomLightlineFileformat',
+       "          \      'gitbranch': 'fugitive#head',
+       "          \     'cocstatus': 'coc#status',
+       "          \   }
+       "          \ }
 
-    " Force lightline update
-    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+    " " Force lightline update
+    " autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-    function! CustomLightlineFiletype()
-        return winwidth(0) > 70 ?
-                    \ (strlen(&filetype) ?
-                    \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-                    \ : 'no ft')
-                    \ : ''
-    endfunction
+    " function! CustomLightlineFiletype()
+       "  return winwidth(0) > 70 ?
+       "              \ (strlen(&filetype) ?
+       "              \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+       "              \ : 'no ft')
+       "              \ : ''
+    " endfunction
 
-    function! CustomLightlineFileformat()
-        return winwidth(0) > 70 ?
-                    \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-    endfunction
+    " function! CustomLightlineFileformat()
+       "  return winwidth(0) > 70 ?
+       "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    " endfunction
 " }}} Lightline "
 
 " Semshi {{{
@@ -500,8 +501,8 @@ call plug#end()
 " Spaceline {{{ 
     let g:spaceline_colorscheme = 'space'
     let g:spaceline_seperate_style='none'
-    let g:spaceline_diagnostic_errorsign='•'
-    let g:spaceline_diagnostic_warnsign='•'
+    let g:spaceline_diagnostic_errorsign=''
+    let g:spaceline_diagnostic_warnsign=''
 " }}} Spaceline
 
 " vim-fugitive {{{

@@ -45,14 +45,14 @@
     "explorer.icon.expanded": "▾",
     "explorer.icon.collapsed": "▸",
     "explorer.icon.enableNerdfont": true,
-    "explorer.file.child.labelingTemplate": "[link][diagnosticWarning][diagnosticError][size][modified][readonly]",
 
     //Diagnostic
-    "diagnostic.signOffset": 9999999,
-    "diagnostic.displayByAle": true,
-    "diagnostic.errorSign": "●",
-    "diagnostic.warningSign": "●",
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
+    "diagnostic.errorSign": "",
+    "diagnostic.warningSign": "",
     "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
 
     //Git
     "git.enableGutters": true,
