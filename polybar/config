@@ -318,7 +318,7 @@ label-indicator-off-capslock =
 type = internal/xwindow
 format-foreground = ${color.manjaro}
 format-underline = ${color.manjaro} 
-label =%title%
+label = %title%
 label-maxlen = 40
 format-font = 5
 

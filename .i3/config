@@ -219,6 +219,9 @@ for_window [class="Blueman-manager"] floating enable border normal
 for_window [class="Blueman-manager"] [floating] resize set 640 640; move absolute position center;
 for_window [class="Nm-connection-editor"] floating enable border normal
 for_window [class="Nm-connection-editor"] [floating] resize set 500 500; move absolute position center;
+
+for_window [title="CV_Lab*"] [floating] floating disable
+
 # assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="Skype"] $ws5
@@ -279,7 +282,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+Ctrl+l exec --no-startup-id betterlockscreen -l dimblur -t "InCenger"
+bindsym $mod+Ctrl+l exec --no-startup-id betterlockscreen -l blur -t "InCenger" 
 # bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
 
 # Autostart applications
@@ -478,6 +481,8 @@ exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput 
 exec_always --no-startup-id xset r rate 300 30
 # Rofi Powermenu
 bindsym $mod+p exec rofi -modi 'Powermenu:~/dotfiles/rofi/rofi-powermenu.sh' -show Powermenu -theme powermenu
+
+# bindsym $mod+Shift+p exec rofi -modi 'ScreenLayout:~/dotfiles/rofi/rofi_screen_layout.sh' -show ScreenLayout
 
 # Start pcmanfm in background for auto mounting partition
 # exec --no-startup-id pcmanfm -d
