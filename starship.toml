@@ -110,3 +110,7 @@ show_always=true
 
 [directory]
 style = "bold #5643fd"
+
+[git_status]
+format='([$all_status$ahead_behind]($style) )'
+
