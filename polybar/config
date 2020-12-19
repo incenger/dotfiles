@@ -74,7 +74,7 @@ modules-right = temperature  memory cpu pulseaudio keyboard battery-combined-ude
 
 [module/i3]
 type = internal/i3
-pin-workspaces = false
+pin-workspaces = true
 strip-wsnumbers = true
 enable-scroll = false
 format-padding = 0

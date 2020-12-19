@@ -24,10 +24,11 @@ Plug 'Shougo/echodoc.vim'
 
 """ Semantic Highlighting
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
-Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': 'cpp'}
+Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 
 """ Docs Generator
 Plug 'kkoomen/vim-doge'
+
 
 " }}} LANGUAGE PACKAGES "
 
@@ -444,12 +445,13 @@ call plug#end()
     function! s:show_documentation()
         if (index(['vim','help'], &filetype) >= 0)
             execute 'h '.expand('<cword>')
+        elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
         else
-            call CocAction('doHover')
+            execute '!' . &keywordprg . " " . expand('<cword>')
         endif
     endfunction
-
-
+    
     " Ctrl Space to trigger completion
     inoremap <silent><expr> <c-space> coc#refresh()
 

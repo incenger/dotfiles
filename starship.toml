@@ -1,0 +1,112 @@
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$docker_context\
+$conda\
+$aws\
+$gcloud\
+$env_var\
+$custom\
+$cmd_duration\
+$time\
+$jobs\
+$status\
+$line_break\
+$character"""
+
+add_newline = true
+
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[ﬦ](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✗](bold red) "
+vicmd_symbol = "[](bold green) "
+
+
+[aws]
+symbol = " "
+
+[battery]
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+
+[conda]
+ignore_base = false
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[time]
+style="bold #ba1e68"
+disabled = false
+
+[username]
+style_user = "bold #7649fe"
+show_always=true
+
+[directory]
+style = "bold #5643fd"
