@@ -336,7 +336,7 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch_multiple.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {

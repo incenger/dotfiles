@@ -61,6 +61,7 @@ Plug 'yggdroot/indentline'
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
+
 Plug 'google/vim-searchindex'
 
 """ Register Manager

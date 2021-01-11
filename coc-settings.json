@@ -74,12 +74,12 @@
 
 
     //Python
-    //"python.jediEnabled": false,
     "python.jediEnabled": true,
     "python.disableInstallationCheck": true,
     "python.autoUpdateLanguageServer": false,
     "python.workspaceSymbols.enabled": false,
     "python.formatting.provider": "yapf",
+    "python.formatting.yapfPath": "/home/incenger/anaconda3/bin/yapf",
     "python.analysis.downloadChannel": "daily",
 
     //LSP
