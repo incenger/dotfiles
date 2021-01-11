@@ -336,7 +336,7 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch_multiple.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
@@ -482,3 +482,5 @@ exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput 
 exec_always --no-startup-id xset r rate 300 30
 # Rofi Powermenu
 bindsym $mod+p exec rofi -modi 'Powermenu:~/dotfiles/rofi/rofi-powermenu.sh' -show Powermenu -theme powermenu
+# Rofi Screenlayout
+bindsym $mod+Shift+p exec rofi -modi 'ScreenLayout:~/dotfiles/rofi/rofi_screen_layout.sh' -show ScreenLayout -theme screenlayout
