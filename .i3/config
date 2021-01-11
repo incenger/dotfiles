@@ -66,9 +66,9 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Start Applications
 bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
-bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F3 exec thunar
 bindsym $mod+F4 exec i3-sensible-terminal -e 'ranger'
-bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+Shift+F3 exec gksu thunar
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Print --release exec flameshot gui
 bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
@@ -101,8 +101,8 @@ bindsym $mod+Tab workspace back_and_forth
 # bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+x split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+backslash split h;exec notify-send 'tile horizontally'
+bindsym $mod+minus split v;exec notify-send 'tile vertically'
 bindsym $mod+t split toggle
 
 # toggle fullscreen mode for the focused container
@@ -126,11 +126,11 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
 
 # Work with multiple monitors
 # Move the current window to left or right
@@ -464,7 +464,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Start compton
-exec --no-startup-id compton --xrender-sync --xrender-sync-fence
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+# exec --no-startup-id compton --xrender-sync --xrender-sync-fence
 
 # Start Albert
 exec --no-startup-id albert
@@ -481,8 +482,3 @@ exec_always --no-startup-id xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput 
 exec_always --no-startup-id xset r rate 300 30
 # Rofi Powermenu
 bindsym $mod+p exec rofi -modi 'Powermenu:~/dotfiles/rofi/rofi-powermenu.sh' -show Powermenu -theme powermenu
-
-# bindsym $mod+Shift+p exec rofi -modi 'ScreenLayout:~/dotfiles/rofi/rofi_screen_layout.sh' -show ScreenLayout
-
-# Start pcmanfm in background for auto mounting partition
-# exec --no-startup-id pcmanfm -d
