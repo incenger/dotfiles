@@ -4,6 +4,7 @@
     //"suggest.timeout": 500,
     "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
+    "suggest.enablePreview": true,
     "suggest.minTriggerInputLength": 2,
     "suggest.detailField": "abbr",
     "suggest.completionItemKindLabels": {
@@ -44,23 +45,21 @@
     "explorer.icon.expanded": "▾",
     "explorer.icon.collapsed": "▸",
     "explorer.icon.enableNerdfont": true,
-    "explorer.file.child.labelingTemplate": "[link][diagnosticWarning][diagnosticError][size][modified][readonly]",
-
-
 
     //Diagnostic
-    "diagnostic.signOffset": 9999999,
-	"diagnostic.errorSign": "●",
-	"diagnostic.warningSign": "●",
-    "diagnostic.displayByAle": false,
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
+    "diagnostic.errorSign": "",
+    "diagnostic.warningSign": "",
     "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.virtualTextPrefix": " ",
 
     //Git
     "git.enableGutters": true,
     "git.branchCharacter":"\uf408",
     "git.addGBlameToBufferVar": false,
     "git.addGBlameToVirtualText": false,
-    "git.virtualTextPrefix": " ❯❯❯ ",
+    "git.virtualTextPrefix": "  ",
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
@@ -73,13 +72,34 @@
     "git.changeRemovedSign.text": "▋",
 
 
+    "jedi.diagnostics.didChange": false,
+
+    "diagnostic-languageserver.formatFiletypes": {
+        "python": ["black", "isort", "docformatter"]
+    },
+    "diagnostic-languageserver.formatters": {
+        "black": {
+            "command": "black",
+            "args": ["-q", "-"]
+        },
+        "isort": {
+            "command": "isort",
+            "args": ["-q", "-"]
+        },
+        "docformatter": {
+            "command": "docformatter",
+            "args": ["-"]
+        }
+    },
 
     //Python
-    "python.jediEnabled": true,
-    "python.disableInstallationCheck": true,
-    "python.autoUpdateLanguageServer": false,
-    "python.workspaceSymbols.enabled": false,
-    "python.formatting.provider": "yapf",
+    /* "python.jediEnabled": true, */
+    /* "python.disableInstallationCheck": true, */
+    /* "python.autoUpdateLanguageServer": false, */
+    /* "python.workspaceSymbols.enabled": false, */
+    /* "python.formatting.provider": "yapf", */
+    /* "python.formatting.yapfPath": "/home/incenger/anaconda3/bin/yapf", */
+    /* "python.analysis.downloadChannel": "daily", */
 
     //LSP
     "languageserver": {
@@ -91,11 +111,10 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
-                }
+                },
+                "highlight": { "lsRanges" : true }
             }
-        },
-
-        //Python
+        }
     }
 
 }

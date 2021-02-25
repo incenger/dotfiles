@@ -27,7 +27,7 @@ Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Pyth
 Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 
 """ Docs Generator
-Plug 'kkoomen/vim-doge'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 
 " }}} LANGUAGE PACKAGES "
@@ -77,6 +77,12 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
 
+""" Windows
+Plug 't9md/vim-choosewin'
+
+"""  Personal Wiki
+Plug 'vimwiki/vimwiki'
+
 " }}} GENERAL "
 
 " UI {{{
@@ -86,6 +92,7 @@ Plug 'srcery-colors/srcery-vim'
 """ Status Line
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'edkolev/tmuxline.vim' "For Tmux
+
 
 
 " }}} UI "
@@ -146,7 +153,7 @@ call plug#end()
 	syntax enable
 
     """ Python
-    let g:python3_host_prog = "/home/incenger/anaconda3/bin/python3.7"
+    let g:python3_host_prog = "$HOME/anaconda3/bin/python3.8"
     autocmd BufNewFile,BufRead *.py set filetype=python
     autocmd BufNewFile,BufRead *.py
                 \ set tabstop=4 |
@@ -301,7 +308,7 @@ call plug#end()
 	nnoremap <silent> <leader>;  :History: <CR>
 	nnoremap <silent> <leader>l  :Lines<CR>
 	nnoremap <silent> <leader>?  :History/<CR>
-	nnoremap <silent> <leader>m  :Marks<CR>
+	" nnoremap <silent> <leader>m  :Marks<CR>
 	" nnoremap <silent> <leader>p  :Commands<CR>
 	nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
     "Search current word in current working directory with Ag
@@ -421,7 +428,6 @@ call plug#end()
                 \'coc-snippets',
                 \'coc-git',
                 \'coc-json',
-                \'coc-python',
                 \'coc-explorer']
 
     "Navigate diagnostics
@@ -439,6 +445,7 @@ call plug#end()
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+    
 
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -470,7 +477,7 @@ call plug#end()
     " Show commands
     nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
     " Search workspace symbols
-    nnoremap <silent> <leader>cs  :<C-u>CocList symbols<cr>
+    nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
 
     " use <tab> for trigger completion and navigate to the next complete item
     inoremap <silent><expr> <Tab>
@@ -517,5 +524,15 @@ call plug#end()
 
 " vim-doge {{{
     let g:doge_doc_standard_python="google"
+" }}}
+
+" vimwiki{{{
+    let g:vimwiki_list = [{'path': '~/vimwiki/',
+                \ 'syntax': 'markdown', 'ext': '.md'}]
+" }}}
+
+" vim-choosewin{{{
+    nmap  -  <Plug>(choosewin)
+
 " }}}
 

@@ -10,7 +10,7 @@ else
     if [ "$1" = "Shutdown" ]; then
         shutdown now
     elif [ "$1" = "Exit" ]; then
-        i3-msg exit
+        i3exit logout
     elif [ "$1" = "Reboot" ]; then
         shutdown --reboot now
     elif [ "$1" = "Suspend" ]; then

@@ -2,14 +2,15 @@
 [color]
 
 trans = #00000000
-manjaro = #f2a365
-manjaro_visible = #30475e
+manjaro = #05d9e8
 
-red = #FF5050
+visible_unfocused = #005678
+
+red = #ff2a6d
 green = #43B581
 blue = #3A71C1
-bg = #222831
-fg = #f2a365
+bg = #01012b
+fg = #05d9e8
 
 [bar/mybar]
 
@@ -40,8 +41,10 @@ font-0 = "SauceCodePro Nerd Font:style=Medium:size=11;3"
 font-1 = "Font Awesome 5 Free:style=Regular:size=11;2"
 font-2 = "Font Awesome 5 Free:style=Solid:size=11;2"
 font-3 = "Font Awesome 5 Brands:size=11;2"
-font-4 = "SF Pro Text Medium:size=10;3"
+font-4 = "SF Pro Text Medium:size=11;3"
 font-5 = "Inconsolata Nerd Font:style=Bold:size=12;2"
+font-6 = "SauceCodePro Nerd Font:style=Medium:size=15;3"
+font-7 = "Inconsolata Nerd Font:style=Medium:size=11;2"
 
 ;--------;
 ; COLORS ;
@@ -61,9 +64,9 @@ module-margin = 0
 tray-position=right
 tray-padding=4
 
-modules-left = time i3 spotify 
-modules-center = title
-modules-right = temperature  memory cpu pulseaudio keyboard battery-combined-udev 
+modules-left = i3 spotify 
+modules-center = time title
+modules-right = system-nvidia-smi temperature memory cpu pulseaudio keyboard battery-combined-udev 
 
 
 
@@ -77,28 +80,28 @@ type = internal/i3
 pin-workspaces = true
 strip-wsnumbers = true
 enable-scroll = false
-format-padding = 0
+format-padding = 1
 
 format = <label-state>
 
-label-focused= %icon% %name%
-label-visible= %icon% %name%
-label-urgent = %icon% %name%
-label-unfocused= %icon% %name%
+label-focused=%icon%
+label-visible=%icon%
+label-urgent =%icon%
+label-unfocused=%icon%
 
-label-focused-font = 3
-label-visible-font = 3
-label-urgent-font = 3
-label-unfocused-font = 3
+label-focused-font = 7
+label-visible-font = 7
+label-urgent-font = 7
+label-unfocused-font = 7
 
-ws-icon-0 = "1;"
-ws-icon-1 = "2;"
-ws-icon-2 = "3;"
-ws-icon-3 = "4;"
-ws-icon-4 = "5;"
-ws-icon-5 = "6;"
-ws-icon-default = 
-
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-5 = "6;"
+ws-icon-6 = "7;"
+ws-icon-7 = "8;"
 
 
 label-unfocused-padding = 1
@@ -106,29 +109,26 @@ label-focused-padding = 1
 label-urgent-padding = 1
 label-visible-padding = 1
 
-;label-focused-background= ${color.manjaro}
-label-focused-foreground = ${color.manjaro}
-label-focused-underline= ${color.manjaro}
+label-focused-foreground = ${color.fg}
+; label-focused-underline= ${color.fg}
 
-label-unfocused-foreground = ${color.manjaro_visible}
-label-unfocused-underline= ${color.manjaro_visible}
+label-unfocused-foreground = ${color.visible_unfocused}
+; label-unfocused-underline= ${color.visible_unfocused}
 
-;label-visible-background= ${color.manjaro}
-label-visible-foreground = ${color.manjaro_visible}
-label-visible-underline= ${color.manjaro_visible}
+label-visible-foreground = ${color.visible_unfocused}
+; label-visible-underline= ${color.visible_unfocused}
 
-;label-urgent-background= ${color.red}
 label-urgent-foreground = ${color.red}
-label-urgent-underline= ${color.red}
+; label-urgent-underline= ${color.red}
 
 [module/time]
 type = internal/date
 interval = 1.0
-date = %H:%M
-label-padding-right = 2
+date =   %H:%M 
+label-padding-right = 1
 label-padding-left = 1
 label-background = ${color.bg}
-label-font = 1
+label-font = 8
 
 
 [module/date]
@@ -265,8 +265,8 @@ interval = 1
 format = <label>
 exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Solid:size=12;1" 
 format-font= 5
-format-underline = ${color.manjaro} 
-format-foreground= ${color.manjaro} 
+format-underline = ${color.fg} 
+format-foreground= ${color.fg} 
 format-margin= 1
 format-padding= 1
 
@@ -276,16 +276,6 @@ content = 
 content-padding = 1
 content-background = ${color.bg}
 click-left = /home/incenger/.config/polybar/pwmenu.sh
-
-[module/manjaro]
-type = custom/text
-content = 
-content-padding = 1
-content-background = ${color.bg}
-content-foreground = ${color.manjaro}
-content-font = 3
-click-left = rofi -modi run,window,ssh -show run
-click-right = dmenu_run
 
 [module/keyboard]
 type = internal/xkeyboard
@@ -316,10 +306,17 @@ label-indicator-off-capslock =
 
 [module/title]
 type = internal/xwindow
-format-foreground = ${color.manjaro}
-format-underline = ${color.manjaro} 
-label = %title%
+format-foreground = ${color.fg}
+; format-underline = ${color.fg} 
+label =  %title%
 label-maxlen = 40
-format-font = 5
+format-font = 8
+
+[module/system-nvidia-smi]
+type = custom/script
+exec = /home/incenger/.config/polybar/gpu.sh
+interval = 1
+format-padding = 1
+
 
 ; vim:ft=dosini

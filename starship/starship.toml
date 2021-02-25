@@ -101,15 +101,15 @@ symbol = " "
 symbol = " "
 
 [time]
-style="bold #ba1e68"
+style="bold #ff2a6d"
 disabled = false
 
 [username]
-style_user = "bold #7649fe"
+style_user = "bold #05d9e8"
 show_always=true
 
 [directory]
-style = "bold #5643fd"
+style = "bold #05d9e8"
 
 [git_status]
 format='([$all_status$ahead_behind]($style) )'

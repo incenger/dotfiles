@@ -1,14 +1,19 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/incenger/.oh-my-zsh"
+export ZSH="/home/incenger/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="ys"
+# ZSH_THEME="ys"
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -63,11 +68,21 @@ ZSH_THEME="ys"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  tmux
-  tmuxinator
-  vi-mode
+    git
+    tmux
+    tmuxinator
+    vi-mode
+    fzf
+    extract
+    zsh-syntax-highlighting
+    ssh-agent
+    colored-man-pages
 )
+
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+
+zstyle :omz:plugins:ssh-agent identities id_rsa id_github
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,9 +100,12 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nvim'
-export DISPLAY=localhost:0.0
+# export TERM='alacritty'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -105,9 +123,37 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim/init.vim"
 alias tmuxrc="nvim ~/.tmux.conf"
 alias nv="nvim"
-alias C="/mnt/c"
-alias D="/mnt/d"
 alias p3="python3"
-alias updatevimrc="cp ~/.config/nvim/init.vim ~/dotfiles/"
+alias i3config="nvim ~/.i3/config"
+alias plbarconfig="nvim ~/.config/polybar/config"
+alias rfconfig="nvim ~/.config/rofi/config"
+alias config_update="/home/incenger/./updateconfig.sh"
+alias passport='cd /run/media/incenger/Passport/'
+
+function open () {
+    xdg-open "$*" &
+}
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+eval "$(starship init zsh)"
+
+#. /home/incenger/.config/z/z.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/incenger/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/incenger/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/incenger/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/incenger/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

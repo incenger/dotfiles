@@ -69,7 +69,7 @@ case "$1" in
         fi
         ;;
     *)
-        echo $$ > $path_pid
+        echo $$ > /dev/null
 
         trap exit INT
         trap "echo" USR1
