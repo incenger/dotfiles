@@ -73,6 +73,7 @@
 
 
     "jedi.diagnostics.didChange": false,
+    "jedi.executable.command": "$HOME/anaconda3/bin/jedi-language-server",
 
     "diagnostic-languageserver.formatFiletypes": {
         "python": ["black", "isort", "docformatter"]

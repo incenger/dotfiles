@@ -213,7 +213,7 @@ for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
+# for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
@@ -390,7 +390,7 @@ bindsym $mod+c exec zenity --calendar
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 
 # Browser
-bindsym $mod+F2 exec chromium
+bindsym $mod+F2 exec google-chrome-stable
 
 # File manager
 bindsym $mod+F3 exec thunar
@@ -410,10 +410,10 @@ bindsym $mod+m exec --no-startup-id ~/.i3/promote-window
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-# exec --no-startup-id volumeicon
-# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# #exec --no-startup-id volumeicon
+# #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
+# exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################

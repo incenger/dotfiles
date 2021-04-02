@@ -63,8 +63,9 @@ padding-right = 0
 module-margin = 0
 tray-position=right
 tray-padding=4
+enable-ipc=true
 
-modules-left = i3 spotify 
+modules-left = i3 
 modules-center = time title
 modules-right = system-nvidia-smi temperature memory cpu pulseaudio keyboard battery-combined-udev 
 
@@ -259,16 +260,16 @@ content-padding = 1
 content-background = ${color.bg}
 click-left = blueman-manager&
 
-[module/spotify]
-type = custom/script
-interval = 1
-format = <label>
-exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Solid:size=12;1" 
-format-font= 5
-format-underline = ${color.fg} 
-format-foreground= ${color.fg} 
-format-margin= 1
-format-padding= 1
+; [module/spotify]
+; type = custom/script
+; interval = 1
+; format = <label>
+; exec = python /home/incenger/.config/polybar/spotify_status.py  -f '{play_pause} {song} - {artist}' -p "," --playpause-font="Font Awesome 5 Free:style=Solid:size=12;1" 
+; format-font= 5
+; format-underline = ${color.fg} 
+; format-foreground= ${color.fg} 
+; format-margin= 1
+; format-padding= 1
 
 [module/powermenu]
 type = custom/text
@@ -308,15 +309,47 @@ label-indicator-off-capslock =
 type = internal/xwindow
 format-foreground = ${color.fg}
 ; format-underline = ${color.fg} 
-label =  %title%
+label = %title%
 label-maxlen = 40
 format-font = 8
+format-padding = 1
 
 [module/system-nvidia-smi]
 type = custom/script
 exec = /home/incenger/.config/polybar/gpu.sh
 interval = 1
 format-padding = 1
+
+[module/spotify]
+type = custom/script
+tail = true
+; prefix symbol is shown before the text
+format-prefix = " "
+format = <label>
+exec = ~/.config/polybar/scroll_spotify_status.sh
+
+[module/spotify-prev]
+type = custom/script
+exec = echo "ﭣ"
+format = <label>
+click-left = playerctl previous -p spotify
+format-padding = 1
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo "奈"
+hook-1 = echo ""
+initial = 1
+click-left = playerctl play-pause -p spotify
+format-padding = 1
+
+[module/spotify-next]
+type = custom/script
+exec = echo "ﭡ"
+format = <label>
+click-left = playerctl next -p spotify
+format-padding = 1
+
 
 
 ; vim:ft=dosini

@@ -77,6 +77,7 @@ plugins=(
     zsh-syntax-highlighting
     ssh-agent
     colored-man-pages
+    zsh-z
 )
 
 
