@@ -333,6 +333,13 @@ call plug#end()
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
 
+    " Pass flag into rg command
+    command! -bang -nargs=* Rga
+                \   call fzf#vim#grep(
+                \   "rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1,
+                \   fzf#vim#with_preview(), <bang>0)
+
+
     " [Buffers] Jump to the existing window if possible
     let g:fzf_buffers_jump = 0
 
