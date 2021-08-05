@@ -13,7 +13,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jsfaint/coc-neoinclude'
 
-""" Snippet 
+""" Snippet
 Plug 'honza/vim-snippets'
 
 """ Inclue Path
@@ -49,14 +49,16 @@ Plug 'tpope/vim-commentary'
 """ Generate and Manage Tags
 Plug 'liuchengxu/vista.vim'
 
-""" Tmux Navigator
+""" Window Navigator
 Plug 'christoomey/vim-tmux-navigator'
 
 """ Folder Tree
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'yamatsum/nvim-nonicons'
 
 """ Indentation
-Plug 'yggdroot/indentline'
+Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'yggdroot/indentline'
 
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -76,6 +78,7 @@ Plug 'tpope/vim-eunuch'
 """ Git
 Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
+" Plug 'airblade/vim-gitgutter' "Show changes
 
 """ Windows
 Plug 't9md/vim-choosewin'
@@ -88,10 +91,13 @@ Plug 'vimwiki/vimwiki'
 " UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
+Plug 'Th3Whit3Wolf/space-nvim'
+
 
 """ Status Line
 Plug 'hardcoreplayers/spaceline.vim'
-Plug 'edkolev/tmuxline.vim' "For Tmux
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" Plug 'edkolev/tmuxline.vim' "For Tmux
 
 
 
@@ -102,7 +108,7 @@ call plug#end()
 " }}} Plug "
 
 
-""" GENERAL CONFIG 
+""" GENERAL CONFIG
 
 " Indentation {{{
 
@@ -120,6 +126,7 @@ call plug#end()
 
     set termguicolors
     colorscheme srcery
+    " colorscheme space-nvim
 	set mouse=a
 	set number
 	set relativenumber
@@ -128,8 +135,8 @@ call plug#end()
     set cursorline " Highlight current line
     set guicursor=
     set signcolumn=yes
-    set splitbelow splitright    
-    set fillchars+=vert:\| 
+    set splitbelow splitright
+    set fillchars+=vert:\|
 
 " }}} UI "
 
@@ -144,7 +151,6 @@ call plug#end()
     set scrolloff=10
 
 " }}} Content "
-
 " Filetype {{{
 
 	filetype indent on
@@ -177,8 +183,10 @@ call plug#end()
 
 " Folding {{{
 	set foldenable
-	set foldmethod=indent
-	set foldlevelstart=99
+	" set foldmethod=indent
+	" set foldlevelstart=99
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
 	set foldnestmax=10
 " }}} Folding "
 
@@ -202,10 +210,10 @@ call plug#end()
 
     nnoremap j gj
     nnoremap k gk
-    nnoremap <C-J> <C-W><C-J>
-    nnoremap <C-K> <C-W><C-K>
-    nnoremap <C-L> <C-W><C-L>
-    nnoremap <C-H> <C-W><C-H>
+    " nnoremap <C-J> <C-W><C-J>
+    " nnoremap <C-K> <C-W><C-K>
+    " nnoremap <C-L> <C-W><C-L>
+    " nnoremap <C-H> <C-W><C-H>
 
 " }}} Movement "
 
@@ -222,6 +230,11 @@ call plug#end()
 
     " Delete trailing whitespace
     nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+
+    " Move visual selected lines up and down, followed by indentation
+    xnoremap J :m '>+1<CR>gv=gv
+    xnoremap K :m '<-2<CR>gv=gv
+
 " }}} General "
 
 " Folding {{{
@@ -238,14 +251,21 @@ call plug#end()
 " }}} Folding "
 
 
-""" PLUGIN CONFIG 
+" Moving text {{{
+    vnoremap J :m '>+1<CR>gv=gv
+    vnoremap K :m '<-2<CR>gv=gv
+
+
+" }}} Moving text"
+
+""" PLUGIN CONFIG
 
 " Vista {{{
 
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-" }}} Vista 
+" }}} Vista
 
 " Undo Tree {{{
 
@@ -274,7 +294,7 @@ call plug#end()
 " Comment {{{
 
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
-    
+
 " }}} Comment "
 
 " Fzf {{{
@@ -312,7 +332,7 @@ call plug#end()
 	" nnoremap <silent> <leader>p  :Commands<CR>
 	nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
     "Search current word in current working directory with Ag
-	nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR> 
+	nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR>
 	nnoremap <silent> <leader>f  :Files<CR>
 
     inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
@@ -452,7 +472,7 @@ call plug#end()
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
-    
+
 
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -466,7 +486,7 @@ call plug#end()
             execute '!' . &keywordprg . " " . expand('<cword>')
         endif
     endfunction
-    
+
     " Ctrl Space to trigger completion
     inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -515,7 +535,7 @@ call plug#end()
     noremap <silent> <leader>e :CocCommand explorer<CR>
 " }}} Coc-nvim "
 
-" Spaceline {{{ 
+" Spaceline {{{
     let g:spaceline_colorscheme = 'space'
     let g:spaceline_seperate_style='none'
     let g:spaceline_diagnostic_errorsign=''
@@ -540,6 +560,15 @@ call plug#end()
 
 " vim-choosewin{{{
     nmap  -  <Plug>(choosewin)
-
 " }}}
 
+" indent-blankline.nvim {{{
+    " Fix cursorline leaves artifacts
+    " https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
+    set colorcolumn=99999
+" }}}
+
+" galaxyline.nvim {{{
+    " set colorcolumn=99999
+    " lua require('plugins.galaxyline')
+" }}}

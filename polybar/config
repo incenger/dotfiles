@@ -223,11 +223,11 @@ thermal-zone = 0
 ; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
 ; to find path to desired file
 ; Default reverts to thermal zone setting
-hwmon-path = /sys/devices/virtual/thermal/thermal_zone0/hwmon0/temp1_input
+; hwmon-path = /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input
 
 ; Threshold temperature to display warning label (in degrees celsius)
 ; Default: 80
-warn-temperature = 80
+warn-temperature = 100
 
 ; Whether or not to show units next to the temperature tokens (°C, °F)
 ; Default: true
