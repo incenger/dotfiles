@@ -1,10 +1,10 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker=, foldlevel=0 foldmethod=marker:
 
-" Plug {{{
+" Plug 
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" LANGUAGE PACKAGES {{{
+" LANGUAGE PACKAGES 
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -30,9 +30,9 @@ Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 
-" }}} LANGUAGE PACKAGES "
+"  LANGUAGE PACKAGES "
 
-" GENERAL {{{
+" GENERAL 
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
@@ -64,6 +64,14 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'fannheyward/telescope-coc.nvim'
+
+
 Plug 'google/vim-searchindex'
 
 """ Register Manager
@@ -86,9 +94,9 @@ Plug 't9md/vim-choosewin'
 """  Personal Wiki
 Plug 'vimwiki/vimwiki'
 
-" }}} GENERAL "
+"  GENERAL "
 
-" UI {{{
+" UI 
 """ Theme
 Plug 'srcery-colors/srcery-vim'
 Plug 'Th3Whit3Wolf/space-nvim'
@@ -101,16 +109,16 @@ Plug 'hardcoreplayers/spaceline.vim'
 
 
 
-" }}} UI "
+"  UI "
 
 call plug#end()
 
-" }}} Plug "
+"  Plug "
 
 
 """ GENERAL CONFIG
 
-" Indentation {{{
+" Indentation 
 
     set tabstop=4
     set shiftwidth=4
@@ -120,9 +128,9 @@ call plug#end()
     set autoindent
     set smartindent
 
-" }}} Indentation "
+"  Indentation "
 
-" UI {{{
+" UI 
 
     set termguicolors
     colorscheme srcery
@@ -138,9 +146,9 @@ call plug#end()
     set splitbelow splitright
     set fillchars+=vert:\|
 
-" }}} UI "
+"  UI "
 
-" Content {{{
+" Content 
 
 	set history=1000
     set noswapfile
@@ -150,8 +158,9 @@ call plug#end()
     set shortmess+=c
     set scrolloff=10
 
-" }}} Content "
-" Filetype {{{
+"  Content "
+
+" Filetype 
 
 	filetype indent on
 	filetype on
@@ -171,42 +180,42 @@ call plug#end()
                 \ set fileformat=unix
 
 
-" }}} Filetype "
+"  Filetype "
 
-" Searching {{{
+" Searching 
     set incsearch
     set nohlsearch
 	set ignorecase
 	set smartcase
     set inccommand=split
-" }}} Searching "
+"  Searching "
 
-" Folding {{{
+" Folding 
 	set foldenable
 	" set foldmethod=indent
 	" set foldlevelstart=99
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 	set foldnestmax=10
-" }}} Folding "
+"  Folding "
 
-" Windows {{{
+" Windows 
 
     set noequalalways
     set hidden
 
-" }}} Windows "
+"  Windows "
 
-" Others {{{
+" Others 
 
     set cmdheight=2
 
-" }}} Others "
+"  Others "
 
 
 """ MAPPING
 
-" Movement {{{
+" Movement 
 
     nnoremap j gj
     nnoremap k gk
@@ -215,9 +224,9 @@ call plug#end()
     " nnoremap <C-L> <C-W><C-L>
     " nnoremap <C-H> <C-W><C-H>
 
-" }}} Movement "
+"  Movement "
 
-" General {{{
+" General 
 
 	nnoremap <space> <nop>
 	let mapleader = "\<space>"
@@ -235,9 +244,9 @@ call plug#end()
     xnoremap J :m '>+1<CR>gv=gv
     xnoremap K :m '<-2<CR>gv=gv
 
-" }}} General "
+"  General "
 
-" Folding {{{
+" Folding 
     nmap <leader>z0 :set foldlevel=0<CR>
     nmap <leader>z1 :set foldlevel=1<CR>
     nmap <leader>z2 :set foldlevel=2<CR>
@@ -248,26 +257,26 @@ call plug#end()
     nmap <leader>z7 :set foldlevel=7<CR>
     nmap <leader>z8 :set foldlevel=8<CR>
     nmap <leader>z9 :set foldlevel=9<CR>
-" }}} Folding "
+"  Folding "
 
 
-" Moving text {{{
+" Moving text 
     vnoremap J :m '>+1<CR>gv=gv
     vnoremap K :m '<-2<CR>gv=gv
 
 
-" }}} Moving text"
+"  Moving text"
 
 """ PLUGIN CONFIG
 
-" Vista {{{
+" Vista 
 
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-" }}} Vista
+"  Vista
 
-" Undo Tree {{{
+" Undo Tree 
 
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
@@ -283,133 +292,133 @@ call plug#end()
         let g:undotree_SetFocusWhenToggle = 1
     endif
 
-" }}} Undo Tree "
+"  Undo Tree "
 
-" EasyMotion {{{
+" EasyMotion 
 
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
-" }}} EasyMotion "
+"  EasyMotion "
 
-" Comment {{{
+" Comment 
 
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 
-" }}} Comment "
+"  Comment "
 
-" Fzf {{{
+" Fzf 
 
     " Use rg if possible
-    if executable('rg')
-        let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore'
-    endif
+    " if executable('rg')
+    "     let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore'
+    " endif
 
-    " Consistent top to bottom result
-    let $FZF_DEFAULT_OPTS="--reverse "
+    " " Consistent top to bottom result
+    " let $FZF_DEFAULT_OPTS="--reverse "
 
-    function! s:fzf_statusline()
-        " Override statusline as you like
-        highlight fzf1 ctermfg=161 ctermbg=251
-        highlight fzf2 ctermfg=23 ctermbg=251
-        highlight fzf3 ctermfg=237 ctermbg=251
-        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-    endfunction
+    " function! s:fzf_statusline()
+    "     " Override statusline as you like
+    "     highlight fzf1 ctermfg=161 ctermbg=251
+    "     highlight fzf2 ctermfg=23 ctermbg=251
+    "     highlight fzf3 ctermfg=237 ctermbg=251
+    "     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+    " endfunction
 
-    " This is the default extra key bindings
-    let g:fzf_action = {
-                \ 'ctrl-t': 'tab split',
-                \ 'ctrl-x': 'split',
-                \ 'ctrl-v': 'vsplit' }
+    " " This is the default extra key bindings
+    " let g:fzf_action = {
+    "             \ 'ctrl-t': 'tab split',
+    "             \ 'ctrl-x': 'split',
+    "             \ 'ctrl-v': 'vsplit' }
 
-    autocmd! User FzfStatusLine call <SID>fzf_statusline()
+    " autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-    nnoremap <silent> <C-p>      :GFiles<CR>
-	nnoremap <silent> <leader>b  :Buffers<CR>
-	nnoremap <silent> <leader>;  :History: <CR>
-	nnoremap <silent> <leader>l  :Lines<CR>
-	nnoremap <silent> <leader>?  :History/<CR>
-	" nnoremap <silent> <leader>m  :Marks<CR>
-	" nnoremap <silent> <leader>p  :Commands<CR>
-	nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
-    "Search current word in current working directory with Ag
-	nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR>
-	nnoremap <silent> <leader>f  :Files<CR>
+    "nnoremap <silent> <C-p>      :GFiles<CR>
+	"nnoremap <silent> <leader>b  :Buffers<CR>
+	"nnoremap <silent> <leader>;  :History: <CR>
+	"nnoremap <silent> <leader>l  :Lines<CR>
+	"nnoremap <silent> <leader>?  :History/<CR>
+	"" nnoremap <silent> <leader>m  :Marks<CR>
+	"" nnoremap <silent> <leader>p  :Commands<CR>
+	"nnoremap <silent> <leader>/  :execute 'Rg'  input('Rg/') <CR>
+    ""Search current word in current working directory with Ag
+	"nnoremap <silent> <leader>w  :execute 'Rg' expand('<cword>') <CR>
+	"nnoremap <silent> <leader>f  :Files<CR>
 
-    inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
-	imap <C-x><C-b> <plug>(fzf-complete-line)
+    "inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+	"imap <C-x><C-b> <plug>(fzf-complete-line)
 
-    let g:fzf_colors =
-                \ { 'fg':      ['fg', 'Normal'],
-                \ 'bg':      ['bg', 'Normal'],
-                \ 'hl':      ['fg', 'Comment'],
-                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-                \ 'hl+':     ['fg', 'Statement'],
-                \ 'info':    ['fg', 'PreProc'],
-                \ 'border':  ['fg', 'Ignore'],
-                \ 'prompt':  ['fg', 'Conditional'],
-                \ 'pointer': ['fg', 'Exception'],
-                \ 'marker':  ['fg', 'Keyword'],
-                \ 'spinner': ['fg', 'Label'],
-                \ 'header':  ['fg', 'Comment'] }
+    " let g:fzf_colors =
+    "             \ { 'fg':      ['fg', 'Normal'],
+    "             \ 'bg':      ['bg', 'Normal'],
+    "             \ 'hl':      ['fg', 'Comment'],
+    "             \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    "             \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    "             \ 'hl+':     ['fg', 'Statement'],
+    "             \ 'info':    ['fg', 'PreProc'],
+    "             \ 'border':  ['fg', 'Ignore'],
+    "             \ 'prompt':  ['fg', 'Conditional'],
+    "             \ 'pointer': ['fg', 'Exception'],
+    "             \ 'marker':  ['fg', 'Keyword'],
+    "             \ 'spinner': ['fg', 'Label'],
+    "             \ 'header':  ['fg', 'Comment'] }
 
-    " Pass flag into rg command
-    command! -bang -nargs=* Rga
-                \   call fzf#vim#grep(
-                \   "rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1,
-                \   fzf#vim#with_preview(), <bang>0)
+    " " Pass flag into rg command
+    " command! -bang -nargs=* Rga
+    "             \   call fzf#vim#grep(
+    "             \   "rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1,
+    "             \   fzf#vim#with_preview(), <bang>0)
 
 
-    " [Buffers] Jump to the existing window if possible
-    let g:fzf_buffers_jump = 0
+    " " [Buffers] Jump to the existing window if possible
+    " let g:fzf_buffers_jump = 0
 
-    " [[B]Commits] Customize the options used by 'git log':
-    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+    " " [[B]Commits] Customize the options used by 'git log':
+    " let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
-    command! -bang -nargs=? -complete=dir Files
-                \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+    " command! -bang -nargs=? -complete=dir Files
+    "             \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-    let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+    " let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
-    " floating fzf window with borders
-    function! CreateCenteredFloatingWindow()
-        let width = min([&columns - 4, max([80, &columns - 20])])
-        let height = min([&lines - 4, max([20, &lines - 10])])
-        let top = ((&lines - height) / 2) - 1
-        let left = (&columns - width) / 2
-        let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+    " " floating fzf window with borders
+    " function! CreateCenteredFloatingWindow()
+    "     let width = min([&columns - 4, max([80, &columns - 20])])
+    "     let height = min([&lines - 4, max([20, &lines - 10])])
+    "     let top = ((&lines - height) / 2) - 1
+    "     let left = (&columns - width) / 2
+    "     let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
 
-        let top = "╭" . repeat("─", width - 2) . "╮"
-        let mid = "│" . repeat(" ", width - 2) . "│"
-        let bot = "╰" . repeat("─", width - 2) . "╯"
-        let lines = [top] + repeat([mid], height - 2) + [bot]
-        let s:buf = nvim_create_buf(v:false, v:true)
-        call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-        call nvim_open_win(s:buf, v:true, opts)
-        set winhl=Normal:Floating
-        let opts.row += 1
-        let opts.height -= 2
-        let opts.col += 2
-        let opts.width -= 4
-        call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-        au BufWipeout <buffer> exe 'bw '.s:buf
-    endfunction
+    "     let top = "╭" . repeat("─", width - 2) . "╮"
+    "     let mid = "│" . repeat(" ", width - 2) . "│"
+    "     let bot = "╰" . repeat("─", width - 2) . "╯"
+    "     let lines = [top] + repeat([mid], height - 2) + [bot]
+    "     let s:buf = nvim_create_buf(v:false, v:true)
+    "     call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    "     call nvim_open_win(s:buf, v:true, opts)
+    "     set winhl=Normal:Floating
+    "     let opts.row += 1
+    "     let opts.height -= 2
+    "     let opts.col += 2
+    "     let opts.width -= 4
+    "     call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    "     au BufWipeout <buffer> exe 'bw '.s:buf
+    " endfunction
 
-" }}} Fzf "
+"  Fzf "
 
-" Cpp-enhanced-highlight {{{
+" Cpp-enhanced-highlight 
     let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
-" }}} Cpp-enhanced-highlight "
+"  Cpp-enhanced-highlight "
 
-" EchoDoc {{{
+" EchoDoc 
 	let g:echodoc_enable_at_startup = 1
-" }}} EchoDoc "
+"  EchoDoc "
 
-" Lightline {{{
+" Lightline 
        " let g:lightline = {
        "          \'colorscheme': 'srcery',
        "          \ 'active': {
@@ -439,14 +448,14 @@ call plug#end()
        "  return winwidth(0) > 70 ?
        "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     " endfunction
-" }}} Lightline "
+"  Lightline "
 
-" Semshi {{{
+" Semshi 
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
-" }}} Semshi "
+"  Semshi "
 
-" Coc.nvim {{{
+" Coc.nvim 
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     set updatetime=300
@@ -533,42 +542,54 @@ call plug#end()
 
     " coc-explorer
     noremap <silent> <leader>e :CocCommand explorer<CR>
-" }}} Coc-nvim "
+"  Coc-nvim "
 
-" Spaceline {{{
+" Spaceline 
     let g:spaceline_colorscheme = 'space'
     let g:spaceline_seperate_style='none'
     let g:spaceline_diagnostic_errorsign=''
     let g:spaceline_diagnostic_warnsign=''
-" }}} Spaceline
+"  Spaceline
 
-" vim-fugitive {{{
+" vim-fugitive 
     nmap <leader>gj :diffget //3<CR>
     nmap <leader>gf :diffget //2<CR>
     nmap <leader>gs :G<CR>
     nmap <leader>gv :GV<CR>
-" }}}
+" 
 
-" vim-doge {{{
+" vim-doge 
     let g:doge_doc_standard_python="google"
-" }}}
+" 
 
-" vimwiki{{{
+" vimwiki
     let g:vimwiki_list = [{'path': '~/vimwiki/',
                 \ 'syntax': 'markdown', 'ext': '.md'}]
-" }}}
+" 
 
-" vim-choosewin{{{
+" vim-choosewin
     nmap  -  <Plug>(choosewin)
-" }}}
+" 
 
-" indent-blankline.nvim {{{
+" indent-blankline.nvim 
     " Fix cursorline leaves artifacts
     " https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
     set colorcolumn=99999
-" }}}
+" 
 
-" galaxyline.nvim {{{
-    " set colorcolumn=99999
+" galaxyline.nvim 
     " lua require('plugins.galaxyline')
-" }}}
+" 
+
+
+" telescope.nvim 
+    lua require('plugins.telescope')
+    nnoremap <C-p>      <cmd>Telescope git_files<cr>
+    nnoremap <leader>ff <cmd>Telescope find_files<cr>
+    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fw <cmd>Telescope grep_string<cr>
+    nnoremap <leader>fb <cmd>Telescope buffers<cr>
+    nnoremap <leader>fc <cmd>Telescope command_history<cr>
+    nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
+
+" 
