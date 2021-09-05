@@ -37,11 +37,15 @@ element {
 element-icon {
     size: 48px;
     margin: 2px;
+    background-color: inherit;
+    text-color:       inherit;
 }
 
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
+    background-color: inherit;
+    text-color:       inherit;
 }
 
 element selected {
