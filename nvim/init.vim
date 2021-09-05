@@ -1,10 +1,10 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker=, foldlevel=0 foldmethod=marker:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
-" Plug 
+" Plug {{{
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" LANGUAGE PACKAGES 
+" LANGUAGE PACKAGES {{{
 
 """ Language Support
 Plug 'sheerun/vim-polyglot'
@@ -30,9 +30,9 @@ Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 
-"  LANGUAGE PACKAGES "
+" }}} LANGUAGE PACKAGES "
 
-" GENERAL 
+" GENERAL {{{
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
@@ -94,12 +94,12 @@ Plug 't9md/vim-choosewin'
 """  Personal Wiki
 Plug 'vimwiki/vimwiki'
 
-"  GENERAL "
+" }}} GENERAL "
 
-" UI 
+" UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-Plug 'Th3Whit3Wolf/space-nvim'
+Plug 'marko-cerovac/material.nvim'
 
 
 """ Status Line
@@ -109,16 +109,16 @@ Plug 'hardcoreplayers/spaceline.vim'
 
 
 
-"  UI "
+" }}} UI "
 
 call plug#end()
 
-"  Plug "
+" }}} Plug "
 
 
 """ GENERAL CONFIG
 
-" Indentation 
+" Indentation {{{
 
     set tabstop=4
     set shiftwidth=4
@@ -128,13 +128,12 @@ call plug#end()
     set autoindent
     set smartindent
 
-"  Indentation "
+" }}} Indentation "
 
-" UI 
+" UI {{{
 
     set termguicolors
     colorscheme srcery
-    " colorscheme space-nvim
 	set mouse=a
 	set number
 	set relativenumber
@@ -145,10 +144,15 @@ call plug#end()
     set signcolumn=yes
     set splitbelow splitright
     set fillchars+=vert:\|
+    " Highlight on yank
+    augroup highlight_yank
+        autocmd!
+        au TextYankPost * silent! lua vim.highlight.on_yank{timeout=100}
+    augroup END
 
-"  UI "
+" }}} UI "
 
-" Content 
+" Content {{{
 
 	set history=1000
     set noswapfile
@@ -158,9 +162,9 @@ call plug#end()
     set shortmess+=c
     set scrolloff=10
 
-"  Content "
+" }}} Content "
 
-" Filetype 
+" Filetype {{{
 
 	filetype indent on
 	filetype on
@@ -169,53 +173,53 @@ call plug#end()
 
     """ Python
     let g:python3_host_prog = "$HOME/anaconda3/bin/python3.8"
-    autocmd BufNewFile,BufRead *.py set filetype=python
-    autocmd BufNewFile,BufRead *.py
-                \ set tabstop=4 |
-                \ set softtabstop=4 |
-                \ set shiftwidth=4 |
-                \ set textwidth=120 |
-                \ set expandtab |
-                \ set autoindent |
-                \ set fileformat=unix
+    " autocmd BufNewFile,BufRead *.py set filetype=python
+    " autocmd BufNewFile,BufRead *.py
+    "             \ set tabstop=4 |
+    "             \ set softtabstop=4 |
+    "             \ set shiftwidth=4 |
+    "             \ set textwidth=120 |
+    "             \ set expandtab |
+    "             \ set autoindent |
+    "             \ set fileformat=unix
 
 
-"  Filetype "
+" }}} Filetype "
 
-" Searching 
+" Searching {{{
     set incsearch
     set nohlsearch
 	set ignorecase
 	set smartcase
     set inccommand=split
-"  Searching "
+" }}} Searching "
 
-" Folding 
+" Folding {{{
 	set foldenable
 	" set foldmethod=indent
 	" set foldlevelstart=99
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 	set foldnestmax=10
-"  Folding "
+" }}} Folding "
 
-" Windows 
+" Windows {{{
 
     set noequalalways
     set hidden
 
-"  Windows "
+" }}} Windows "
 
-" Others 
+" Others {{{
 
     set cmdheight=2
 
-"  Others "
+" }}} Others "
 
 
 """ MAPPING
 
-" Movement 
+" Movement {{{
 
     nnoremap j gj
     nnoremap k gk
@@ -224,9 +228,9 @@ call plug#end()
     " nnoremap <C-L> <C-W><C-L>
     " nnoremap <C-H> <C-W><C-H>
 
-"  Movement "
+" }}} Movement "
 
-" General 
+" General {{{
 
 	nnoremap <space> <nop>
 	let mapleader = "\<space>"
@@ -244,39 +248,25 @@ call plug#end()
     xnoremap J :m '>+1<CR>gv=gv
     xnoremap K :m '<-2<CR>gv=gv
 
-"  General "
+" }}} General "
 
-" Folding 
-    nmap <leader>z0 :set foldlevel=0<CR>
-    nmap <leader>z1 :set foldlevel=1<CR>
-    nmap <leader>z2 :set foldlevel=2<CR>
-    nmap <leader>z3 :set foldlevel=3<CR>
-    nmap <leader>z4 :set foldlevel=4<CR>
-    nmap <leader>z5 :set foldlevel=5<CR>
-    nmap <leader>z6 :set foldlevel=6<CR>
-    nmap <leader>z7 :set foldlevel=7<CR>
-    nmap <leader>z8 :set foldlevel=8<CR>
-    nmap <leader>z9 :set foldlevel=9<CR>
-"  Folding "
-
-
-" Moving text 
+" Moving text {{{
     vnoremap J :m '>+1<CR>gv=gv
     vnoremap K :m '<-2<CR>gv=gv
 
 
-"  Moving text"
+" }}} Moving text"
 
 """ PLUGIN CONFIG
 
-" Vista 
+" Vista {{{
 
 	nnoremap <F7> :Vista!!<CR>
     let g:vista#renderer#enable_icon = 1
 
-"  Vista
+" }}} Vista
 
-" Undo Tree 
+" Undo Tree {{{
 
     nnoremap <F5> :UndotreeToggle<cr>
     " let g:undotree_SetFocusWhenToggle=1
@@ -292,21 +282,21 @@ call plug#end()
         let g:undotree_SetFocusWhenToggle = 1
     endif
 
-"  Undo Tree "
+" }}} Undo Tree "
 
-" EasyMotion 
+" EasyMotion {{{
 
 	nmap <leader>s <Plug>(easymotion-prefix)s
 
-"  EasyMotion "
+" }}} EasyMotion "
 
-" Comment 
+" Comment {{{
 
     autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 
-"  Comment "
+" }}} Comment "
 
-" Fzf 
+" Fzf {{{
 
     " Use rg if possible
     " if executable('rg')
@@ -404,21 +394,21 @@ call plug#end()
     "     au BufWipeout <buffer> exe 'bw '.s:buf
     " endfunction
 
-"  Fzf "
+" }}} Fzf "
 
-" Cpp-enhanced-highlight 
+" Cpp-enhanced-highlight {{{
     let g:cpp_class_scope_highlight = 0
     let g:cpp_member_variable_highlight = 1
     let g:cpp_experimental_template_highlight = 1
     let g:cpp_concepts_highlight = 1
     let g:cpp_class_decl_highlight = 1
-"  Cpp-enhanced-highlight "
+" }}} Cpp-enhanced-highlight "
 
-" EchoDoc 
+" EchoDoc {{{
 	let g:echodoc_enable_at_startup = 1
-"  EchoDoc "
+" }}} EchoDoc "
 
-" Lightline 
+" Lightline {{{
        " let g:lightline = {
        "          \'colorscheme': 'srcery',
        "          \ 'active': {
@@ -448,14 +438,14 @@ call plug#end()
        "  return winwidth(0) > 70 ?
        "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     " endfunction
-"  Lightline "
+" }}} Lightline "
 
-" Semshi 
+" Semshi {{{
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
-"  Semshi "
+" }}} Semshi "
 
-" Coc.nvim 
+" Coc.nvim {{{
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     set updatetime=300
@@ -542,47 +532,47 @@ call plug#end()
 
     " coc-explorer
     noremap <silent> <leader>e :CocCommand explorer<CR>
-"  Coc-nvim "
+" }}} Coc-nvim "
 
-" Spaceline 
+" Spaceline {{{
     let g:spaceline_colorscheme = 'space'
     let g:spaceline_seperate_style='none'
     let g:spaceline_diagnostic_errorsign=''
     let g:spaceline_diagnostic_warnsign=''
-"  Spaceline
+" }}} Spaceline
 
-" vim-fugitive 
+" vim-fugitive {{{
     nmap <leader>gj :diffget //3<CR>
     nmap <leader>gf :diffget //2<CR>
     nmap <leader>gs :G<CR>
     nmap <leader>gv :GV<CR>
-" 
+" }}}
 
-" vim-doge 
+" vim-doge {{{
     let g:doge_doc_standard_python="google"
-" 
+" }}}
 
-" vimwiki
+" vimwiki{{{
     let g:vimwiki_list = [{'path': '~/vimwiki/',
                 \ 'syntax': 'markdown', 'ext': '.md'}]
-" 
+" }}}
 
-" vim-choosewin
+" vim-choosewin{{{
     nmap  -  <Plug>(choosewin)
-" 
+" }}}
 
-" indent-blankline.nvim 
+" indent-blankline.nvim {{{
     " Fix cursorline leaves artifacts
     " https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
     set colorcolumn=99999
-" 
+" }}}
 
-" galaxyline.nvim 
+" galaxyline.nvim {{{
     " lua require('plugins.galaxyline')
-" 
+" }}}
 
-
-" telescope.nvim 
+" telescope.nvim {{{
+    " source the config file won't reload your lua config
     lua require('plugins.telescope')
     nnoremap <C-p>      <cmd>Telescope git_files<cr>
     nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -590,6 +580,5 @@ call plug#end()
     nnoremap <leader>fw <cmd>Telescope grep_string<cr>
     nnoremap <leader>fb <cmd>Telescope buffers<cr>
     nnoremap <leader>fc <cmd>Telescope command_history<cr>
-    nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-
-" 
+    nnoremap <leader>fl <cmd>lua require('plugins.telescope').curbuf() <cr>
+" }}}
