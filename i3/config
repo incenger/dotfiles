@@ -254,11 +254,12 @@ bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # Lock screen
-bindsym $mod+Ctrl+l exec --no-startup-id betterlockscreen -l blur -t "InCenger" 
+bindsym $mod+Ctrl+l exec --no-startup-id betterlockscreen -l blur
 
 
 # Rofi Powermenu
-bindsym $mod+p exec rofi -modi 'Powermenu:~/.config/rofi/rofi-powermenu.sh' -show Powermenu -theme powermenu
+bindsym $mod+p exec --no-startup-id $HOME/.config/rofi/powermenu.sh
+# bindsym $mod+p exec rofi -modi 'Powermenu:~/.config/rofi/rofi-powermenu.sh' -show Powermenu -theme powermenu
 
 # Rofi Screenlayout
 bindsym $mod+Shift+p exec rofi -modi 'ScreenLayout:~/.config/rofi/rofi_screen_layout.sh' -show ScreenLayout -theme screenlayout
@@ -375,7 +376,7 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym $mod+Return exec terminal
 
 # Application launcher
-bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+d exec rofi -no-lazy-grab -show drun  -modi drun -theme applications
 
 # Executable launcher
 bindsym $mod+Shift+d exec rofi -show run 
