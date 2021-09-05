@@ -1,9 +1,9 @@
-rsync -a ~/.config/alacritty/ ./alacritty
-rsync -a ~/.config/nvim/ ./nvim
-rsync -a ~/.i3/ ./i3/
+rsync -a ~/.config/alacritty/ ./alacritty --delete
+rsync -a ~/.config/nvim/ ./nvim --delete
+rsync -a ~/.i3/ ./i3/ --delete
 rsync -a ~/.Xresources  ./
-rsync -a ~/.config/polybar/ ./polybar
-rsync -a ~/.config/rofi/ ./rofi
-rsync -a ~/.config/starship.toml ./starship
+rsync -a ~/.config/polybar/ ./polybar --delete
+rsync -a ~/.config/rofi/ ./rofi --delete
+rsync -a ~/.config/starship.toml ./starship --delete
 rsync -a ~/.tmux.conf ~/.tmux.theme ~/tmuxinator.zsh  ./tmux
 rsync -a ~/.zshrc ./
