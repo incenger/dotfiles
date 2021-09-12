@@ -31,8 +31,8 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  0px;
-    height:                         28.5%;
-    width:                          30%;
+    height:                         26%;
+    width:                          28%;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -61,7 +61,7 @@ inputbar {
     border:                  		0% 0.2% 0.2% 0%;
     border-radius:                  0% 100% 100% 100%;
     border-color:                  	@border;
-    margin:                         0% 11% 0% 0%;
+    margin:                         0% 9% 0% 0%;
     padding:                        0.5%;
     position:                       center;
 }
@@ -92,7 +92,7 @@ element {
 element-text {
     background-color: 				#00000000;
     text-color:       				inherit;
-	font:							"feather 32";
+	font:							"feather 20";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

@@ -382,7 +382,7 @@ bindsym $mod+d exec rofi -no-lazy-grab -show drun  -modi drun -theme application
 bindsym $mod+Shift+d exec rofi -show run 
 
 # Windows launcher
-bindsym Mod1+Tab exec rofi -show window -show-icons
+bindsym Mod1+Tab exec rofi -show window -show-icons -theme applications
 
 # Calender launcher
 bindsym $mod+c exec zenity --calendar
