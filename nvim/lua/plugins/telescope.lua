@@ -2,6 +2,10 @@ local themes = require "telescope.themes"
 
 
 require('telescope').setup {
+    defaults = {
+        prompt_prefix = "   ",
+        set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+    },
     extensions = {
         fzf = {
             fuzzy = true,                    -- false will only do exact matching
@@ -15,9 +19,6 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-
-
--- For coc
 require('telescope').load_extension('coc')
 
 
