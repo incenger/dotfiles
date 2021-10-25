@@ -427,7 +427,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec picom -b
 # Change Background
-exec_always --no-startup-id feh -z ~/dotfiles/background/Minimalism --no-jump-on-resort --bg-fill &
+exec_always --no-startup-id feh -z ~/dotfiles/background/2/ --no-jump-on-resort --bg-fill &
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
