@@ -5,7 +5,7 @@ configs=("$HOME/.config/polybar/simple/config.ini"  "$HOME/.config/polybar/multi
 
 chosen_config=${configs[$RANDOM % ${#configs[@]}]}
 # Debug
-# chosen_config=${configs[1]}
+# chosen_config=${configs[0]}
 
 # Terminate already running bar instances
 killall -q polybar
