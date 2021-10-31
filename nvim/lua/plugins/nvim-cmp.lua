@@ -27,7 +27,11 @@ cmp.setup({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
                 { name = 'path' },
-                { name = 'buffer', keyword_length = 5},
+                { name = 'buffer', keyword_length = 5, opts = {
+                        get_bufnrs = function()
+                            return vim.api.nvim_list_bufs()
+                        end
+                }},
             }),
         formatting = {
             format = lspkind.cmp_format({with_text = true, maxwidth = 50})
