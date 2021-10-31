@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
     local opts = { noremap=true, silent=true }
 
     -- Better signature
-    require "lsp_signature".on_attach()
+    -- require "lsp_signature".on_attach()
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -67,6 +67,7 @@ lspSymbol("Warning", "")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, 
     {
+        underline = false,
         virtual_text =  {
             severity_limit = "Error"
         }
