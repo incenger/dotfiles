@@ -1,6 +1,7 @@
 local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -40,10 +41,36 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
--- TODO: Create a table to store customized config for each language server
--- Reference: https://github.com/tjdevries/config_manager/blob/4fab1080a965055458e4272ad558afe5a9280d86/xdg_config/nvim/lua/tj/lsp/init.lua
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = {'pylsp', 'ccls', 'vimls'}
+-- true/false - enable/disable the server using default configuration 
+-- dict -  customized config
+local servers = {
+    pylsp = true,
+    ccls = true,
+    vimls = true
+}
+
+local setup_server = function(server, config)
+    if not config then
+        return
+    end
+
+    if type(config) ~= "table" then
+        config = {}
+    end
+
+    config = vim.tbl_deep_extend("force", {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }, config)
+
+    nvim_lsp[server].setup(config)
+end
+
+for server, config in pairs(servers) do
+    setup_server(server, config)
+end
+
+
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
