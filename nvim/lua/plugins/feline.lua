@@ -1,13 +1,11 @@
+-- Change colorscheme
 local components = require('feline.presets').default
--- TODO: Change colorscheme 
 
 -- Remove the file info from left component
 table.remove(components.active[1], 3)
 
 -- Add empty middle component
 table.insert(components.active, 2, {})
-
-components.active[1][1] = {}
 
 components.active[1][2] = {
     provider = 'vi_mode',
