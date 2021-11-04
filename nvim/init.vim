@@ -21,7 +21,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'saadparwaiz1/cmp_luasnip'
 
 """ Enhance LSP
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
 
 """ Snippet
 Plug 'L3MON4D3/LuaSnip'
@@ -111,7 +111,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 't9md/vim-choosewin'
 
 """ Floating Terminal 
-Plug 'numtostr/FTerm.nvim'
+" Plug 'numtostr/FTerm.nvim'
 
 
 " }}} GENERAL "
@@ -320,21 +320,12 @@ call plug#end()
     " Consistent top to bottom result
     let $FZF_DEFAULT_OPTS="--reverse "
 
-    " Not neccessary anymore
-    " function! s:fzf_statusline()
-    "     " Override statusline as you like
-    "     highlight fzf1 ctermfg=161 ctermbg=251
-    "     highlight fzf2 ctermfg=23 ctermbg=251
-    "     highlight fzf3 ctermfg=237 ctermbg=251
-    "     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-    " endfunction
-    " autocmd! User FzfStatusLine call <SID>fzf_statusline()
-
-    " This is the default extra key bindings
+    " This is the default extra key bindings, used when sink is not defined 
     let g:fzf_action = {
                 \ 'ctrl-t': 'tab split',
                 \ 'ctrl-x': 'split',
-                \ 'ctrl-v': 'vsplit' }
+                \ 'ctrl-v': 'vsplit',
+                \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 
     command! -bang -nargs=? -complete=dir Files
@@ -358,23 +349,7 @@ call plug#end()
 
     inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
     imap <c-x><c-b> <plug>(fzf-complete-line)
-
-    " Not neccessary anymore?
-    " let g:fzf_colors =
-    "             \ { 'fg':      ['fg', 'Normal'],
-    "             \ 'bg':      ['bg', 'Normal'],
-    "             \ 'hl':      ['fg', 'Comment'],
-    "             \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    "             \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    "             \ 'hl+':     ['fg', 'Statement'],
-    "             \ 'info':    ['fg', 'PreProc'],
-    "             \ 'border':  ['fg', 'Ignore'],
-    "             \ 'prompt':  ['fg', 'Conditional'],
-    "             \ 'pointer': ['fg', 'Exception'],
-    "             \ 'marker':  ['fg', 'Keyword'],
-    "             \ 'spinner': ['fg', 'Label'],
-    "             \ 'header':  ['fg', 'Comment'] }
-
+    
     " Call rg with flag
     command! -bang -nargs=* Rga
                 \   call fzf#vim#grep(
@@ -389,7 +364,9 @@ call plug#end()
     let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 
-    let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+    " let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+    let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+
 
     " floating fzf window with borders
     function! CreateCenteredFloatingWindow()
@@ -612,7 +589,7 @@ call plug#end()
 " }}}
 
 " FTerm {{{
-    nnoremap <leader>t <cmd>lua require('FTerm').open()<cr>
+    " nnoremap <leader>t <cmd>lua require('FTerm').open()<cr>
 " }}}
 
 " nvim-tree {{{
