@@ -118,9 +118,10 @@ Plug 't9md/vim-choosewin'
 
 " UI {{{
 """ Theme
+" TODO: It's possible to copy theme and highlight from the NVChad 
+" https://github.com/NvChad/NvChad/tree/c5fe1f711e2edc08899bcfa3de484485f64e5f3f/lua/colors
 Plug 'srcery-colors/srcery-vim'
-" Plug 'marko-cerovac/material.nvim'
-" Plug 'olimorris/onedarkpro.nvim'
+Plug 'NvChad/nvim-base16.lua'
 
 
 """ Status Line
@@ -153,8 +154,10 @@ call plug#end()
 
 " UI {{{
 
-    colorscheme srcery
     set termguicolors
+    colorscheme srcery
+    " lua require("plugins.theme")
+
 	set mouse=a
 	set number
 	set relativenumber
@@ -569,10 +572,6 @@ call plug#end()
 
 " galaxyline.nvim {{{
     " lua require('plugins.galaxyline')
-" }}}
-
-" feline.nvim {{{
-    " lua require('feline').setup()
 " }}}
 
 " telescope.nvim {{{
