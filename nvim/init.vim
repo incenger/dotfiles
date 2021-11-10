@@ -110,25 +110,17 @@ Plug 'lewis6991/gitsigns.nvim'
 """ Windows
 Plug 't9md/vim-choosewin'
 
-""" Floating Terminal 
-" Plug 'numtostr/FTerm.nvim'
-
 
 " }}} GENERAL "
 
 " UI {{{
 """ Theme
-" TODO: It's possible to copy theme and highlight from the NVChad 
-" https://github.com/NvChad/NvChad/tree/c5fe1f711e2edc08899bcfa3de484485f64e5f3f/lua/colors
 Plug 'srcery-colors/srcery-vim'
 Plug 'NvChad/nvim-base16.lua'
 
 
 """ Status Line
 Plug 'famiu/feline.nvim'
-" Plug 'hardcoreplayers/spaceline.vim'
-" Plug 'edkolev/tmuxline.vim' "For Tmux
-
 
 
 " }}} UI 
@@ -552,11 +544,6 @@ call plug#end()
 " vim-doge {{{
     let g:doge_doc_standard_python="google"
     let g:doge_mapping='<leader>gd'
-" }}}
-
-" vimwiki{{{
-    let g:vimwiki_list = [{'path': '~/vimwiki/',
-                \ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 
 " vim-choosewin{{{
