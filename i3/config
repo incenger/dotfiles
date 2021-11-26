@@ -514,7 +514,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch_multiple.sh
 
 # Set inner/outer gaps
 gaps inner 4
-gaps outer -4
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
