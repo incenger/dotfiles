@@ -27,19 +27,8 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
+Plug 'folke/trouble.nvim'
 
-""" Coc.nvim
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'jsfaint/coc-neoinclude'
-
-""" Snippet
-" Plug 'honza/vim-snippets'
-
-""" Inclue Path
-" Plug 'Shougo/neoinclude.vim'
-
-""" Function Signature in StatusLine
-" Plug 'Shougo/echodoc.vim'
 
 """ Semantic Highlighting
 Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Python
@@ -189,15 +178,6 @@ call plug#end()
 
     """ Python
     let g:python3_host_prog = "$HOME/anaconda3/bin/python3.8"
-    " autocmd BufNewFile,BufRead *.py set filetype=python
-    " autocmd BufNewFile,BufRead *.py
-    "             \ set tabstop=4 |
-    "             \ set softtabstop=4 |
-    "             \ set shiftwidth=4 |
-    "             \ set textwidth=120 |
-    "             \ set expandtab |
-    "             \ set autoindent |
-    "             \ set fileformat=unix
 
 
 " }}} Filetype "
@@ -226,12 +206,6 @@ call plug#end()
 
 " }}} Windows "
 
-" Others {{{
-
-    " set cmdheight=2
-
-" }}} Others "
-
 
 """ MAPPING
 
@@ -239,10 +213,6 @@ call plug#end()
 
     nnoremap j gj
     nnoremap k gk
-    " nnoremap <C-J> <C-W><C-J>
-    " nnoremap <C-K> <C-W><C-K>
-    " nnoremap <C-L> <C-W><C-L>
-    " nnoremap <C-H> <C-W><C-H>
 
 " }}} Movement "
 
@@ -401,138 +371,10 @@ call plug#end()
 	let g:echodoc_enable_at_startup = 1
 " }}} EchoDoc "
 
-" Lightline {{{
-       " let g:lightline = {
-       "          \'colorscheme': 'srcery',
-       "          \ 'active': {
-       "          \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch'], ['filename', 'cocstatus' ]],
-       "          \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ]]
-       "          \ },
-       "          \ 'component_function': {
-       "          \     'filetype':   'CustomLightlineFiletype',
-       "          \     'fileformat': 'CustomLightlineFileformat',
-       "          \      'gitbranch': 'fugitive#head',
-       "          \     'cocstatus': 'coc#status',
-       "          \   }
-       "          \ }
-
-    " " Force lightline update
-    " autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-    " function! CustomLightlineFiletype()
-       "  return winwidth(0) > 70 ?
-       "              \ (strlen(&filetype) ?
-       "              \ &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-       "              \ : 'no ft')
-       "              \ : ''
-    " endfunction
-
-    " function! CustomLightlineFileformat()
-       "  return winwidth(0) > 70 ?
-       "              \ (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-    " endfunction
-" }}} Lightline "
-
 " Semshi {{{
     let g:semshi#error_sign=v:false
     let g:semshi#mark_selected_nodes=1
 " }}} Semshi "
-
-" Coc.nvim {{{
-    "let g:coc_snippet_next = '<TAB>'
-    "let g:coc_snippet_prev = '<S-TAB>'
-    "set updatetime=300
-
-    "let g:coc_global_extensions =[
-    "            \'coc-snippets',
-    "            \'coc-git',
-    "            \'coc-json',
-    "            \'coc-explorer']
-
-    ""Navigate diagnostics
-    "nmap <silent> <leader>pd <Plug>(coc-diagnostic-prev)
-    "nmap <silent> <leader>nd <Plug>(coc-diagnostic-next)
-
-    "" navigate chunks of current buffer
-    "nmap <silent> <leader>pc  <Plug>(coc-git-prevchunk)
-    "nmap <silent> <leader>nc  <Plug>(coc-git-nextchunk)
-    "" show chunk diff at current position
-    "nmap gs <Plug>(coc-git-chunkinfo)
-
-    "" Remap keys for gotos
-    "nmap <silent> gd <Plug>(coc-definition)
-    "nmap <silent> gy <Plug>(coc-type-definition)
-    "nmap <silent> gi <Plug>(coc-implementation)
-    "nmap <silent> gr <Plug>(coc-references)
-
-
-    "" Use K to show documentation in preview window
-    "nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-    "function! s:show_documentation()
-    "    if (index(['vim','help'], &filetype) >= 0)
-    "        execute 'h '.expand('<cword>')
-    "    elseif (coc#rpc#ready())
-    "        call CocActionAsync('doHover')
-    "    else
-    "        execute '!' . &keywordprg . " " . expand('<cword>')
-    "    endif
-    "endfunction
-
-    "" Ctrl Space to trigger completion
-    "inoremap <silent><expr> <c-space> coc#refresh()
-
-    "" Remap for rename current word
-    "nmap <leader>rn <Plug>(coc-rename)
-
-    "" Close the preview window when completion is done
-    "autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    "" Using CocList
-    "" Show all diagnostics
-    "nnoremap <silent> <space>cd  :<C-u>CocList diagnostics<cr>
-    "" Manage extensions
-    "nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
-    "" Show commands
-    "nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
-    "" Search workspace symbols
-    "nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
-
-    "" use <tab> for trigger completion and navigate to the next complete item
-    "inoremap <silent><expr> <Tab>
-    "            \ pumvisible() ? "\<C-n>" :
-    "            \ <SID>check_back_space() ? "\<Tab>" :
-    "            \ coc#refresh()
-    "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-    "function! s:check_back_space() abort
-    "    let col = col('.') - 1
-    "    return !col || getline('.')[col - 1]  =~# '\s'
-    "endfunction
-
-    "" Use <CR> tor confirm completion
-    "if exists('*complete_info')
-    "    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-    "else
-    "    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-    "endif
-
-    "" Use `:Format` to format current buffer
-    "command! -nargs=0 Format :call CocAction('format')
-
-    "" use `:OR` for organize import of current buffer
-    "command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-    "" coc-explorer
-    "noremap <silent> <leader>e :CocCommand explorer<CR>
-" }}} Coc-nvim "
-
-" Spaceline {{{
-    " let g:spaceline_colorscheme = 'space'
-    " let g:spaceline_seperate_style='none'
-    " let g:spaceline_diagnostic_errorsign=''
-    " let g:spaceline_diagnostic_warnsign=''
-" }}} Spaceline
 
 " vim-fugitive {{{
     nmap <leader>gj :diffget //3<CR>
@@ -557,10 +399,6 @@ call plug#end()
     set colorcolumn=99999
 " }}}
 
-" galaxyline.nvim {{{
-    " lua require('plugins.galaxyline')
-" }}}
-
 " telescope.nvim {{{
     " source the config file won't reload your lua config
     " lua require('plugins.telescope')
@@ -574,12 +412,8 @@ call plug#end()
     " nnoremap <leader>fv <cmd>lua require('plugins.telescope').edit_neovim() <cr>
 " }}}
 
-" FTerm {{{
-    " nnoremap <leader>t <cmd>lua require('FTerm').open()<cr>
-" }}}
-
 " nvim-tree {{{
-    lua require('nvim-tree').setup()
+    lua require('plugins.nvim-tree')
     nnoremap <leader>e <cmd>NvimTreeToggle<cr>
 " }}}
 
@@ -591,7 +425,16 @@ call plug#end()
     lua require('plugins.feline')
 " }}}
 
-""" LSP Autocomplete 
+
+" LSP Completion {{{
     lua require('plugins.lsp')
     lua require('plugins.nvim-cmp')
+" }}}
+
+" Snippet Engine {{{
     lua require('plugins.luasnip')
+" }}}
+
+" Trouble.nvim {{{
+    lua require('plugins.trouble')
+" }}}
