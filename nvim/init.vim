@@ -283,7 +283,7 @@ call plug#end()
     endif
 
     " Consistent top to bottom result
-    let $FZF_DEFAULT_OPTS="--reverse "
+    let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 
     " This is the default extra key bindings, used when sink is not defined 
     let g:fzf_action = {
@@ -292,13 +292,18 @@ call plug#end()
                 \ 'ctrl-v': 'vsplit',
                 \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
-
+    " Customise the Files command to use rg which respects .gitignore files
     command! -bang -nargs=? -complete=dir Files
-                \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+                \ call fzf#run(fzf#wrap('files', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden' }), <bang>0))
+
+    " Add an AllFiles variation that ignores .gitignore files
+    command! -bang -nargs=? -complete=dir AllFiles
+                \ call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
 
     nnoremap <silent> <C-p>      :GFiles<CR>
     nnoremap <silent> <leader>fb  :Buffers<CR>
     nnoremap <silent> <leader>ff  :Files<CR>
+    nnoremap <silent> <leader>fF  :AllFiles<CR>
     nnoremap <silent> <leader>fl  :Lines<CR>
     nnoremap <silent> <leader>fg  :execute 'Rg'  input('Rg/') <CR>
     " Edit neovim config
