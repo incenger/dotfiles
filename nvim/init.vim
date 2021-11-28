@@ -71,6 +71,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
+"TODO: Check this plugin for git branches: https://github.com/stsewd/fzf-checkout.vim
 
 
 Plug 'nvim-lua/popup.nvim'
@@ -294,11 +295,11 @@ call plug#end()
 
     " Customise the Files command to use rg which respects .gitignore files
     command! -bang -nargs=? -complete=dir Files
-                \ call fzf#run(fzf#wrap('files', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden' }), <bang>0))
+                \ call fzf#run(fzf#wrap('files', fzf#vim#with_preview({ 'dir': <q-args>, 'source': 'rg --files --hidden' }), <bang>0))
 
     " Add an AllFiles variation that ignores .gitignore files
     command! -bang -nargs=? -complete=dir AllFiles
-                \ call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
+                \ call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
 
     nnoremap <silent> <C-p>      :GFiles<CR>
     nnoremap <silent> <leader>fb  :Buffers<CR>
