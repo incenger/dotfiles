@@ -13,6 +13,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
 
+""" Null-ls
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 """ Autocomplete engine
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -118,7 +121,6 @@ Plug 'famiu/feline.nvim'
 call plug#end()
 
 " }}} Plug "
-
 
 """ GENERAL CONFIG
 
@@ -431,7 +433,6 @@ call plug#end()
     lua require('plugins.feline')
 " }}}
 
-
 " LSP Completion {{{
     lua require('plugins.lsp')
     lua require('plugins.nvim-cmp')
@@ -443,4 +444,8 @@ call plug#end()
 
 " Trouble.nvim {{{
     lua require('plugins.trouble')
+" }}}
+
+" Null-ls {{{
+    lua require('plugins.null-ls')
 " }}}
