@@ -32,14 +32,14 @@ local one_bg3 = colors.one_bg3
 -- @param group Group
 -- @param color Color
 local function bg(group, color)
-   cmd("hi " .. group .. " guibg=" .. color)
+	cmd("hi " .. group .. " guibg=" .. color)
 end
 
 -- Define fg color
 -- @param group Group
 -- @param color Color
 local function fg(group, color)
-   cmd("hi " .. group .. " guifg=" .. color)
+	cmd("hi " .. group .. " guifg=" .. color)
 end
 
 -- Define bg and fg color
@@ -47,18 +47,18 @@ end
 -- @param fgcol Fg Color
 -- @param bgcol Bg Color
 local function fg_bg(group, fgcol, bgcol)
-   cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
+	cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
 end
 
 -- Comments
 if false then
-   fg("Comment", grey_fg .. " gui=italic")
+	fg("Comment", grey_fg .. " gui=italic")
 else
-   fg("Comment", grey_fg)
+	fg("Comment", grey_fg)
 end
 
 -- Disable cusror line
-cmd "hi clear CursorLine"
+cmd("hi clear CursorLine")
 -- Line number
 fg("cursorlinenr", white)
 
@@ -160,4 +160,3 @@ fg("TelescopeBorder", one_bg)
 fg_bg("TelescopePreviewTitle", green, one_bg)
 fg_bg("TelescopePromptTitle", blue, one_bg)
 fg_bg("TelescopeResultsTitle", red, one_bg)
-
