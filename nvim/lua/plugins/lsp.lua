@@ -41,11 +41,11 @@ local on_attach = function(client, bufnr)
 	-- if client.resolved_capabilities.document_range_formatting then
 	--     buf_set_keymap('v', '<space>cf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 	-- end
-	buf_set_keymap("n", "<space>ds", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+	buf_set_keymap("n", "<space>ds", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	-- Use trouble.nvim instead
-	-- buf_set_keymap('n', '<space>dq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+	-- buf_set_keymap('n', '<space>dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
