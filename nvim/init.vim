@@ -12,6 +12,7 @@ Plug 'sheerun/vim-polyglot'
 """ Builtin LSP 
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
+Plug 'j-hui/fidget.nvim'
 
 """ Null-ls
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -448,4 +449,8 @@ call plug#end()
 
 " Null-ls {{{
     lua require('plugins.null-ls')
+" }}}
+
+" Fidget {{{
+    lua require('plugins.fidget')
 " }}}
