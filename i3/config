@@ -41,9 +41,9 @@ hide_edge_borders none
 title_align center
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
+# bindsym $mod+u border none
+# bindsym $mod+y border pixel 1
+# bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -246,9 +246,12 @@ assign [class="Slack"] $ws5
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Utility menu
+bindsym $mod+u exec $HOME/.i3/utility_menu.py 
+#
 # Screenshot
-bindsym $mod+Print --release exec flameshot gui
-bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
+# bindsym $mod+Print --release exec flameshot gui
+# bindsym Print exec flameshot full -p "/home/incenger/Pictures/"
 
 # Kill chosen application
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
