@@ -238,7 +238,12 @@ components.active[3][6] = {
 		fg = colors.green,
 		bg = colors.statusline_bg,
 	},
-	right_sep = " ",
+	right_sep = {
+		str = " ",
+		hl = {
+			bg = colors.statusline_bg,
+		},
+	},
 }
 components.active[3][7] = {
 	provider = statusline_style.right,
