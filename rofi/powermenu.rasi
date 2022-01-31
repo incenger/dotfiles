@@ -1,3 +1,6 @@
+/* vim:ft=css 
+ */
+
 /*
  *
  * Author  : Aditya Shakya
@@ -30,7 +33,7 @@ window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border-radius:                  0px;
+    border-radius:                  30px;
     height:                         26%;
     width:                          28%;
     location:                       center;

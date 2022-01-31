@@ -1,3 +1,6 @@
+/* vim:ft=css 
+ */
+
 configuration {
 	show-icons: false;
 }
@@ -34,7 +37,7 @@ prompt {
 	background-color:	#1B1E25;
 	padding:		    15px;
 	border-radius:	    15px;
-	font:		    	"SauceCodePro Nerd Font 16";
+	font:		    	"SauceCodePro Nerd Font 14";
 }
 
 entry {
@@ -43,7 +46,7 @@ entry {
 	expand:		        true;
 	padding:		    15px;
 	border-radius:	    15px;
-	font:			    "SauceCodePro Nerd Font 16";
+	font:			    "SauceCodePro Nerd Font 14";
 }
 
 listview {
@@ -65,7 +68,7 @@ element {
 element-text {
 	expand:		        true;
 	margin:		        15px 15px 15px 15px;
-	font:			    "SauceCodePro Nerd Font 16";
+	font:			    "SauceCodePro Nerd Font 14";
 	background-color:	inherit;
 	text-color:		    inherit;
 }
