@@ -17,7 +17,7 @@ for exec in REQUIRED_EXEC:
         print(f"{exec} not found")
         sys.exit(0)
 
-ROFI_THEME = "applications"
+ROFI_THEME = "utility"
 # Rofi uses "\n" to seperate item display
 # E.g: "a\nb\nc" results in 3 items in rofi menu
 ROFI_COMMAND = f"rofi -theme {ROFI_THEME} -dmenu -format i -i -p"
@@ -26,7 +26,7 @@ ROFI_COMMAND = f"rofi -theme {ROFI_THEME} -dmenu -format i -i -p"
 COMMANDS = [
     {
         "display": "Screenshot",
-        "prompt": "Screenshot",
+        "prompt": "麗",
         "action": [
             {
                 "display": "Screen",
@@ -42,10 +42,14 @@ COMMANDS = [
             },
         ],
     },
+    {
+        "display": "Calendar",
+        "action": "zenity --calendar"
+    },
 ]
 
 
-def menu(commands, prompt="Utility: "):
+def menu(commands, prompt=":"):
     """
     Run Rofi menu given commands dictionary
     """

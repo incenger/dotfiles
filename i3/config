@@ -230,6 +230,8 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
+for_window [title="Calendar selection"] floating enable, resize set 500px 300px, move position center
+
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="Skype"] $ws5
 assign [class="Slack"] $ws5
@@ -391,7 +393,7 @@ bindsym $mod+Shift+d exec rofi -show run
 bindsym Mod1+Tab exec rofi -show window -show-icons -theme applications
 
 # Calender launcher
-bindsym $mod+c exec zenity --calendar
+# bindsym $mod+c exec zenity --calendar
 
 # Bmenu 
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'

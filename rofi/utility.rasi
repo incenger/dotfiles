@@ -1,0 +1,77 @@
+configuration {
+	show-icons: false;
+}
+
+* {
+	background:		    #0C0F09;
+	foreground:		    #05E289;
+	background-color:	@background;
+	text-color:		    @foreground;
+}
+
+
+mainbox { children: [inputbar, listview ]; }
+
+
+window {
+	transparency:		"real";
+	width:		        650px;
+	border:		        15px 15px 15px 15px;
+	border-radius:	    15px;
+	height:		        500px;
+}
+
+
+inputbar {
+	children:		    [ prompt, entry ];
+	expand:		        false;
+	padding:		    10px 10px 10px 10px;
+	border-radius:	    15px;
+}
+
+prompt { 
+	enabled:            true; 
+	background-color:	#1B1E25;
+	padding:		    15px;
+	border-radius:	    15px;
+	font:		    	"SauceCodePro Nerd Font 16";
+}
+
+entry {
+	background-color:	#1B1E25;
+	placeholder:		"";
+	expand:		        true;
+	padding:		    15px;
+	border-radius:	    15px;
+	font:			    "SauceCodePro Nerd Font 16";
+}
+
+listview {
+	columns:		1;
+	cycle:		    true;
+	dynamic:		true;
+	layout:		    vertical;
+	scrollbar:		false;
+}
+
+element {
+	orientation:		horizontal;
+	margin:	    	    5px 10px 5px 10px;
+	border-radius:	    10px;
+	padding:            0.5%;
+	background-color:	#1B1E25;
+}
+
+element-text {
+	expand:		        true;
+	margin:		        15px 15px 15px 15px;
+	font:			    "SauceCodePro Nerd Font 16";
+	background-color:	inherit;
+	text-color:		    inherit;
+}
+
+element selected {
+	background-color:	@foreground;
+	text-color:		    #1B1E25;
+	border-radius:	    10px;
+}
