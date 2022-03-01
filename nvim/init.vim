@@ -48,6 +48,7 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
+" TODO: Try lightspeed.nvim
 
 """ History Tree of File
 Plug 'mbbill/undotree'
@@ -75,7 +76,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-"TODO: Check this plugin for git branches: https://github.com/stsewd/fzf-checkout.vim
 
 
 Plug 'nvim-lua/popup.nvim'
@@ -100,6 +100,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
 Plug 'lewis6991/gitsigns.nvim' 
+" TODO: Try diffview.nvim
 
 """ Windows
 Plug 't9md/vim-choosewin'
@@ -401,10 +402,13 @@ call plug#end()
     nmap  -  <Plug>(choosewin)
 " }}}
 
+" Lua plugins {{{
+    lua require("plugins")
+" }}}
+
 " indent-blankline.nvim {{{
     " Fix cursorline leaves artifacts
     " https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-    lua require("plugins.indent_blankline")
     set colorcolumn=99999
 " }}}
 
@@ -422,35 +426,6 @@ call plug#end()
 " }}}
 
 " nvim-tree {{{
-    lua require('plugins.nvim-tree')
     nnoremap <leader>e <cmd>NvimTreeToggle<cr>
 " }}}
 
-" gitsigns {{{
-    lua require('plugins.gitsigns')
-" }}}
-
-" feline {{{
-    lua require('plugins.feline')
-" }}}
-
-" LSP Completion {{{
-    lua require('plugins.lsp')
-    lua require('plugins.nvim-cmp')
-" }}}
-
-" Snippet Engine {{{
-    lua require('plugins.luasnip')
-" }}}
-
-" Trouble.nvim {{{
-    lua require('plugins.trouble')
-" }}}
-
-" Null-ls {{{
-    lua require('plugins.null-ls')
-" }}}
-
-" Fidget {{{
-    lua require('plugins.fidget')
-" }}}

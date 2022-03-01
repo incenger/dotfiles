@@ -98,9 +98,13 @@ lspSymbol("Hint", "")
 lspSymbol("Warn", "")
 
 -- Display virtual text for error only
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = false,
+vim.diagnostic.config({
 	virtual_text = {
-		severity_limit = "Error",
+		severity = vim.diagnostic.severity.ERROR,
+		source = "if_many",
 	},
+	float = {
+		source = "always",
+	},
+	underline = false,
 })
