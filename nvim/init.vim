@@ -113,6 +113,8 @@ Plug 't9md/vim-choosewin'
 Plug 'srcery-colors/srcery-vim'
 Plug 'NvChad/nvim-base16.lua'
 
+""" Tabline (no buffers) 
+Plug 'alvarosevilla95/luatab.nvim'
 
 """ Status Line
 Plug 'famiu/feline.nvim'
