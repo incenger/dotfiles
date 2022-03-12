@@ -42,7 +42,7 @@ cmp.setup({
 			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 		}),
 	},
-	experimental = {
-		native_menu = false,
-	},
+    view = {
+        entries = "custom",
+    }
 })
