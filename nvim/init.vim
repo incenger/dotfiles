@@ -100,7 +100,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'  "Git Wrapper
 Plug 'junegunn/gv.vim'     "Git Commit Browser
 Plug 'lewis6991/gitsigns.nvim' 
-" TODO: Try diffview.nvim
+Plug 'sindrets/diffview.nvim'
 
 """ Windows
 Plug 't9md/vim-choosewin'
@@ -429,3 +429,7 @@ call plug#end()
     nnoremap <leader>e <cmd>NvimTreeToggle<cr>
 " }}}
 
+" diffview.nvim {{{
+    nnoremap <leader><leader>d <cmd>DiffviewOpen<cr>
+    nnoremap <leader><leader>h <cmd>DiffviewFileHistory<cr>
+" }}}
