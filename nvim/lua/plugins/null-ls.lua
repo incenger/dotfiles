@@ -23,6 +23,7 @@ null_ls.setup({
         formatting.isort,
 		formatting.stylua,
 		formatting.shfmt,
+        formatting.prettier,
         diagnostics.shellcheck,
 	},
 })
