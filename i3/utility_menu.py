@@ -29,12 +29,12 @@ COMMANDS = [
         "prompt": "麗",
         "action": [
             {
-                "display": "Screen",
-                "action": 'flameshot screen -p "$HOME/Pictures/"',
-            },
-            {
                 "display": "Selection",
                 "action": "flameshot gui",
+            },
+            {
+                "display": "Screen",
+                "action": 'flameshot screen -p "$HOME/Pictures/"',
             },
             {
                 "display": "Desktop",

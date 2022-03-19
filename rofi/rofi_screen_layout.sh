@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ -z "$@" ]; then
-    echo -en "eDP1\n"
-    echo -en "Mirror\n"
     echo -en "Home\n"
+    echo -en "Mirror\n"
+    echo -en "eDP1\n"
 else
     if [ "$1" = "eDP1" ]; then
         sh ~/.screenlayout/edp1.sh &> /dev/null & disown;
