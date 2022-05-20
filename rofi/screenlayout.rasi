@@ -1,62 +1,82 @@
+/* vim:ft=css 
+ */
+
 configuration {
-	display-drun: "";
-	display-run: "";
-	display-window: "";
-	display-ssh: "~#";
 	show-icons: false;
-	sidebar-mode: false;
-	font: "Source Code Pro 10";
-}
-
-window {
-	height: 6%;
-	width: 31%;
-	orientation: horizontal;
-	border-color: @active-background;
-	hide-scrollbar: true;
-}
-
-mainbox {
-    border:  0;
-    padding: 0;
-    children: [listview];
-}
-
-listview {
-    columns: 4;
-    layout: horizontal;
-}
-
-element {
-    margin: 8px;
-    padding: 10px;
-    border-radius: 5px;
-    orientation: vertical;
-}
-
-element-icon {
-    size: 48px;
-    margin: 2px;
-    background-color: inherit;
-    text-color:       inherit;
-}
-
-element-text {
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
-    background-color: inherit;
-    text-color:       inherit;
-}
-
-element selected {
-  background-color: #2e343f;
 }
 
 * {
-  background-color: #282C33;
-  border-color: #2e343f;
-  text-color: #8ca0aa;
-  spacing: 2;
-  width: 10%;
+	background:		    #0C0F09;
+	foreground:		    #05E289;
+	background-color:	@background;
+	text-color:		    @foreground;
+}
+
+
+mainbox { children: [listview ]; }
+
+
+window {
+	transparency:		"real";
+	width:		        400;
+	border:		        15px 15px 15px 15px;
+	border-radius:	    15px;
+	height:		        350px;
+}
+
+
+inputbar {
+	children:		    [ prompt, entry ];
+	expand:		        false;
+	padding:		    10px 10px 10px 10px;
+	border-radius:	    15px;
+}
+
+prompt { 
+	enabled:            true; 
+	background-color:	#1B1E25;
+	padding:		    15px;
+	border-radius:	    15px;
+	font:		    	"SauceCodePro Nerd Font 14";
+}
+
+entry {
+	background-color:	#1B1E25;
+	placeholder:		"";
+	expand:		        true;
+	padding:		    15px;
+	border-radius:	    15px;
+	font:			    "SauceCodePro Nerd Font 14";
+}
+
+listview {
+	columns:		1;
+	cycle:		    true;
+	dynamic:		true;
+	layout:		    vertical;
+	scrollbar:		false;
+}
+
+element {
+	orientation:		horizontal;
+	margin:	    	    5px 10px 5px 10px;
+	border-radius:	    10px;
+	padding:            0.5%;
+	background-color:	#1B1E25;
+}
+
+element-text {
+	expand:		        true;
+	margin:		        15px 15px 15px 15px;
+	font:			    "SauceCodePro Nerd Font 14";
+	background-color:	inherit;
+    horizontal-align:   0.5;
+	text-color:		    inherit;
+}
+
+element selected {
+	background-color:	@foreground;
+	text-color:		    #1B1E25;
+	border-radius:	    10px;
 }
 
