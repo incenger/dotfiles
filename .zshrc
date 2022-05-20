@@ -112,6 +112,16 @@ export QT_IM_MODULE=ibus
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 source ~/tmuxinator.zsh
 
+# forgit
+export FORGIT_LOG_GRAPH_ENABLE=true
+export FORGIT_FZF_DEFAULT_OPTS="--exact
+--border
+--cycle
+--reverse
+--height '80%'
+"
+source $HOME/.local/forgit/forgit.plugin.zsh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
