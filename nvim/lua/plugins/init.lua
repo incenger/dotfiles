@@ -1,3 +1,4 @@
+-- TODO: Add error handling if plugins are loaded unsucessfully
 require("plugins.nvim-tree")
 require("plugins.gitsigns")
 require("plugins.feline")

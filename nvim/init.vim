@@ -48,7 +48,6 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 """ Quickly Moving Around Text
 Plug 'easymotion/vim-easymotion'
-" TODO: Try lightspeed.nvim
 
 """ History Tree of File
 Plug 'mbbill/undotree'
@@ -105,15 +104,15 @@ Plug 'sindrets/diffview.nvim'
 """ Windows
 Plug 't9md/vim-choosewin'
 
-""" Terminal, compatible with nvim < 0.7
-Plug 'akinsho/toggleterm.nvim', {'tag':'v1.*'}
+""" Terminal
+Plug 'akinsho/toggleterm.nvim', {'tag':'v2.*'}
 
 " }}} GENERAL "
 
 " UI {{{
 """ Theme
 Plug 'srcery-colors/srcery-vim'
-Plug 'NvChad/nvim-base16.lua'
+Plug 'NvChad/base46', {'commit': 'dbd746da1b1ab43faf8aad2ba5ad0be3d43eba86'}
 
 
 """ Tabline (no buffers) 
