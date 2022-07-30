@@ -12,7 +12,6 @@ Plug 'sheerun/vim-polyglot'
 """ Builtin LSP 
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
-Plug 'j-hui/fidget.nvim'
 
 """ Null-ls
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -24,14 +23,13 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'saadparwaiz1/cmp_luasnip'
 
-""" Enhance LSP
-" Plug 'ray-x/lsp_signature.nvim'
+""" LSP Enhancement
+Plug 'j-hui/fidget.nvim'
+Plug 'folke/trouble.nvim'
 
 """ Snippet
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-
-Plug 'folke/trouble.nvim'
 
 
 """ Semantic Highlighting
@@ -39,6 +37,7 @@ Plug 'numirias/semshi', {'for':'python', 'do': ':UpdateRemotePlugins'} "For Pyth
 Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 
 """ Docs Generator
+" Tree-sitter based doc gen plugin: https://github.com/nvim-treesitter/nvim-tree-docs
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 
@@ -70,7 +69,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 """ Indentation
 Plug 'lukas-reineke/indent-blankline.nvim'
-" Plug 'yggdroot/indentline'
 
 """ Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -79,9 +77,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-" Plug 'fannheyward/telescope-coc.nvim'
 
 
 Plug 'google/vim-searchindex'
@@ -145,18 +140,15 @@ call plug#end()
 
     set termguicolors
     colorscheme srcery
-    " lua require("plugins.theme")
-
 	set mouse=a
+
 	set number
 	set relativenumber
-    set mousehide
     set lazyredraw "Fixlag while scolling
     set cursorline " Highlight current line
     set guicursor=
     set signcolumn=yes
     set splitbelow splitright
-    set fillchars+=vert:\|
     " Highlight on yank
     augroup highlight_yank
         autocmd!
@@ -174,18 +166,18 @@ call plug#end()
     set encoding=utf-8
     set shortmess+=c
     set scrolloff=10
+    " The formatoption is override by vim-polyglot plugin.
+    autocmd FileType * set formatoptions-=o
 
 " }}} Content "
 
 " Filetype {{{
 
-	filetype indent on
-	filetype on
 	filetype plugin indent on
 	syntax enable
 
     """ Python
-    let g:python3_host_prog = "$HOME/anaconda3/bin/python3.8"
+    let g:python3_host_prog = "$HOME/anaconda3/bin/python3.9"
 
 
 " }}} Filetype "
@@ -385,12 +377,6 @@ call plug#end()
 
 " Lua plugins {{{
     lua require("plugins")
-" }}}
-
-" indent-blankline.nvim {{{
-    " Fix cursorline leaves artifacts
-    " https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-    set colorcolumn=99999
 " }}}
 
 " telescope.nvim {{{
