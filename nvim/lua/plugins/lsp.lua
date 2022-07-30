@@ -53,9 +53,11 @@ end
 -- true/false - enable/disable the server using default configuration
 -- dict -  customized config
 local servers = {
-	pylsp = true,
-	ccls = true,
+	-- pylsp = true,
+	-- ccls = true,
+    clangd = true,
 	vimls = true,
+    pyright = true,
 }
 
 local setup_server = function(server, config)
