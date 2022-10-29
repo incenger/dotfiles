@@ -1,7 +1,7 @@
 local nvim_lsp = require("lspconfig")
 local cmp = require("cmp")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -81,12 +81,6 @@ for server, config in pairs(servers) do
 	setup_server(server, config)
 end
 
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
 
 local function lspSymbol(name, icon)
 	local hl = "DiagnosticSign" .. name
