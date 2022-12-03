@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin/nvim-linux64/bin/:$PATH
-
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/incenger/.oh-my-zsh"
 
@@ -78,13 +70,12 @@ plugins=(
     zsh-syntax-highlighting
     ssh-agent
     colored-man-pages
-    zsh-z
 )
 
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_github
+# zstyle :omz:plugins:ssh-agent identities id_rsa id_github
 
 source $ZSH/oh-my-zsh.sh
 
@@ -146,13 +137,10 @@ function open () {
     xdg-open "$*" &
 }
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 eval "$(starship init zsh)"
 
-#. /home/incenger/.config/z/z.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
