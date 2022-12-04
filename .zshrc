@@ -112,7 +112,11 @@ export FORGIT_FZF_DEFAULT_OPTS="--exact
 --reverse
 --height '80%'
 "
+
 source $HOME/.local/forgit/forgit.plugin.zsh
+
+# FZF config
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
